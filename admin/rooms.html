@@ -173,46 +173,72 @@
         <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined">close</span></button>
       </div>
       <div class="admin-modal-body">
-        <form>
+        <form id="roomForm">
           <div class="d-flex gap-md mb-md">
             <div class="admin-form-group w-100">
               <label class="admin-form-label">Room Number</label>
-              <input type="text" class="admin-form-control" placeholder="e.g. 101">
+              <input type="text" name="roomNumber" class="admin-form-control" placeholder="e.g. 101">
             </div>
             <div class="admin-form-group w-100">
-              <label class="admin-form-label">Room Type</label>
-              <select class="admin-form-control">
-                <option>Standard</option>
-                <option>Deluxe</option>
-              </select>
+              <label class="admin-form-label">Floor</label>
+              <input type="number" name="floor" class="admin-form-control" placeholder="1">
             </div>
           </div>
           <div class="d-flex gap-md mb-md">
             <div class="admin-form-group w-100">
-              <label class="admin-form-label">Capacity</label>
-              <input type="number" class="admin-form-control" placeholder="2">
+              <label class="admin-form-label">Room Type</label>
+              <select name="type" class="admin-form-control">
+                <option value="Standard">Standard</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Suite">Suite</option>
+                <option value="Family">Family</option>
+              </select>
             </div>
             <div class="admin-form-group w-100">
+              <label class="admin-form-label">Capacity</label>
+              <input type="number" name="capacity" class="admin-form-control" placeholder="2">
+            </div>
+          </div>
+          <div class="d-flex gap-md mb-md">
+            <div class="admin-form-group w-100">
               <label class="admin-form-label">Base Price</label>
-              <input type="number" class="admin-form-control" placeholder="3500">
+              <input type="number" name="basePrice" class="admin-form-control" placeholder="3500">
             </div>
           </div>
           <!-- Amenities -->
           <label class="admin-form-label">Amenities</label>
           <div class="d-flex flex-wrap gap-md mb-md">
-            <label class="d-flex align-center gap-sm"><input type="checkbox"> Wi-Fi</label>
-            <label class="d-flex align-center gap-sm"><input type="checkbox"> AC</label>
-            <label class="d-flex align-center gap-sm"><input type="checkbox"> TV</label>
-            <label class="d-flex align-center gap-sm"><input type="checkbox"> Mini Fridge</label>
+            <label class="d-flex align-center gap-sm"><input type="checkbox" value="Wi-Fi"> Wi-Fi</label>
+            <label class="d-flex align-center gap-sm"><input type="checkbox" value="AC"> AC</label>
+            <label class="d-flex align-center gap-sm"><input type="checkbox" value="Smart TV"> Smart TV</label>
+            <label class="d-flex align-center gap-sm"><input type="checkbox" value="Mini Fridge"> Mini Fridge</label>
           </div>
         </form>
       </div>
       <div class="admin-modal-footer">
-        <button class="admin-btn admin-btn-outline">Cancel</button>
-        <button class="admin-btn admin-btn-primary">Save Room</button>
+        <button class="admin-btn admin-btn-outline" data-modal-close>Cancel</button>
+        <button class="admin-btn admin-btn-primary" id="saveRoomBtn">Save Room</button>
       </div>
     </div>
   </div>
 
+  <script src="../js/storage.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/admin/admin-data.js"></script>
+  <script src="../js/admin/admin-auth.js"></script>
+  <script src="../js/admin/admin-validation.js"></script>
+  <script src="../js/admin/admin-ui.js"></script>
+  <script src="../js/admin/admin-dashboard.js"></script>
+  <script src="../js/admin/admin-rooms.js"></script>
+  <script src="../js/admin/admin-bookings.js"></script>
+  <script src="../js/admin/admin-guests.js"></script>
+  <script src="../js/admin/admin-service-requests.js"></script>
+  <script src="../js/admin/admin-chats.js"></script>
+  <script src="../js/admin/admin-pricing.js"></script>
+  <script src="../js/admin/admin-housekeeping.js"></script>
+  <script src="../js/admin/admin-payments.js"></script>
+  <script src="../js/admin/admin-reports.js"></script>
+  <script src="../js/admin/admin-settings.js"></script>
+  <script src="../js/admin/admin-app.js"></script>
 </body>
 </html>
