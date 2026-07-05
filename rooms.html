@@ -70,7 +70,7 @@
           <input type="range" class="w-100" id="priceRange" min="50" max="500" value="500" oninput="document.getElementById('priceVal').textContent = '$'+this.value">
         </div>
 
-        <div class="d-flex gap-sm mt-xl">
+        <div class="d-flex gap-sm mt-xl flex-wrap flex-column-mobile">
           <button class="btn btn-secondary flex-grow-1" id="resetFilters">Reset</button>
           <button class="btn btn-primary flex-grow-1" id="applyFilters">Apply</button>
         </div>
@@ -78,7 +78,7 @@
 
       <!-- Room Grid Area -->
       <main style="flex: 3; min-width: 300px;">
-        <div class="d-flex justify-content-between align-items-center mb-lg pb-sm border-bottom">
+        <div class="d-flex justify-content-between align-items-center mb-lg pb-sm border-bottom flex-wrap gap-sm">
           <h3 class="mb-0">Available Rooms</h3>
           <div class="d-flex align-items-center gap-sm">
             <label class="font-size-sm text-muted mb-0">Sort By:</label>
