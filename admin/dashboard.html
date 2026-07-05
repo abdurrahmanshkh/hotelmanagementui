@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Admin - Dashboard</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="dashboard.html" class="admin-brand">
+      <div class="brand-icon">
+        <span class="material-symbols-outlined">domain</span>
+      </div>
+      <div class="brand-text">
+        <h1>StayEase Pro</h1>
+        <p>Admin Console</p>
+      </div>
+    </a>
+    
+    <nav class="admin-nav mt-md">
+      <a href="dashboard.html" class="admin-nav-item active">
+        <span class="material-symbols-outlined">dashboard</span> Dashboard
+      </a>
+      <a href="rooms.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">bed</span> Rooms
+      </a>
+      <a href="bookings.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">calendar_month</span> Bookings
+      </a>
+      <a href="guests.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">group</span> Guests
+      </a>
+      <a href="service-requests.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">room_service</span> Service Requests
+      </a>
+      <a href="chats.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">chat</span> Chats
+      </a>
+      <a href="dynamic-pricing.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">payments</span> Dynamic Pricing
+      </a>
+      <a href="housekeeping.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">cleaning_services</span> Housekeeping
+      </a>
+      <a href="payments.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">credit_card</span> Payments
+      </a>
+      <a href="reports.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">bar_chart</span> Reports
+      </a>
+      <a href="settings.html" class="admin-nav-item">
+        <span class="material-symbols-outlined">settings</span> Settings
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="admin-main">
+    
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <div class="search-bar">
+          <span class="material-symbols-outlined">search</span>
+          <input type="text" placeholder="Search guests, bookings, rooms...">
+        </div>
+      </div>
+      
+      <div class="topbar-right">
+        <!-- Notification Placeholder -->
+        <button class="topbar-action">
+          <span class="material-symbols-outlined">notifications</span>
+          <span class="badge-dot"></span>
+        </button>
+        <!-- Dark Mode Toggle Placeholder -->
+        <button class="topbar-action">
+          <span class="material-symbols-outlined">dark_mode</span>
+        </button>
+        
+        <div class="admin-profile">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+          <span class="admin-profile-name">Priya Mehta</span>
+          <span class="material-symbols-outlined text-muted" style="font-size:18px;">expand_more</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Canvas -->
+    <main class="admin-content">
+      
+      <div class="page-header">
+        <div>
+          <h2>Admin Dashboard</h2>
+          <p>Monitor hotel operations, rooms, bookings, services, and revenue.</p>
+        </div>
+        <div class="d-flex gap-sm">
+          <button class="admin-btn admin-btn-outline">Today</button>
+          <button class="admin-btn admin-btn-outline" style="border-color:transparent;">7 Days</button>
+          <button class="admin-btn admin-btn-outline" style="border-color:transparent;">30 Days</button>
+          <button class="admin-btn admin-btn-outline d-flex align-center gap-sm">
+            <span class="material-symbols-outlined" style="font-size:18px;">calendar_today</span> Custom
+          </button>
+        </div>
+      </div>
+
+      <!-- Bento Grid Metrics -->
+      <div class="admin-bento-grid">
+        <!-- Metric: Total Rooms -->
+        <div class="admin-card">
+          <span class="material-symbols-outlined card-bg-icon">domain</span>
+          <span class="metric-label">Total Rooms</span>
+          <span class="metric-value">50</span>
+        </div>
+
+        <!-- Metric: Available -->
+        <div class="admin-card">
+          <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 12%</div>
+          <span class="metric-label">Available</span>
+          <span class="metric-value">12</span>
+        </div>
+
+        <!-- Metric: Occupancy -->
+        <div class="admin-card">
+          <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 4%</div>
+          <span class="metric-label">Occupancy Rate</span>
+          <span class="metric-value">76%</span>
+          <!-- CSS Progress bar placeholder -->
+          <div style="width:100%; height:6px; background:var(--admin-surface-border); border-radius:3px; margin-top:8px; overflow:hidden;">
+            <div style="width:76%; height:100%; background:var(--admin-primary); border-radius:3px;"></div>
+          </div>
+        </div>
+
+        <!-- Metric: Revenue -->
+        <div class="admin-card col-span-2">
+          <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 8.5%</div>
+          <span class="metric-label">Revenue Today</span>
+          <span class="metric-value text-success">₹ 1,24,500</span>
+          <!-- Chart Placeholder -->
+          <div class="chart-placeholder" style="height:40px; padding:0; background:transparent; margin-top:12px;">
+            <div class="chart-bar" style="height:30%; opacity:0.5;"></div>
+            <div class="chart-bar" style="height:50%; opacity:0.5;"></div>
+            <div class="chart-bar" style="height:40%; opacity:0.5;"></div>
+            <div class="chart-bar" style="height:80%; opacity:0.5;"></div>
+            <div class="chart-bar" style="height:60%; opacity:0.5;"></div>
+            <div class="chart-bar" style="height:100%;"></div>
+          </div>
+        </div>
+        
+        <!-- Metric: Pending Services -->
+        <div class="admin-card">
+          <div class="metric-trend down"><span class="material-symbols-outlined" style="font-size:14px;">warning</span> 2 High</div>
+          <span class="metric-label">Service Requests</span>
+          <span class="metric-value">5</span>
+        </div>
+
+        <!-- Metric: Unread Chats -->
+        <div class="admin-card">
+          <span class="metric-label">Unread Chats</span>
+          <span class="metric-value" style="color:var(--admin-secondary-hover);">3</span>
+        </div>
+      </div>
+
+      <!-- Charts Section (Placeholders) -->
+      <div class="admin-bento-grid" style="grid-template-columns: repeat(1, 1fr);">
+        <div class="admin-card">
+          <div class="d-flex justify-between align-center mb-md">
+            <h3 style="margin:0; font-size:1.125rem;">Occupancy Trend</h3>
+            <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined">more_vert</span></button>
+          </div>
+          <div class="chart-placeholder">
+            <!-- Simulated chart bars -->
+            <div class="chart-bar" style="height: 40%"></div>
+            <div class="chart-bar" style="height: 60%"></div>
+            <div class="chart-bar" style="height: 55%"></div>
+            <div class="chart-bar" style="height: 80%"></div>
+            <div class="chart-bar" style="height: 95%"></div>
+            <div class="chart-bar" style="height: 70%"></div>
+            <div class="chart-bar" style="height: 85%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tables Section -->
+      <div class="page-header" style="margin-bottom: var(--admin-space-md); margin-top: var(--admin-space-xl);">
+        <h3 style="margin:0;">Recent Bookings</h3>
+        <button class="admin-btn admin-btn-primary">View All</button>
+      </div>
+      
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Guest Name</th>
+              <th>Room</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Status</th>
+              <th>Payment</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Booking ID">BK-2026-1042</td>
+              <td data-label="Guest Name">Aarav Sharma</td>
+              <td data-label="Room">305 (Deluxe)</td>
+              <td data-label="Check-in">Oct 12, 2026</td>
+              <td data-label="Check-out">Oct 15, 2026</td>
+              <td data-label="Status"><span class="admin-badge badge-info">Checked In</span></td>
+              <td data-label="Payment"><span class="admin-badge badge-success">Paid</span></td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-icon" title="View"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
+                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Booking ID">BK-2026-1043</td>
+              <td data-label="Guest Name">Emily Chen</td>
+              <td data-label="Room">410 (Suite)</td>
+              <td data-label="Check-in">Oct 14, 2026</td>
+              <td data-label="Check-out">Oct 18, 2026</td>
+              <td data-label="Status"><span class="admin-badge badge-warning">Confirmed</span></td>
+              <td data-label="Payment"><span class="admin-badge badge-warning">Pending</span></td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-icon" title="View"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
+                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>

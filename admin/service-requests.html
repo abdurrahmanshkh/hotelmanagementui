@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Admin - Service Requests</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="dashboard.html" class="admin-brand">
+      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-text">
+        <h1>StayEase Pro</h1>
+        <p>Admin Console</p>
+      </div>
+    </a>
+    <nav class="admin-nav mt-md">
+      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+      <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
+      <a href="bookings.html" class="admin-nav-item"><span class="material-symbols-outlined">calendar_month</span> Bookings</a>
+      <a href="guests.html" class="admin-nav-item"><span class="material-symbols-outlined">group</span> Guests</a>
+      <a href="service-requests.html" class="admin-nav-item active"><span class="material-symbols-outlined">room_service</span> Service Requests</a>
+      <a href="chats.html" class="admin-nav-item"><span class="material-symbols-outlined">chat</span> Chats</a>
+      <a href="dynamic-pricing.html" class="admin-nav-item"><span class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
+      <a href="housekeeping.html" class="admin-nav-item"><span class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
+      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span> Payments</a>
+      <a href="reports.html" class="admin-nav-item"><span class="material-symbols-outlined">bar_chart</span> Reports</a>
+      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span> Settings</a>
+    </nav>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+      </div>
+      <div class="topbar-right">
+        <div class="admin-profile">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+          <span class="admin-profile-name">Priya Mehta</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      
+      <div class="page-header">
+        <div>
+          <h2>Service Requests</h2>
+          <p>Track and manage guest requests across the property.</p>
+        </div>
+        <div class="d-flex gap-sm">
+          <button class="admin-btn admin-btn-outline"><span class="material-symbols-outlined">view_list</span> Table View</button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="admin-card mb-lg d-flex align-center gap-md" style="flex-wrap:wrap;">
+        <div class="search-bar" style="flex:1; min-width:200px;">
+          <span class="material-symbols-outlined">search</span>
+          <input type="text" placeholder="Search Request ID, Room...">
+        </div>
+        <select class="admin-form-control" style="width:150px;">
+          <option>All Priorities</option>
+          <option>Emergency</option>
+          <option>High</option>
+          <option>Medium</option>
+        </select>
+      </div>
+
+      <!-- Kanban Board -->
+      <div class="kanban-board">
+        <!-- Column 1 -->
+        <div class="kanban-col">
+          <div class="kanban-header">
+            <span>New Requests</span>
+            <span class="admin-badge badge-neutral">2</span>
+          </div>
+          
+          <div class="kanban-card priority-emergency">
+            <div class="d-flex justify-between mb-sm">
+              <span class="admin-badge badge-danger">Emergency</span>
+              <span class="text-muted" style="font-size:0.75rem;">10m ago</span>
+            </div>
+            <h4 style="margin:0 0 8px 0;">Plumbing Issue</h4>
+            <p class="text-muted" style="font-size:0.875rem; margin:0 0 12px 0;">Bathroom pipe is leaking heavily.</p>
+            <div class="d-flex justify-between align-center">
+              <span style="font-size:0.875rem; font-weight:600;">Room 201</span>
+              <button class="admin-btn admin-btn-primary" style="padding:4px 8px; font-size:0.75rem;">Accept</button>
+            </div>
+          </div>
+
+          <div class="kanban-card">
+            <div class="d-flex justify-between mb-sm">
+              <span class="admin-badge badge-info">Medium</span>
+              <span class="text-muted" style="font-size:0.75rem;">25m ago</span>
+            </div>
+            <h4 style="margin:0 0 8px 0;">Fresh Towels</h4>
+            <p class="text-muted" style="font-size:0.875rem; margin:0 0 12px 0;">Need 2 extra towels.</p>
+            <div class="d-flex justify-between align-center">
+              <span style="font-size:0.875rem; font-weight:600;">Room 410</span>
+              <button class="admin-btn admin-btn-primary" style="padding:4px 8px; font-size:0.75rem;">Accept</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="kanban-col">
+          <div class="kanban-header">
+            <span>Accepted</span>
+            <span class="admin-badge badge-neutral">1</span>
+          </div>
+          <div class="kanban-card">
+            <div class="d-flex justify-between mb-sm">
+              <span class="admin-badge badge-warning">High</span>
+              <span class="text-muted" style="font-size:0.75rem;">1h ago</span>
+            </div>
+            <h4 style="margin:0 0 8px 0;">Room Cleaning</h4>
+            <p class="text-muted" style="font-size:0.875rem; margin:0 0 12px 0;">Spilled coffee on carpet.</p>
+            <div class="d-flex justify-between align-center">
+              <span style="font-size:0.875rem; font-weight:600;">Room 305</span>
+              <button class="admin-btn admin-btn-outline" style="padding:4px 8px; font-size:0.75rem;">Start</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="kanban-col">
+          <div class="kanban-header">
+            <span>In Progress</span>
+            <span class="admin-badge badge-neutral">0</span>
+          </div>
+          <!-- Empty State -->
+          <div class="text-center text-muted" style="padding:var(--admin-space-lg); font-size:0.875rem; border:1px dashed var(--admin-surface-border); border-radius:var(--admin-radius-md);">
+            No requests in progress
+          </div>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="kanban-col">
+          <div class="kanban-header">
+            <span>Completed</span>
+            <span class="admin-badge badge-neutral">1</span>
+          </div>
+          <div class="kanban-card" style="opacity:0.7;">
+            <div class="d-flex justify-between mb-sm">
+              <span class="admin-badge badge-success">Completed</span>
+              <span class="text-muted" style="font-size:0.75rem;">3h ago</span>
+            </div>
+            <h4 style="margin:0 0 8px 0;">Dinner Order</h4>
+            <p class="text-muted" style="font-size:0.875rem; margin:0 0 12px 0;">Delivered.</p>
+            <div class="d-flex justify-between align-center">
+              <span style="font-size:0.875rem; font-weight:600;">Room 101</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

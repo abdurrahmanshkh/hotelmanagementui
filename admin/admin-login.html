@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Admin - Login</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    .admin-login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--admin-primary);
+      padding: var(--admin-space-lg);
+    }
+    .admin-login-card {
+      background-color: var(--admin-surface);
+      border-radius: var(--admin-radius-xl);
+      box-shadow: var(--admin-shadow-lg);
+      width: 100%;
+      max-width: 440px;
+      overflow: hidden;
+    }
+    .admin-login-header {
+      padding: var(--admin-space-xl);
+      text-align: center;
+      background-color: var(--admin-surface-alt);
+      border-bottom: 1px solid var(--admin-surface-border);
+    }
+    .admin-login-body {
+      padding: var(--admin-space-xl);
+    }
+    .demo-credentials {
+      margin-top: var(--admin-space-lg);
+      padding: var(--admin-space-md);
+      background-color: var(--admin-info-bg);
+      border-radius: var(--admin-radius-md);
+      font-size: 0.875rem;
+      color: var(--admin-info);
+      border: 1px dashed var(--admin-info);
+    }
+  </style>
+</head>
+<body class="admin-body">
+
+  <div class="admin-login-wrapper w-100">
+    <div class="admin-login-card">
+      <div class="admin-login-header">
+        <div class="brand-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; background: var(--admin-secondary); color: #6f5100; border-radius: var(--admin-radius-md); display:flex; align-items:center; justify-content:center;">
+          <span class="material-symbols-outlined" style="font-size:32px;">domain</span>
+        </div>
+        <h2 style="margin:0; font-size:1.5rem; color:var(--admin-primary);">StayEase Pro</h2>
+        <p style="margin:4px 0 0 0; color:var(--admin-text-muted); font-size:0.875rem;">Admin Console Login</p>
+      </div>
+      
+      <div class="admin-login-body">
+        <form id="adminLoginForm">
+          <!-- Validation Placeholder Error -->
+          <div class="error-message mb-md" style="display:none; padding:12px; background:var(--admin-danger-bg); border-radius:var(--admin-radius-md);">
+            Invalid email or password.
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-form-label">Email Address</label>
+            <input type="email" class="admin-form-control" placeholder="admin@stayease.com" required>
+          </div>
+          
+          <div class="admin-form-group">
+            <label class="admin-form-label">Password</label>
+            <input type="password" class="admin-form-control" placeholder="••••••••" required>
+          </div>
+          
+          <div class="admin-form-group">
+            <label class="admin-form-label">Staff Code (Optional)</label>
+            <input type="text" class="admin-form-control" placeholder="e.g. STF-123">
+          </div>
+
+          <div class="d-flex justify-between align-center mb-lg mt-md">
+            <label style="font-size:0.875rem; display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" style="accent-color:var(--admin-primary);"> Remember me
+            </label>
+            <a href="#" style="font-size:0.875rem; color:var(--admin-primary); text-decoration:none;">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="admin-btn admin-btn-primary w-100" style="padding: 12px;">Sign In to Dashboard</button>
+        </form>
+
+        <div class="demo-credentials">
+          <strong>Demo Credentials:</strong><br>
+          Email: admin@stayease.com<br>
+          Password: admin123
+        </div>
+
+        <div class="text-center mt-xl">
+          <a href="../index.html" style="font-size:0.875rem; color:var(--admin-text-muted); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+            <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span> Back to Customer Portal
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

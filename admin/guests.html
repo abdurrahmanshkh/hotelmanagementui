@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Admin - Guests</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="dashboard.html" class="admin-brand">
+      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-text">
+        <h1>StayEase Pro</h1>
+        <p>Admin Console</p>
+      </div>
+    </a>
+    <nav class="admin-nav mt-md">
+      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+      <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
+      <a href="bookings.html" class="admin-nav-item"><span class="material-symbols-outlined">calendar_month</span> Bookings</a>
+      <a href="guests.html" class="admin-nav-item active"><span class="material-symbols-outlined">group</span> Guests</a>
+      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span> Service Requests</a>
+      <a href="chats.html" class="admin-nav-item"><span class="material-symbols-outlined">chat</span> Chats</a>
+      <a href="dynamic-pricing.html" class="admin-nav-item"><span class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
+      <a href="housekeeping.html" class="admin-nav-item"><span class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
+      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span> Payments</a>
+      <a href="reports.html" class="admin-nav-item"><span class="material-symbols-outlined">bar_chart</span> Reports</a>
+      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span> Settings</a>
+    </nav>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+      </div>
+      <div class="topbar-right">
+        <div class="admin-profile">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+          <span class="admin-profile-name">Priya Mehta</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      
+      <div class="page-header">
+        <div>
+          <h2>Guest Directory</h2>
+          <p>View profiles and past stay history of all guests.</p>
+        </div>
+        <div class="d-flex gap-sm">
+          <button class="admin-btn admin-btn-outline"><span class="material-symbols-outlined">download</span> Export Guest List</button>
+        </div>
+      </div>
+
+      <div class="admin-card mb-lg" style="flex-direction:row; flex-wrap:wrap; gap:var(--admin-space-md); align-items:flex-end;">
+        <div class="admin-form-group" style="margin:0; flex:2; min-width:250px;">
+          <label class="admin-form-label">Search</label>
+          <div class="search-bar" style="width:100%;">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Name, Phone, Email...">
+          </div>
+        </div>
+        <div class="admin-form-group" style="margin:0; flex:1; min-width:150px;">
+          <label class="admin-form-label">Status</label>
+          <select class="admin-form-control">
+            <option>All Guests</option>
+            <option>Active Stay</option>
+            <option>Upcoming Stay</option>
+            <option>Past Guest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Guest Name</th>
+              <th>Email / Phone</th>
+              <th>Current Room</th>
+              <th>Total Stays</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Guest Name"><strong>Aarav Sharma</strong></td>
+              <td data-label="Contact">aarav@example.com<br><span class="text-muted">+91 9876543210</span></td>
+              <td data-label="Current Room">305</td>
+              <td data-label="Total Stays">3</td>
+              <td data-label="Status"><span class="admin-badge badge-success">Active Guest</span></td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-icon" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
+                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Guest Name"><strong>Emily Chen</strong></td>
+              <td data-label="Contact">emily.c@example.com<br><span class="text-muted">+91 9988776655</span></td>
+              <td data-label="Current Room">-</td>
+              <td data-label="Total Stays">1</td>
+              <td data-label="Status"><span class="admin-badge badge-warning">Upcoming Guest</span></td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-icon" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
+                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Guest Name"><strong>John Doe</strong></td>
+              <td data-label="Contact">john.doe@example.com<br><span class="text-muted">+91 8877665544</span></td>
+              <td data-label="Current Room">-</td>
+              <td data-label="Total Stays">5</td>
+              <td data-label="Status"><span class="admin-badge badge-neutral">Past Guest</span></td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-icon" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
+                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

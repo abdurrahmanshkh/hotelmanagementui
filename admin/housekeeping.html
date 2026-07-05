@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Admin - Housekeeping</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="dashboard.html" class="admin-brand">
+      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-text">
+        <h1>StayEase Pro</h1>
+        <p>Admin Console</p>
+      </div>
+    </a>
+    <nav class="admin-nav mt-md">
+      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+      <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
+      <a href="bookings.html" class="admin-nav-item"><span class="material-symbols-outlined">calendar_month</span> Bookings</a>
+      <a href="guests.html" class="admin-nav-item"><span class="material-symbols-outlined">group</span> Guests</a>
+      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span> Service Requests</a>
+      <a href="chats.html" class="admin-nav-item"><span class="material-symbols-outlined">chat</span> Chats</a>
+      <a href="dynamic-pricing.html" class="admin-nav-item"><span class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
+      <a href="housekeeping.html" class="admin-nav-item active"><span class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
+      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span> Payments</a>
+      <a href="reports.html" class="admin-nav-item"><span class="material-symbols-outlined">bar_chart</span> Reports</a>
+      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span> Settings</a>
+    </nav>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+      </div>
+      <div class="topbar-right">
+        <div class="admin-profile">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+          <span class="admin-profile-name">Priya Mehta</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      
+      <div class="page-header">
+        <div>
+          <h2>Housekeeping Management</h2>
+          <p>Monitor room cleaning status and assign staff.</p>
+        </div>
+      </div>
+
+      <!-- Metrics -->
+      <div class="admin-bento-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom:var(--admin-space-lg);">
+        <div class="admin-card">
+          <span class="metric-label">Clean Rooms</span>
+          <span class="metric-value text-success">35</span>
+        </div>
+        <div class="admin-card">
+          <span class="metric-label">Cleaning Required</span>
+          <span class="metric-value text-danger">8</span>
+        </div>
+        <div class="admin-card">
+          <span class="metric-label">In Progress</span>
+          <span class="metric-value text-warning">5</span>
+        </div>
+        <div class="admin-card">
+          <span class="metric-label">Maintenance</span>
+          <span class="metric-value text-muted">2</span>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="admin-card mb-lg" style="flex-direction:row; flex-wrap:wrap; gap:var(--admin-space-md); align-items:flex-end;">
+        <div class="admin-form-group" style="margin:0; flex:2; min-width:200px;">
+          <label class="admin-form-label">Search</label>
+          <div class="search-bar" style="width:100%;">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" placeholder="Room Number, Floor...">
+          </div>
+        </div>
+        <div class="admin-form-group" style="margin:0; flex:1; min-width:150px;">
+          <label class="admin-form-label">Cleaning Status</label>
+          <select class="admin-form-control">
+            <option>All Statuses</option>
+            <option>Clean</option>
+            <option>Required</option>
+            <option>In Progress</option>
+          </select>
+        </div>
+        <div class="admin-form-group" style="margin:0; flex:1; min-width:150px;">
+          <label class="admin-form-label">Floor</label>
+          <select class="admin-form-control">
+            <option>All Floors</option>
+            <option>1st Floor</option>
+            <option>2nd Floor</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Housekeeping Table -->
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Floor</th>
+              <th>Occupancy</th>
+              <th>Cleaning Status</th>
+              <th>Last Cleaned</th>
+              <th>Assigned Staff</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color:var(--admin-danger-bg);">
+              <td data-label="Room"><strong>305</strong> (Deluxe)</td>
+              <td data-label="Floor">3rd Floor</td>
+              <td data-label="Occupancy"><span class="admin-badge badge-neutral">Checked Out</span></td>
+              <td data-label="Cleaning Status"><span class="admin-badge badge-danger">Checkout Cleaning</span></td>
+              <td data-label="Last Cleaned">Oct 12, 10:00 AM</td>
+              <td data-label="Assigned Staff">Unassigned</td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-primary" style="padding:4px 8px; font-size:0.75rem;">Assign</button>
+                  <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined" style="font-size:18px;">note_add</span></button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Room"><strong>102</strong> (Standard)</td>
+              <td data-label="Floor">1st Floor</td>
+              <td data-label="Occupancy"><span class="admin-badge badge-warning">Occupied</span></td>
+              <td data-label="Cleaning Status"><span class="admin-badge badge-warning">In Progress</span></td>
+              <td data-label="Last Cleaned">Yesterday</td>
+              <td data-label="Assigned Staff">Raj K.</td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-success" style="background:var(--admin-success); color:white; padding:4px 8px; font-size:0.75rem; border:none; border-radius:4px; cursor:pointer;">Mark Clean</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Room"><strong>410</strong> (Suite)</td>
+              <td data-label="Floor">4th Floor</td>
+              <td data-label="Occupancy"><span class="admin-badge badge-success">Available</span></td>
+              <td data-label="Cleaning Status"><span class="admin-badge badge-success">Clean</span></td>
+              <td data-label="Last Cleaned">Today, 09:30 AM</td>
+              <td data-label="Assigned Staff">Sunita M.</td>
+              <td data-label="Actions">
+                <div class="d-flex gap-sm">
+                  <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined" style="font-size:18px;">note_add</span></button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

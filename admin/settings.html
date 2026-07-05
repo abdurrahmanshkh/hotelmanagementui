@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Admin - Settings</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="dashboard.html" class="admin-brand">
+      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-text">
+        <h1>StayEase Pro</h1>
+        <p>Admin Console</p>
+      </div>
+    </a>
+    <nav class="admin-nav mt-md">
+      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+      <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
+      <a href="bookings.html" class="admin-nav-item"><span class="material-symbols-outlined">calendar_month</span> Bookings</a>
+      <a href="guests.html" class="admin-nav-item"><span class="material-symbols-outlined">group</span> Guests</a>
+      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span> Service Requests</a>
+      <a href="chats.html" class="admin-nav-item"><span class="material-symbols-outlined">chat</span> Chats</a>
+      <a href="dynamic-pricing.html" class="admin-nav-item"><span class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
+      <a href="housekeeping.html" class="admin-nav-item"><span class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
+      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span> Payments</a>
+      <a href="reports.html" class="admin-nav-item"><span class="material-symbols-outlined">bar_chart</span> Reports</a>
+      <a href="settings.html" class="admin-nav-item active"><span class="material-symbols-outlined">settings</span> Settings</a>
+    </nav>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+      </div>
+      <div class="topbar-right">
+        <div class="admin-profile">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+          <span class="admin-profile-name">Priya Mehta</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      
+      <div class="page-header">
+        <div>
+          <h2>System Settings</h2>
+          <p>Configure hotel policies, user roles, and integrations.</p>
+        </div>
+        <div class="d-flex gap-sm">
+          <button class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </div>
+
+      <div class="admin-bento-grid" style="grid-template-columns: 250px 1fr; align-items: start;">
+        
+        <!-- Settings Nav -->
+        <div class="admin-card" style="padding:var(--admin-space-sm);">
+          <div class="d-flex flex-column">
+            <a href="#" class="admin-btn admin-btn-outline w-100 mb-sm" style="justify-content:flex-start; border-color:transparent; background:var(--admin-surface-alt);"><span class="material-symbols-outlined">apartment</span> Property Details</a>
+            <a href="#" class="admin-btn admin-btn-outline w-100 mb-sm" style="justify-content:flex-start; border-color:transparent;"><span class="material-symbols-outlined">group</span> User Roles</a>
+            <a href="#" class="admin-btn admin-btn-outline w-100 mb-sm" style="justify-content:flex-start; border-color:transparent;"><span class="material-symbols-outlined">payments</span> Payment Gateway</a>
+            <a href="#" class="admin-btn admin-btn-outline w-100" style="justify-content:flex-start; border-color:transparent;"><span class="material-symbols-outlined">tune</span> Preferences</a>
+          </div>
+        </div>
+
+        <!-- Settings Content -->
+        <div class="admin-card">
+          <h3 style="margin:0 0 24px 0;">Property Details</h3>
+          
+          <form>
+            <div class="d-flex gap-md mb-md">
+              <div class="admin-form-group w-100">
+                <label class="admin-form-label">Hotel Name</label>
+                <input type="text" class="admin-form-control" value="StayEase Pro Bengaluru">
+              </div>
+              <div class="admin-form-group w-100">
+                <label class="admin-form-label">Support Email</label>
+                <input type="email" class="admin-form-control" value="support@stayease.com">
+              </div>
+            </div>
+
+            <div class="admin-form-group mb-lg">
+              <label class="admin-form-label">Address</label>
+              <textarea class="admin-form-control" rows="3">123 Tech Park Road, Whitefield, Bengaluru, Karnataka 560066</textarea>
+            </div>
+
+            <h3 style="margin:24px 0 16px 0; border-top:1px solid var(--admin-surface-border); padding-top:24px;">Check-in Policies</h3>
+            
+            <div class="d-flex gap-md mb-md">
+              <div class="admin-form-group w-100">
+                <label class="admin-form-label">Standard Check-in Time</label>
+                <input type="time" class="admin-form-control" value="14:00">
+              </div>
+              <div class="admin-form-group w-100">
+                <label class="admin-form-label">Standard Check-out Time</label>
+                <input type="time" class="admin-form-control" value="11:00">
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
+                <input type="checkbox" checked style="accent-color:var(--admin-primary); width:18px; height:18px;">
+                Allow early check-in (subject to availability)
+              </label>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
