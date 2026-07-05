@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Available Rooms - StayEase Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Rooms & Suites - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,73 +15,90 @@
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="rooms.html" class="active">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
       <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Login</a>
-        <button class="hamburger">☰</button>
+        <a href="login.html" class="btn btn-ghost" id="navLoginBtn">Login</a>
+        <a href="dashboard.html" class="btn btn-primary" id="navDashBtn" style="display:none;">Dashboard</a>
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
       </div>
     </div>
   </header>
 
-  <div class="container">
-    <div class="d-flex justify-content-between align-items-center mt-xl mb-md flex-wrap gap-md">
-      <div>
-        <h2>Available Rooms</h2>
-        <p class="text-muted">Browse and filter rooms to find your perfect stay.</p>
-      </div>
-      <div class="d-flex gap-sm align-items-center">
-        <label class="text-muted font-weight-500">Sort by:</label>
-        <select class="form-control" id="roomSort" style="width: auto;">
-          <option value="recommended">Recommended</option>
-          <option value="priceLow">Price: Low to High</option>
-          <option value="priceHigh">Price: High to Low</option>
-          <option value="rating">Highest Rated</option>
-        </select>
-      </div>
-    </div>
+  <!-- Hero Small -->
+  <div class="bg-primary text-inverse py-xl text-center" style="background: linear-gradient(135deg, var(--primary-hover), var(--primary)); padding: 4rem 1rem;">
+    <h1 class="text-inverse mb-sm">Find Your Perfect Stay</h1>
+    <p class="text-inverse font-size-sm" style="opacity: 0.9;">Filter by price, demand, and room type to discover exclusive offers.</p>
+  </div>
 
-    <div class="rooms-layout">
+  <div class="container mt-xl">
+    <div class="d-flex flex-wrap gap-xl align-items-start">
+      
+      <!-- Filters Sidebar -->
+      <aside class="card filter-sidebar" style="flex: 1; min-width: 250px;">
+        <h4 class="mb-md border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">tune</span> Filters</h4>
+        
+        <div class="form-group">
+          <label class="form-label">Search</label>
+          <div style="position:relative;">
+            <span class="material-symbols-outlined text-muted" style="position:absolute; left:12px; top:12px; font-size:20px;">search</span>
+            <input type="text" class="form-control" id="roomSearch" placeholder="e.g. Deluxe" style="padding-left:40px;">
+          </div>
+        </div>
 
-      <!-- Filter Sidebar -->
-      <aside class="filter-sidebar">
-        <div class="card p-md">
-          <div class="d-flex justify-content-between align-items-center mb-md border-bottom pb-sm">
-            <h4>Filters</h4>
-            <button class="text-primary font-size-sm font-weight-600 border-0 bg-transparent" style="cursor:pointer;" id="resetFilters">Reset</button>
+        <div class="form-group mt-lg">
+          <label class="form-label">Room Type</label>
+          <div class="d-flex flex-column gap-sm mt-sm">
+            <label class="d-flex align-items-center gap-sm font-size-sm">
+              <input type="checkbox" data-filter-type="Standard"> Standard
+            </label>
+            <label class="d-flex align-items-center gap-sm font-size-sm">
+              <input type="checkbox" data-filter-type="Deluxe"> Deluxe
+            </label>
+            <label class="d-flex align-items-center gap-sm font-size-sm">
+              <input type="checkbox" data-filter-type="Suite"> Suite
+            </label>
+            <label class="d-flex align-items-center gap-sm font-size-sm">
+              <input type="checkbox" data-filter-type="Penthouse"> Penthouse
+            </label>
           </div>
-          <div class="filter-section">
-            <h5 class="mb-sm">Room Type</h5>
-            <div class="checkbox-group"><input type="checkbox" id="t1" data-filter-type="Standard"><label for="t1">Standard</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="t2" data-filter-type="Deluxe"><label for="t2">Deluxe</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="t3" data-filter-type="Suite"><label for="t3">Suite</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="t4" data-filter-type="Family"><label for="t4">Family</label></div>
-          </div>
-          <div class="filter-section">
-            <h5 class="mb-sm">Max Price (₹)</h5>
-            <input type="range" class="w-100 mb-sm" id="priceRange" min="1000" max="10000" value="10000" oninput="document.getElementById('priceVal').textContent='₹'+this.value">
-            <div class="d-flex justify-content-between text-muted font-size-sm">
-              <span>₹1,000</span><span id="priceVal">₹10,000</span>
-            </div>
-          </div>
-          <div class="filter-section">
-            <h5 class="mb-sm">Search</h5>
-            <input type="text" class="form-control" id="roomSearch" placeholder="Search by room # or type…">
-          </div>
-          <button class="btn btn-primary btn-block mt-sm" id="applyFilters">Apply Filters</button>
+        </div>
+
+        <div class="form-group mt-lg">
+          <label class="form-label d-flex justify-content-between">Max Price <span id="priceVal" class="text-primary font-weight-600">$500</span></label>
+          <input type="range" class="w-100" id="priceRange" min="50" max="500" value="500" oninput="document.getElementById('priceVal').textContent = '$'+this.value">
+        </div>
+
+        <div class="d-flex gap-sm mt-xl">
+          <button class="btn btn-secondary flex-grow-1" id="resetFilters">Reset</button>
+          <button class="btn btn-primary flex-grow-1" id="applyFilters">Apply</button>
         </div>
       </aside>
 
-      <!-- Room Grid -->
-      <main>
-        <div id="roomGrid" class="room-grid">
-          <!-- JS renders room cards here -->
+      <!-- Room Grid Area -->
+      <main style="flex: 3; min-width: 300px;">
+        <div class="d-flex justify-content-between align-items-center mb-lg pb-sm border-bottom">
+          <h3 class="mb-0">Available Rooms</h3>
+          <div class="d-flex align-items-center gap-sm">
+            <label class="font-size-sm text-muted mb-0">Sort By:</label>
+            <select class="form-control" id="roomSort" style="width: auto; padding: 0.5rem 1rem;">
+              <option value="recommended">Recommended</option>
+              <option value="priceLow">Price: Low to High</option>
+              <option value="priceHigh">Price: High to Low</option>
+              <option value="rating">Top Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="room-grid" id="roomGrid">
+          <!-- Populated by JS -->
         </div>
       </main>
+
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>

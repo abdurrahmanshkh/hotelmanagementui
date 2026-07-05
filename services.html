@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Requests - StayEase Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Services - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,70 +14,93 @@
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
-      <div class="nav-actions"><button class="hamburger">☰</button></div>
+      <div class="nav-actions">
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
+      </div>
     </div>
   </header>
 
-  <div class="container mt-xl">
-    <h2 class="mb-md">Service Requests</h2>
+  <div class="container mt-xl mb-xl">
+    <div class="d-flex justify-content-between align-items-center mb-lg">
+      <h2 class="mb-0 d-flex align-items-center gap-sm"><span class="material-symbols-outlined text-primary" style="font-size:2.5rem;">room_service</span> Concierge Services</h2>
+      <a href="dashboard.html" class="btn btn-ghost"><span class="material-symbols-outlined">arrow_back</span> Dashboard</a>
+    </div>
+    
+    <p class="text-muted mb-xl">Request fresh towels, housekeeping, or room service directly to your room.</p>
 
-    <div class="room-details-layout">
-      <!-- Request Form -->
-      <main>
-        <div class="card mb-xl">
-          <h3 class="mb-lg border-bottom pb-sm">Request Service</h3>
-          <form id="serviceRequestForm">
-            <div class="d-flex flex-wrap gap-md">
-              <div class="form-group" style="flex: 1; min-width: 200px;">
-                <label class="form-label">Room Number</label>
-                <input type="text" class="form-control" id="srRoom" disabled>
-              </div>
-              <div class="form-group" style="flex: 2; min-width: 200px;">
-                <label class="form-label">Service Type</label>
-                <select class="form-control" id="srType">
-                  <option disabled selected>Select a service</option>
-                  <option>Room Cleaning</option><option>Food Order</option><option>Laundry</option>
-                  <option>Technical Issue</option><option>Extra Towels</option><option>Water Bottle</option>
-                  <option>Wake-up Call</option><option>Medical Assistance</option><option>Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="d-flex flex-wrap gap-md">
-              <div class="form-group" style="flex: 1; min-width: 200px;">
-                <label class="form-label">Priority</label>
-                <select class="form-control" id="srPriority">
-                  <option>Low</option><option selected>Medium</option><option>High</option><option>Emergency</option>
-                </select>
-              </div>
-              <div class="form-group" style="flex: 1; min-width: 200px;">
-                <label class="form-label">Preferred Time</label>
-                <input type="time" class="form-control" id="srTime">
-              </div>
-            </div>
-            <div class="form-group mb-lg">
-              <label class="form-label">Description (Optional)</label>
-              <textarea class="form-control" id="srDescription" placeholder="Any specific details?"></textarea>
-            </div>
-            <button type="button" class="btn btn-primary">Submit Request</button>
-          </form>
-        </div>
-      </main>
+    <!-- Room Selection -->
+    <div class="card mb-xl bg-background" style="max-width: 600px;">
+      <div class="form-group mb-0">
+        <label class="form-label d-flex align-items-center gap-xs"><span class="material-symbols-outlined">king_bed</span> Select your active stay</label>
+        <select class="form-control" id="srvBookingSelect">
+          <option value="">No active stays found</option>
+        </select>
+      </div>
+    </div>
 
-      <!-- Request History -->
-      <aside>
-        <div class="card p-0 h-100">
-          <h3 class="p-lg border-bottom pb-md mb-0">My Requests</h3>
-          <div class="p-md" id="srHistory" style="max-height: 500px; overflow-y: auto;">
-            <p class="text-muted" style="font-size:0.85rem;">Loading...</p>
+    <!-- Quick Services Grid -->
+    <div class="room-grid mb-xl">
+      <div class="card card-hover d-flex flex-column align-items-center text-center cursor-pointer" onclick="requestQuickService('Fresh Towels', 'housekeeping')">
+        <div class="p-md bg-primary-light text-primary rounded-full mb-md"><span class="material-symbols-outlined" style="font-size: 2.5rem;">dry_cleaning</span></div>
+        <h4 class="mb-xs">Fresh Towels</h4>
+        <p class="text-muted font-size-sm">Delivered in ~10 mins</p>
+      </div>
+      <div class="card card-hover d-flex flex-column align-items-center text-center cursor-pointer" onclick="requestQuickService('Room Cleaning', 'housekeeping')">
+        <div class="p-md bg-secondary-light text-secondary rounded-full mb-md" style="border-radius: 50%;"><span class="material-symbols-outlined" style="font-size: 2.5rem;">cleaning_services</span></div>
+        <h4 class="mb-xs">Housekeeping</h4>
+        <p class="text-muted font-size-sm">Schedule a room clean</p>
+      </div>
+      <div class="card card-hover d-flex flex-column align-items-center text-center cursor-pointer" onclick="requestQuickService('Toiletries Refill', 'housekeeping')">
+        <div class="p-md bg-success-bg text-success rounded-full mb-md" style="border-radius: 50%;"><span class="material-symbols-outlined" style="font-size: 2.5rem;">sanitizer</span></div>
+        <h4 class="mb-xs">Toiletries</h4>
+        <p class="text-muted font-size-sm">Soap, shampoo, lotion</p>
+      </div>
+      <div class="card card-hover d-flex flex-column align-items-center text-center cursor-pointer" onclick="requestQuickService('Wake Up Call', 'concierge')">
+        <div class="p-md bg-warning-bg text-warning rounded-full mb-md" style="border-radius: 50%;"><span class="material-symbols-outlined" style="font-size: 2.5rem;">alarm</span></div>
+        <h4 class="mb-xs">Wake Up Call</h4>
+        <p class="text-muted font-size-sm">Automated call to your room</p>
+      </div>
+    </div>
+
+    <!-- Custom Request Form -->
+    <div class="card">
+      <h3 class="mb-md d-flex align-items-center gap-xs"><span class="material-symbols-outlined">edit_note</span> Custom Request</h3>
+      <form id="srvCustomForm">
+        <div class="d-flex gap-md flex-wrap mb-md">
+          <div class="form-group" style="flex:1; min-width:200px;">
+            <label class="form-label">Category</label>
+            <select class="form-control" id="srvCategory" required>
+              <option value="housekeeping">Housekeeping</option>
+              <option value="room_service">In-Room Dining</option>
+              <option value="maintenance">Maintenance</option>
+              <option value="concierge">Concierge / Other</option>
+            </select>
+          </div>
+          <div class="form-group" style="flex:2; min-width:300px;">
+            <label class="form-label">Details</label>
+            <input type="text" class="form-control" id="srvDetails" placeholder="e.g. Please bring 2 vegetarian sandwiches and a coffee." required>
           </div>
         </div>
-      </aside>
+        <div class="text-right">
+          <button type="submit" class="btn btn-primary d-inline-flex align-items-center gap-xs"><span class="material-symbols-outlined">send</span> Send Request</button>
+        </div>
+      </form>
     </div>
+
+    <!-- Active Requests List -->
+    <div class="mt-xl">
+      <h3 class="mb-md border-bottom pb-sm">My Active Requests</h3>
+      <div id="srvList" class="d-flex flex-column gap-sm">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>

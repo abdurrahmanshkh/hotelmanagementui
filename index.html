@@ -3,182 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StayEase Pro Customer Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>StayEase Pro - Modern Luxury</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Header / Navbar -->
+  <!-- Header -->
   <header class="site-header">
     <div class="container navbar">
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
       <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Login</a>
-        <a href="rooms.html" class="btn btn-primary">Book Now</a>
-        <button class="hamburger">☰</button>
+        <a href="login.html" class="btn btn-ghost" id="navLoginBtn">Login</a>
+        <a href="signup.html" class="btn btn-primary" id="navSignupBtn">Sign Up</a>
+        <a href="dashboard.html" class="btn btn-primary" id="navDashBtn" style="display:none;">Go to Dashboard</a>
+        <button class="btn btn-ghost btn-icon" id="navLogoutBtn" style="display:none;"><span class="material-symbols-outlined">logout</span></button>
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="container">
+  <div class="container">
     <div class="hero-section">
+      <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1542314831-c6a4d27ce66f?q=80&w=2000&auto=format&fit=crop');"></div>
+      <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1>Experience Luxury, Simplified.</h1>
-        <p class="hero-subtitle">Book your stay in seconds with our advanced digital customer portal. Enjoy smart pricing and secure digital access.</p>
-        <div class="d-flex gap-sm">
-          <a href="rooms.html" class="btn btn-primary">View Available Rooms</a>
-          <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
-        </div>
-      </div>
-      <div class="hero-image">
-        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--primary); color: var(--secondary);">
-          <h2>Luxury Hotel Visual</h2>
+        <h1 class="hero-title">Experience Effortless Luxury</h1>
+        <p class="hero-subtitle">Curated boutique stays with seamless digital access.</p>
+        
+        <div class="hero-search-widget glass-panel">
+          <div class="form-group d-flex align-items-center gap-xs">
+            <span class="material-symbols-outlined text-muted ml-sm">location_on</span>
+            <input type="text" class="form-control" placeholder="Destination">
+          </div>
+          <div class="form-group d-flex align-items-center gap-xs">
+            <span class="material-symbols-outlined text-muted ml-sm">calendar_month</span>
+            <input type="text" class="form-control" placeholder="Check-in - Check-out" onfocus="(this.type='date')" onblur="(this.type='text')">
+          </div>
+          <a href="rooms.html" class="btn btn-primary"><span class="material-symbols-outlined">search</span> Search</a>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- Search Booking Widget -->
-  <div class="container">
-    <form class="search-widget" id="bookingSearchWidget">
-      <div class="form-group mb-sm">
-        <label class="form-label">Check-in</label>
-        <input type="date" class="form-control" id="homeCheckIn" />
-      </div>
-      <div class="form-group mb-sm">
-        <label class="form-label">Check-out</label>
-        <input type="date" class="form-control" id="homeCheckOut" />
-      </div>
-      <div class="form-group mb-sm">
-        <label class="form-label">Guests</label>
-        <select class="form-control" id="homeGuests">
-          <option>1 Adult</option>
-          <option>2 Adults</option>
-          <option>2 Adults, 1 Child</option>
-          <option>3 Adults</option>
-        </select>
-      </div>
-      <div class="form-group mb-sm">
-        <label class="form-label">Room Type</label>
-        <select class="form-control" id="homeRoomType">
-          <option value="">Any Type</option>
-          <option>Standard</option>
-          <option>Deluxe</option>
-          <option>Suite</option>
-          <option>Family</option>
-        </select>
-      </div>
-      <div class="form-group mb-sm">
-        <button type="button" class="btn btn-primary btn-block" style="height: 44px;" onclick="window.location.href='rooms.html'">Search Rooms</button>
-      </div>
-    </form>
   </div>
 
-  <!-- Quick Stats -->
-  <section class="container">
-    <div class="stats-grid" id="homeStats">
-      <div class="stat-card card">
-        <h2>10</h2>
-        <p class="text-muted">Total Rooms</p>
+  <!-- Featured Rooms -->
+  <div class="container mt-xl mb-xl">
+    <div class="d-flex justify-content-between align-items-end mb-lg">
+      <div>
+        <h2 class="mb-xs">Signature Suites</h2>
+        <p class="text-muted">Discover our most exclusive accommodations.</p>
       </div>
-      <div class="stat-card card">
-        <h2>6</h2>
-        <p class="text-muted">Available Rooms</p>
-      </div>
-      <div class="stat-card card">
-        <h2>4.5</h2>
-        <p class="text-muted">Average Rating</p>
-      </div>
-      <div class="stat-card card">
-        <h2>24/7</h2>
-        <p class="text-muted">Digital Support</p>
-      </div>
+      <a href="rooms.html" class="btn btn-ghost">View All <span class="material-symbols-outlined">arrow_forward</span></a>
     </div>
-  </section>
+    <div class="room-grid" id="featuredRooms">
+      <!-- Injected via JS -->
+      <div class="card p-lg text-center text-muted col-span-full">Loading premium suites...</div>
+    </div>
+  </div>
 
-  <!-- Featured Rooms (Dynamic) -->
-  <section class="container mb-3xl">
-    <div class="d-flex justify-content-between align-items-center mb-xl">
-      <h2>Featured Rooms</h2>
-      <a href="rooms.html" class="btn btn-ghost">View All →</a>
-    </div>
-    <div class="room-grid" id="featuredRoomGrid">
-      <!-- JS will render featured room cards here -->
-    </div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section class="container mb-3xl">
-    <div class="text-center mb-xl">
-      <h2>Why Choose StayEase Pro?</h2>
-      <p class="text-muted mt-sm">A fully integrated experience for our premium guests.</p>
-    </div>
-    <div class="dashboard-grid">
-      <div class="card text-center">
-        <div class="empty-state-icon">📱</div>
-        <h3>Digital Room Passcode</h3>
-        <p class="text-muted mt-sm">No more lost keys. Get a secure digital passcode activated directly upon check-in.</p>
-      </div>
-      <div class="card text-center">
-        <div class="empty-state-icon">📈</div>
-        <h3>Smart Dynamic Pricing</h3>
-        <p class="text-muted mt-sm">Enjoy fair pricing based on demand. Best deals guaranteed for early bookings.</p>
-      </div>
-      <div class="card text-center">
-        <div class="empty-state-icon">💬</div>
-        <h3>24/7 Chat Support</h3>
-        <p class="text-muted mt-sm">Message the front desk instantly from your dashboard for any service requests.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section class="container mb-3xl" id="how-it-works">
-    <div class="card bg-background border-0">
-      <h2 class="text-center mb-xl">How It Works</h2>
-      <div class="d-flex justify-content-between flex-wrap gap-lg text-center">
-        <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">1</h1><h4>Choose a Room</h4><p class="text-muted">Browse and select.</p>
+  <!-- Highlights Bento Grid -->
+  <div class="bg-surface border-top pt-xl pb-xl">
+    <div class="container">
+      <h2 class="text-center mb-xl">Why StayEase Pro?</h2>
+      <div class="room-grid">
+        <div class="card card-hover d-flex flex-column align-items-center text-center">
+          <div class="p-sm bg-primary-light text-primary rounded-full mb-md">
+            <span class="material-symbols-outlined" style="font-size: 2rem;">key</span>
+          </div>
+          <h4 class="mb-xs">Digital Passcode</h4>
+          <p class="text-muted font-size-sm">Skip the front desk. Secure your room with a digital entry code accessible directly from your phone.</p>
         </div>
-        <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">2</h1><h4>Pick Dates</h4><p class="text-muted">Check-in and check-out.</p>
+        <div class="card card-hover d-flex flex-column align-items-center text-center">
+          <div class="p-sm bg-secondary-light text-secondary mb-md" style="border-radius: 50%;">
+            <span class="material-symbols-outlined" style="font-size: 2rem;">currency_exchange</span>
+          </div>
+          <h4 class="mb-xs">Smart Pricing</h4>
+          <p class="text-muted font-size-sm">Our dynamic algorithm ensures you get the fairest price based on real-time availability and demand.</p>
         </div>
-        <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">3</h1><h4>Dummy Payment</h4><p class="text-muted">Complete the test flow.</p>
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">4</h1><h4>Get Passcode</h4><p class="text-muted">Access your room securely.</p>
+        <div class="card card-hover d-flex flex-column align-items-center text-center">
+          <div class="p-sm" style="background-color: #dbeafe; color: #3b82f6; border-radius: 50%; margin-bottom: 1.5rem;">
+            <span class="material-symbols-outlined" style="font-size: 2rem;">room_service</span>
+          </div>
+          <h4 class="mb-xs">Instant Concierge</h4>
+          <p class="text-muted font-size-sm">Request fresh towels, order room service, or chat with the front desk via our digital portal.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="brand-logo mb-md" style="color: var(--surface);"><span style="color: var(--secondary);">Stay</span>Ease Pro</div>
-          <p class="text-light">The advanced digital hotel management system bringing seamless luxury and smart automation to every guest.</p>
+      <div class="d-flex justify-content-between flex-wrap gap-lg mb-lg">
+        <div>
+          <a href="index.html" class="brand-logo mb-sm d-flex"><span>Stay</span>Ease Pro</a>
+          <p class="text-muted font-size-sm max-w-sm">Redefining modern hospitality with seamless technology and unmatched luxury.</p>
         </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul><li><a href="index.html">Home</a></li><li><a href="rooms.html">Available Rooms</a></li><li><a href="login.html">Login</a></li><li><a href="signup.html">Signup</a></li></ul>
-        </div>
-        <div class="footer-col">
-          <h4>Guest Portal</h4>
-          <ul><li><a href="dashboard.html">My Dashboard</a></li><li><a href="my-bookings.html">My Bookings</a></li><li><a href="services.html">Service Requests</a></li><li><a href="chat.html">24/7 Chat</a></li></ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact Us</h4>
-          <ul><li><a href="#">support@stayeasepro.com</a></li><li><a href="#">+91 98765 43210</a></li><li><a href="#">123 Luxury Avenue, Cyber City</a></li></ul>
+        <div class="d-flex gap-xl">
+          <div class="d-flex flex-column gap-sm">
+            <h4 class="font-size-sm text-uppercase">Company</h4>
+            <a href="#" class="text-muted font-size-sm">About Us</a>
+            <a href="#" class="text-muted font-size-sm">Careers</a>
+          </div>
+          <div class="d-flex flex-column gap-sm">
+            <h4 class="font-size-sm text-uppercase">Legal</h4>
+            <a href="#" class="text-muted font-size-sm">Privacy Policy</a>
+            <a href="#" class="text-muted font-size-sm">Terms of Service</a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">
@@ -187,7 +124,6 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/validation.js"></script>

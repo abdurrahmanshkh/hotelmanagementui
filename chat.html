@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat with Front Desk - StayEase Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Chat with Concierge - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body style="overflow: hidden;">
+<body style="height: 100vh; overflow: hidden; display: flex; flex-direction: column;">
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header" style="flex-shrink: 0;">
     <div class="container navbar">
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
@@ -18,56 +17,62 @@
         <a href="dashboard.html">Dashboard</a>
       </nav>
       <div class="nav-actions">
-        <a href="dashboard.html" class="btn btn-ghost" style="padding: 4px 8px;">✕ Close Chat</a>
-        <button class="hamburger">☰</button>
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
       </div>
     </div>
   </header>
 
-  <div class="container">
-    <div class="chat-layout">
-
+  <div class="container flex-grow-1 d-flex flex-column" style="overflow: hidden;">
+    <div class="chat-layout" style="flex-grow: 1;">
       <!-- Chat Interface -->
       <main class="card chat-card">
         <div class="chat-header d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center gap-sm">
-            <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary); display: flex; align-items: center; justify-content: center; color: white;">FD</div>
+            <div class="bg-primary text-inverse rounded-full d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+              <span class="material-symbols-outlined">support_agent</span>
+            </div>
             <div>
-              <h4 class="mb-0">Front Desk</h4>
-              <p class="text-muted font-size-sm d-flex align-items-center gap-xs">
-                <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--success); display: inline-block;"></span>
-                Online - Usually replies in 2 mins
-              </p>
+              <h4 class="mb-0 font-size-sm">Front Desk Concierge</h4>
+              <span class="text-success font-size-sm d-flex align-items-center gap-xs"><span style="display:inline-block; width:8px; height:8px; background:var(--success); border-radius:50%;"></span> Online</span>
             </div>
           </div>
+          <a href="dashboard.html" class="btn btn-ghost btn-icon"><span class="material-symbols-outlined">close</span></a>
         </div>
 
         <div class="chat-messages" id="chatMessages">
-          <!-- JS renders messages here -->
+          <!-- Populated by JS -->
         </div>
 
-        <div class="chat-suggestions">
-          <span class="chat-suggestion-chip">Need room cleaning</span>
-          <span class="chat-suggestion-chip">Wi-Fi issue</span>
-          <span class="chat-suggestion-chip">Food order help</span>
-          <span class="chat-suggestion-chip">Late check-out request</span>
-        </div>
-
-        <div class="chat-input" id="chatInputArea">
-          <input type="text" class="form-control flex-grow-1" id="chatInput" placeholder="Type a message..." style="border: none; background-color: var(--background);" maxlength="500">
-          <button class="btn btn-primary btn-icon" id="chatSendBtn" style="border-radius: var(--radius-md);">➤</button>
+        <div class="chat-input-area d-flex flex-column gap-sm">
+          <div id="chatSuggestions">
+            <span class="chat-suggestion-chip">What's the WiFi password?</span>
+            <span class="chat-suggestion-chip">Can I get a late checkout?</span>
+            <span class="chat-suggestion-chip">Where is the gym?</span>
+          </div>
+          <form id="chatForm" class="d-flex gap-sm w-100">
+            <input type="text" class="form-control" id="chatInput" placeholder="Type your message..." required autocomplete="off" style="border-radius: 2rem; padding-left: 1.25rem;">
+            <button type="submit" class="btn btn-primary btn-icon" style="border-radius: 50%; width: 46px; height: 46px;"><span class="material-symbols-outlined">send</span></button>
+          </form>
         </div>
       </main>
 
-      <!-- Booking Context Panel -->
-      <aside class="chat-context">
-        <div class="card h-100">
-          <h4 class="mb-md border-bottom pb-sm">Current Stay</h4>
-          <h3 class="mb-xs" id="chatRoomInfo">—</h3>
-          <p class="text-muted font-size-sm mb-md" id="chatGuestName">—</p>
-          <div class="info-item mb-md"><span class="info-label">Booking ID</span><span class="info-value font-size-sm" id="chatBookingId">—</span></div>
-          <div class="info-item mb-lg"><span class="info-label">Dates</span><span class="info-value font-size-sm" id="chatBookingDates">—</span></div>
-          <a href="my-bookings.html" class="btn btn-secondary btn-block">View Full Details</a>
+      <!-- Sidebar (Optional info) -->
+      <aside class="d-none d-lg-block">
+        <div class="card h-100 bg-background">
+          <h4 class="mb-md border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">info</span> Need Help?</h4>
+          <p class="text-muted font-size-sm mb-lg">Our front desk team is available 24/7 to assist you with anything you need during your stay.</p>
+          
+          <h5 class="mb-xs">Common Requests</h5>
+          <ul class="text-muted font-size-sm" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem;">
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">wifi</span> WiFi issues</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">restaurant</span> Room service</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">schedule</span> Checkout times</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">local_taxi</span> Transportation</li>
+          </ul>
+
+          <div class="mt-auto pt-lg border-top">
+            <a href="services.html" class="btn btn-secondary btn-block">Go to Services</a>
+          </div>
         </div>
       </aside>
     </div>

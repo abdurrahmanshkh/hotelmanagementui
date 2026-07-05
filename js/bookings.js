@@ -120,22 +120,30 @@ function renderMyBookings(tab = 'active') {
     const statusClass = { 'Checked In': 'badge-success', 'Confirmed': 'badge-info', 'Pending Payment': 'badge-warning', 'Completed': 'badge-primary', 'Cancelled': 'badge-danger' }[b.status] || 'badge-primary';
     const payClass = { 'Paid': 'badge-success', 'Unpaid': 'badge-danger', 'Failed': 'badge-danger', 'Refunded': 'badge-warning' }[b.paymentStatus] || 'badge-primary';
 
-    let actions = `<a href="booking-details.html?id=${b.id}" class="btn btn-primary" style="padding:6px 14px;">View Details</a>`;
-    if (b.status === 'Pending Payment') actions += ` <a href="payment.html?id=${b.id}" class="btn btn-accent" style="padding:6px 14px;">Pay Now</a>`;
-    if (tab === 'active' || tab === 'upcoming') actions += ` <button class="btn btn-ghost" style="padding:6px 10px;" onclick="cancelBookingFromList('${b.id}')">Cancel</button>`;
-    if (tab === 'completed') actions += ` <a href="booking-details.html?id=${b.id}#feedback" class="btn btn-ghost" style="padding:6px 10px;">Feedback</a>`;
+    let actions = `<a href="booking-details.html?id=${b.id}" class="btn btn-secondary">View Details</a>`;
+    if (b.status === 'Pending Payment') actions += ` <a href="payment.html?id=${b.id}" class="btn btn-primary">Pay Now</a>`;
+    if (tab === 'active' || tab === 'upcoming') actions += ` <button class="btn btn-ghost text-error" onclick="cancelBookingFromList('${b.id}')">Cancel</button>`;
+    if (tab === 'completed') actions += ` <a href="booking-details.html?id=${b.id}#feedback" class="btn btn-ghost">Leave Feedback</a>`;
 
     return `
-      <div class="booking-list-item">
-        <div class="booking-info">
-          <div class="d-flex align-items-center gap-sm mb-xs flex-wrap">
-            <h4>${b.roomType} - ${b.roomNumber}</h4>
-            <span class="badge ${statusClass}">${b.status}</span>
+      <div class="card p-md d-flex justify-content-between align-items-center flex-wrap gap-md">
+        <div class="d-flex gap-md align-items-center">
+          <div class="bg-primary-light text-primary p-sm" style="border-radius: var(--radius-sm);">
+            <span class="material-symbols-outlined" style="font-size: 2rem;">king_bed</span>
           </div>
-          <p class="text-muted" style="font-size:0.85rem;">${b.id} • ${formatDateOnly(b.checkIn)} – ${formatDateOnly(b.checkOut)}</p>
-          <div class="mt-xs d-flex gap-sm flex-wrap">
-            <span class="badge ${payClass}">${b.paymentStatus}: ${formatCurrency(b.totalAmount)}</span>
-            ${b.passcode ? `<span class="badge badge-info">Passcode: ${b.passcodeStatus}</span>` : ''}
+          <div>
+            <div class="d-flex align-items-center gap-sm mb-xs flex-wrap">
+              <h4 class="mb-0">${b.roomType} - #${b.roomNumber}</h4>
+              <span class="badge ${statusClass}">${b.status}</span>
+            </div>
+            <p class="text-muted font-size-sm mb-xs">Booking ID: ${b.id}</p>
+            <p class="text-muted font-size-sm d-flex align-items-center gap-xs">
+              <span class="material-symbols-outlined" style="font-size: 16px;">calendar_month</span> ${formatDateOnly(b.checkIn)} – ${formatDateOnly(b.checkOut)}
+            </p>
+            <div class="mt-sm d-flex gap-sm flex-wrap">
+              <span class="badge ${payClass}"><span class="material-symbols-outlined" style="font-size:14px; margin-right:4px;">payments</span> ${b.paymentStatus}: ${formatCurrency(b.totalAmount)}</span>
+              ${b.passcode ? `<span class="badge badge-info"><span class="material-symbols-outlined" style="font-size:14px; margin-right:4px;">key</span> Passcode: ${b.passcodeStatus}</span>` : ''}
+            </div>
           </div>
         </div>
         <div class="d-flex flex-wrap gap-sm justify-content-end">${actions}</div>

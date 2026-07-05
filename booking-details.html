@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking Details - StayEase Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,117 +14,122 @@
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
         <a href="my-bookings.html">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
-      <div class="nav-actions"><button class="hamburger">☰</button></div>
+      <div class="nav-actions">
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
+      </div>
     </div>
   </header>
 
-  <div class="container" style="max-width: 1000px;" id="bdContent">
-    <div class="d-flex justify-content-between align-items-center mt-xl mb-md flex-wrap gap-md">
-      <div>
-        <a href="my-bookings.html" class="text-primary font-size-sm mb-xs" style="display:inline-block;">← Back to Bookings</a>
-        <div class="d-flex align-items-center gap-md mt-xs">
-          <h2 class="mb-0">Booking <span id="bdBookingId">—</span></h2>
-          <span class="badge badge-success" id="bdStatus">—</span>
-        </div>
-      </div>
-      <div class="d-flex gap-sm">
-        <button class="btn btn-secondary" id="bdInvoiceBtn">Download Invoice</button>
-        <a href="chat.html" class="btn btn-primary" id="bdChatBtn">Message Front Desk</a>
-      </div>
+  <div class="container mt-xl mb-xl">
+    <a href="my-bookings.html" class="btn btn-ghost mb-md px-0" style="padding-left:0;"><span class="material-symbols-outlined">arrow_back</span> Back to Bookings</a>
+    
+    <div class="d-flex justify-content-between align-items-center mb-md flex-wrap gap-sm">
+      <h2 class="mb-0 d-flex align-items-center gap-xs">Booking <span id="bdBookingId" class="text-primary" style="font-family: var(--font-sora);">#—</span></h2>
+      <span id="bdStatus" class="badge badge-primary">—</span>
     </div>
 
-    <div class="room-details-layout" style="grid-template-columns: 2fr 1fr;">
-      <!-- Main Content -->
+    <!-- Wide Image -->
+    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop" alt="Room" class="room-hero-img" style="height: 250px;">
+
+    <div class="room-details-layout">
+      <!-- Main Details -->
       <main class="d-flex flex-column gap-lg">
-        <!-- Room Details -->
-        <div class="card">
-          <h4 class="mb-md border-bottom pb-sm">Room Details</h4>
-          <div class="d-flex align-items-center gap-lg">
-            <div style="width: 120px; height: 100px; background-color: var(--border-color); border-radius: var(--radius-md);"></div>
-            <div>
-              <h3 class="mb-xs" id="bdRoomInfo">—</h3>
-              <p class="text-muted font-size-sm" id="bdGuests">—</p>
-            </div>
-          </div>
-          <div class="d-flex justify-content-between mt-md bg-background p-md" style="border-radius: var(--radius-lg);">
-            <div>
-              <p class="text-muted font-size-sm text-uppercase">Check-in</p>
-              <p class="font-weight-600" id="bdCheckIn">—</p>
-            </div>
-            <div class="text-right">
-              <p class="text-muted font-size-sm text-uppercase">Check-out</p>
-              <p class="font-weight-600" id="bdCheckOut">—</p>
+        <!-- Room & Stay Info -->
+        <div class="card p-0 overflow-hidden">
+          <div class="p-lg">
+            <h3 class="mb-sm" id="bdRoomInfo">—</h3>
+            <div class="d-flex flex-wrap gap-xl">
+              <div>
+                <p class="text-muted font-size-sm text-uppercase mb-xs">Guests</p>
+                <p class="font-weight-600 d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary">group</span> <span id="bdGuests">—</span></p>
+              </div>
+              <div>
+                <p class="text-muted font-size-sm text-uppercase mb-xs">Check-in</p>
+                <p class="font-weight-600 d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary">login</span> <span id="bdCheckIn">—</span></p>
+              </div>
+              <div>
+                <p class="text-muted font-size-sm text-uppercase mb-xs">Check-out</p>
+                <p class="font-weight-600 d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary">logout</span> <span id="bdCheckOut">—</span></p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Guest Details -->
+        <!-- Guest Info -->
         <div class="card">
-          <h4 class="mb-md border-bottom pb-sm">Guest Details</h4>
+          <h4 class="mb-sm border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">person</span> Guest Information</h4>
           <div class="d-flex flex-wrap gap-xl">
-            <div><span class="info-label">Guest</span><p class="info-value mt-xs" id="bdGuestName">—</p></div>
-            <div><span class="info-label">Email</span><p class="info-value mt-xs" id="bdEmail">—</p></div>
-            <div><span class="info-label">Phone</span><p class="info-value mt-xs" id="bdPhone">—</p></div>
+            <div>
+              <p class="text-muted font-size-sm text-uppercase mb-xs">Primary Guest</p>
+              <p class="font-weight-600" id="bdGuestName">—</p>
+            </div>
+            <div>
+              <p class="text-muted font-size-sm text-uppercase mb-xs">Email</p>
+              <p class="font-weight-600" id="bdEmail">—</p>
+            </div>
+            <div style="flex: 1; min-width: 200px;">
+              <p class="text-muted font-size-sm text-uppercase mb-xs">Special Request</p>
+              <p class="font-weight-600 text-muted" id="bdSpecial">—</p>
+            </div>
           </div>
         </div>
 
-        <!-- Payment Details -->
-        <div class="card">
-          <h4 class="mb-md border-bottom pb-sm">Payment Details</h4>
-          <div class="d-flex justify-content-between mb-sm"><span class="text-muted">Total Amount</span><span id="bdTotalAmt">—</span></div>
-          <div class="d-flex justify-content-between mb-sm"><span class="text-muted">Status</span><span class="badge badge-success" id="bdPayStatus">—</span></div>
-          <div class="d-flex justify-content-between mb-sm"><span class="text-muted">Payment ID</span><span id="bdPayId">—</span></div>
+        <!-- Actions -->
+        <div id="bdActions" class="d-flex gap-sm">
+          <!-- Populated by JS -->
         </div>
 
-        <!-- Service Requests -->
-        <div class="card mb-xl">
-          <div class="d-flex justify-content-between align-items-center mb-md border-bottom pb-sm">
-            <h4 class="mb-0">Service Requests</h4>
-            <a href="services.html" class="btn btn-ghost" style="padding: 4px 8px;">View All / New</a>
-          </div>
-          <div id="bdServiceRequests"></div>
-        </div>
-
-        <!-- Feedback Form (shown for completed stays) -->
-        <div class="card mb-xl" id="feedback">
-          <h4 class="mb-md border-bottom pb-sm">Leave Feedback</h4>
+        <!-- Feedback Section (Shown if completed) -->
+        <div class="card" id="feedbackSection" style="display:none;">
+          <h4 class="mb-md d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span> Leave a Review</h4>
           <form id="feedbackForm">
-            <div class="form-group mb-md">
-              <label class="form-label">Rate your stay (1-5 Stars)</label>
-              <select class="form-control" id="fbRating">
-                <option value="5">5 - Excellent</option>
-                <option value="4">4 - Very Good</option>
-                <option value="3">3 - Average</option>
-                <option value="2">2 - Poor</option>
-                <option value="1">1 - Terrible</option>
+            <div class="form-group">
+              <label class="form-label">Rating</label>
+              <select id="fbRating" class="form-control">
+                <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                <option value="3">⭐⭐⭐ (3/5)</option>
+                <option value="2">⭐⭐ (2/5)</option>
+                <option value="1">⭐ (1/5)</option>
               </select>
             </div>
             <div class="form-group mb-md">
               <label class="form-label">Comments</label>
-              <textarea class="form-control" id="fbComment" placeholder="Tell us about your experience..." rows="3"></textarea>
+              <textarea id="fbComments" class="form-control" placeholder="How was your stay?"></textarea>
             </div>
-            <button type="button" class="btn btn-primary">Submit Feedback</button>
+            <button type="submit" class="btn btn-secondary">Submit Feedback</button>
           </form>
         </div>
       </main>
 
       <!-- Sidebar -->
       <aside class="d-flex flex-column gap-lg">
-        <div class="card text-center">
-          <h4 class="mb-sm">Digital Passcode</h4>
-          <div id="bdPasscode"></div>
-          <div class="p-sm bg-background mt-md" style="border-radius: var(--radius-sm); border-left: 3px solid var(--primary);">
-            <p class="font-size-sm text-left"><strong>Security Note:</strong> Do not share your room passcode with anyone.</p>
+        <!-- Payment Info -->
+        <div class="card bg-background">
+          <h4 class="mb-sm border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">payments</span> Payment Details</h4>
+          <div class="d-flex justify-content-between mb-xs">
+            <span class="text-muted font-size-sm">Status</span>
+            <span class="badge" id="bdPaymentStatus">—</span>
           </div>
+          <div class="d-flex justify-content-between mt-sm pt-sm border-top">
+            <span class="font-weight-600">Total Amount</span>
+            <span class="font-weight-600 text-primary" style="font-size: 1.25rem;" id="bdTotalAmount">—</span>
+          </div>
+        </div>
+
+        <!-- Digital Key -->
+        <div class="card text-center" id="bdKeyCard" style="display:none;">
+          <h4 class="mb-sm d-flex justify-content-center align-items-center gap-xs"><span class="material-symbols-outlined text-primary">key</span> Digital Key</h4>
+          <div id="bdPasscodeDisplay"></div>
         </div>
       </aside>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>

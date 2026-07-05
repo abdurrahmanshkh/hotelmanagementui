@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Bookings - StayEase Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,26 +18,27 @@
         <a href="my-bookings.html" class="active">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
-      <div class="nav-actions"><button class="hamburger">☰</button></div>
+      <div class="nav-actions">
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
+      </div>
     </div>
   </header>
 
-  <div class="container" style="min-height: 70vh;">
-    <h2 class="mt-xl mb-md">My Bookings</h2>
+  <div class="container mt-xl mb-xl" style="min-height: 70vh;">
+    <h2 class="mb-md d-flex align-items-center gap-sm"><span class="material-symbols-outlined text-primary" style="font-size:2rem;">receipt_long</span> My Bookings</h2>
 
     <!-- Tabs -->
-    <div class="payment-tabs">
-      <div class="payment-tab active" data-booking-tab="active">Active</div>
-      <div class="payment-tab" data-booking-tab="upcoming">Upcoming</div>
-      <div class="payment-tab" data-booking-tab="completed">Completed</div>
-      <div class="payment-tab" data-booking-tab="cancelled">Cancelled</div>
+    <div class="tabs">
+      <div class="tab active" data-booking-tab="active">Active</div>
+      <div class="tab" data-booking-tab="upcoming">Upcoming</div>
+      <div class="tab" data-booking-tab="completed">Completed</div>
+      <div class="tab" data-booking-tab="cancelled">Cancelled</div>
     </div>
 
     <!-- Bookings List -->
-    <div id="bookingsContainer" class="mt-md"></div>
+    <div id="bookingsContainer" class="mt-lg d-flex flex-column gap-md"></div>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>

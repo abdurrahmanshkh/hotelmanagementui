@@ -98,9 +98,9 @@ function renderChatMessages(chatId) {
   if (!chat) return;
 
   container.innerHTML = chat.messages.map(m => `
-    <div class="chat-bubble ${m.sender === 'customer' ? 'chat-customer' : 'chat-admin'}">
+    <div class="chat-bubble ${m.sender === 'customer' ? 'user' : 'admin'}">
       ${m.text}
-      <span class="chat-timestamp">${new Date(m.timestamp).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}${m.sender === 'customer' ? ' ✓✓' : ''}</span>
+      <div class="chat-time">${new Date(m.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}${m.sender === 'customer' ? ' <span class="material-symbols-outlined" style="font-size:12px;vertical-align:middle;">done_all</span>' : ''}</div>
     </div>`).join('');
 
   container.scrollTop = container.scrollHeight;
@@ -130,9 +130,9 @@ function sendChatMessage(chatId) {
   // Simulate admin typing & reply
   const container = document.getElementById('chatMessages');
   const typingEl = document.createElement('div');
-  typingEl.className = 'chat-bubble chat-admin text-muted';
+  typingEl.className = 'chat-bubble admin text-muted';
   typingEl.style.cssText = 'width:60px;text-align:center;font-size:0.85rem;';
-  typingEl.textContent = '...';
+  typingEl.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px; animation: pulse 1.5s infinite;">more_horiz</span>';
   container.appendChild(typingEl);
   container.scrollTop = container.scrollHeight;
 

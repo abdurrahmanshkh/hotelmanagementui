@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Room Details - StayEase Pro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,110 +18,100 @@
         <a href="dashboard.html">Dashboard</a>
       </nav>
       <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Login</a>
-        <button class="hamburger">☰</button>
+        <a href="login.html" class="btn btn-ghost" id="navLoginBtn">Login</a>
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
       </div>
     </div>
   </header>
 
-  <div class="container" id="roomDetailPage">
-    <!-- Breadcrumb -->
-    <div class="mt-lg mb-md text-muted font-size-sm">
-      <a href="index.html">Home</a> / <a href="rooms.html">Available Rooms</a> / <span class="text-primary font-weight-500" id="rdBreadcrumb">Room</span>
-    </div>
-
-    <!-- Image Gallery -->
-    <div class="image-gallery">
-      <div class="image-main"></div>
-      <div class="image-thumb"></div>
-      <div class="image-thumb"></div>
-    </div>
+  <div class="container mt-xl">
+    <a href="rooms.html" class="btn btn-ghost mb-md px-0" style="padding-left:0;"><span class="material-symbols-outlined">arrow_back</span> Back to Rooms</a>
+    
+    <!-- Hero Image -->
+    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop" alt="Room Interior" class="room-hero-img">
 
     <div class="room-details-layout">
       <!-- Main Content -->
       <main>
-        <div class="d-flex justify-content-between align-items-start mb-md flex-wrap gap-sm">
+        <div class="d-flex justify-content-between align-items-start mb-md">
           <div>
-            <div class="d-flex align-items-center gap-sm mb-xs">
-              <h1 id="rdTitle">Room</h1>
-              <span class="badge badge-success" id="rdStatus">Available</span>
-            </div>
-            <p class="text-muted font-size-lg" id="rdRoomNum">—</p>
+            <h1 class="mb-xs" id="rdTitle">Room Name</h1>
+            <p class="text-muted font-size-sm" id="rdRoomNum">Room 101 • Floor 1</p>
           </div>
-          <div class="d-flex align-items-center" style="font-size: 1.25rem; color: var(--secondary);" id="rdRating">★ —</div>
+          <div class="d-flex align-items-center gap-xs text-secondary font-weight-600">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span> <span id="rdRating">4.5</span>
+          </div>
         </div>
 
-        <p class="mb-xl text-muted" style="font-size: 1.1rem; line-height: 1.8;" id="rdDescription">—</p>
-
-        <h3 class="mb-md">Room Information</h3>
-        <div class="d-flex flex-wrap gap-lg mb-xl p-lg bg-background" style="border-radius: var(--radius-lg);">
-          <div class="info-item" style="min-width: 100px;"><span class="info-label">Capacity</span><span class="info-value" id="rdCapacity">—</span></div>
-          <div class="info-item" style="min-width: 100px;"><span class="info-label">Bed Type</span><span class="info-value" id="rdBedType">—</span></div>
-          <div class="info-item" style="min-width: 100px;"><span class="info-label">Demand</span><span class="badge badge-primary" id="rdDemand">—</span></div>
+        <div class="card mb-xl">
+          <h4 class="mb-sm border-bottom pb-sm">About this room</h4>
+          <p class="text-muted" id="rdDescription">Experience the pinnacle of comfort and style.</p>
         </div>
 
-        <h3 class="mb-md">Amenities</h3>
-        <ul class="features-list" id="rdAmenities"></ul>
+        <div class="card mb-xl">
+          <h4 class="mb-sm border-bottom pb-sm">Features</h4>
+          <div class="d-flex flex-wrap gap-xl">
+            <div class="d-flex align-items-center gap-sm">
+              <div class="p-sm bg-primary-light text-primary rounded-full"><span class="material-symbols-outlined">group</span></div>
+              <div>
+                <span class="font-size-sm text-muted d-block text-uppercase">Capacity</span>
+                <span class="font-weight-600" id="rdCapacity">2 Guests</span>
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-sm">
+              <div class="p-sm bg-primary-light text-primary rounded-full"><span class="material-symbols-outlined">bed</span></div>
+              <div>
+                <span class="font-size-sm text-muted d-block text-uppercase">Bed Type</span>
+                <span class="font-weight-600" id="rdBedType">King Bed</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <p class="text-muted mt-md mb-lg" style="font-size:0.85rem;" id="rdDemandReason"></p>
+        <div class="card mb-xl">
+          <h4 class="mb-sm border-bottom pb-sm">Amenities</h4>
+          <div class="d-flex flex-wrap gap-md" id="rdAmenities" style="display: grid; grid-template-columns: 1fr 1fr;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
       </main>
 
-      <!-- Booking Panel -->
-      <aside class="booking-panel">
-        <div class="card">
+      <!-- Booking Widget -->
+      <aside>
+        <div class="card booking-widget p-xl">
           <div class="d-flex justify-content-between align-items-center mb-md">
             <div>
-              <div class="d-flex align-items-center gap-sm">
-                <span class="room-price" style="font-size: 2rem;" id="rdPrice">—</span>
-                <span class="text-muted">/ night</span>
-              </div>
-              <span class="room-price-strike" id="rdBasePrice"></span>
+              <span class="price-amount" id="rdPrice" style="font-size: 2rem;">$0</span>
+              <span class="text-muted font-size-sm">/ night</span>
+            </div>
+            <span id="rdDemand" class="badge">Normal</span>
+          </div>
+          <p class="text-error font-size-sm mb-lg" id="rdDemandReason"></p>
+
+          <div class="form-group">
+            <label class="form-label d-flex align-items-center gap-xs"><span class="material-symbols-outlined">calendar_today</span> Check-in</label>
+            <input type="date" class="form-control" id="rdCheckIn">
+          </div>
+          <div class="form-group mb-lg">
+            <label class="form-label d-flex align-items-center gap-xs"><span class="material-symbols-outlined">calendar_today</span> Check-out</label>
+            <input type="date" class="form-control" id="rdCheckOut">
+          </div>
+
+          <div class="bg-background p-md mb-lg" style="border-radius: var(--radius-md);">
+            <div class="d-flex justify-content-between mb-sm"><span class="text-muted font-size-sm">Total Nights</span><span class="font-weight-600" id="rdNights">0</span></div>
+            <div class="d-flex justify-content-between mb-sm"><span class="text-muted font-size-sm">Room Total</span><span class="font-weight-600" id="rdRoomTotal">$0</span></div>
+            <div class="d-flex justify-content-between pt-sm border-top mt-sm">
+              <span class="font-weight-600">Total Payable</span>
+              <span class="font-weight-600 text-primary" id="rdGrandTotal">$0</span>
             </div>
           </div>
 
-          <form id="roomBookingForm">
-            <div class="form-group">
-              <label class="form-label">Check-in Date</label>
-              <input type="date" class="form-control" id="rdCheckInDate">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Check-in Time</label>
-              <input type="time" class="form-control" id="rdCheckInTime" value="14:00">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Check-out Date</label>
-              <input type="date" class="form-control" id="rdCheckOutDate">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Check-out Time</label>
-              <input type="time" class="form-control" id="rdCheckOutTime" value="11:00">
-            </div>
-            <div class="form-group mb-md">
-              <label class="form-label">Guests</label>
-              <select class="form-control" id="rdGuests"></select>
-            </div>
-            <div class="form-group mb-lg">
-              <label class="form-label">Special Request</label>
-              <textarea class="form-control" id="rdSpecialRequest" placeholder="e.g. Extra pillows, high floor"></textarea>
-            </div>
-
-            <!-- Live Price Summary -->
-            <div class="bg-background p-md mb-lg" style="border-radius: var(--radius-md);">
-              <div class="price-summary-row"><span class="text-muted" id="priceNights">—</span><span id="priceRoomAmt">—</span></div>
-              <div class="price-summary-row"><span class="text-muted">Dynamic Adj.</span><span id="priceDynamic">—</span></div>
-              <div class="price-summary-row"><span class="text-muted">Taxes (12%)</span><span id="priceTax">—</span></div>
-              <div class="price-summary-row price-summary-total"><span>Total</span><span id="priceTotal">—</span></div>
-            </div>
-
-            <button type="button" class="btn btn-primary btn-block" id="rdBookBtn" style="font-size: 1.1rem; padding: 12px;">Reserve Now</button>
-            <p class="text-center text-muted mt-sm font-size-sm">You won't be charged yet.</p>
-          </form>
+          <button class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1.1rem;" id="rdBookBtn">Proceed to Booking</button>
         </div>
       </aside>
     </div>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>

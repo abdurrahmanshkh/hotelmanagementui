@@ -4,32 +4,34 @@
 
 /* ── Toast System ─────────────────────────────────────────────────── */
 
-/** Ensure a toast-container div exists in the DOM. */
 function _getToastContainer() {
-  let c = document.querySelector('.toast-container');
+  let c = document.getElementById('toastContainer');
   if (!c) {
     c = document.createElement('div');
-    c.className = 'toast-container';
+    c.id = 'toastContainer';
     c.setAttribute('aria-live', 'polite');
     document.body.appendChild(c);
   }
   return c;
 }
 
-/**
- * Show a toast notification.
- * @param {string} message
- * @param {'success'|'error'|'warning'|'info'} type
- * @param {number} duration  ms before auto-dismiss (default 3500)
- */
 function showToast(message, type = 'info', duration = 3500) {
   const container = _getToastContainer();
   const toast = document.createElement('div');
-  toast.className = `toast toast-${type}`;
+  toast.className = `toast ${type}`;
+  
+  let icon = 'info';
+  if (type === 'success') icon = 'check_circle';
+  if (type === 'error') icon = 'error';
+  if (type === 'warning') icon = 'warning';
+
   toast.innerHTML = `
-    <span>${message}</span>
-    <button style="margin-left:auto;background:none;border:none;cursor:pointer;font-size:1.1rem;color:inherit;">✕</button>`;
-  toast.querySelector('button').addEventListener('click', () => toast.remove());
+    <span class="material-symbols-outlined toast-icon">${icon}</span>
+    <span style="flex-grow:1; font-size: 0.95rem;">${message}</span>
+    <button style="background:none;border:none;cursor:pointer;color:var(--text-light);padding:0;" onclick="this.parentElement.remove()">
+      <span class="material-symbols-outlined" style="font-size:20px;">close</span>
+    </button>`;
+  
   container.appendChild(toast);
   setTimeout(() => { if (toast.parentNode) toast.remove(); }, duration);
 }
@@ -39,47 +41,36 @@ function showToast(message, type = 'info', duration = 3500) {
 function openModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
-  overlay.classList.add('modal-open');
-  overlay.style.opacity = '1';
-  overlay.style.pointerEvents = 'all';
+  overlay.classList.add('active');
 }
 
 function closeModal(id) {
   const overlay = document.getElementById(id);
   if (!overlay) return;
-  overlay.classList.remove('modal-open');
-  overlay.style.opacity = '0';
-  overlay.style.pointerEvents = 'none';
+  overlay.classList.remove('active');
 }
 
-/* Close modal on overlay click or Escape key */
 document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-overlay')) {
-    e.target.classList.remove('modal-open');
-    e.target.style.opacity = '0';
-    e.target.style.pointerEvents = 'none';
+    e.target.classList.remove('active');
   }
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    document.querySelectorAll('.modal-overlay').forEach(m => {
-      m.classList.remove('modal-open');
-      m.style.opacity = '0';
-      m.style.pointerEvents = 'none';
-    });
+    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
   }
 });
 
 /* ── Button Loading State ─────────────────────────────────────────── */
 
 function setButtonLoading(btn, text = 'Processing…') {
-  btn.dataset.originalText = btn.textContent;
-  btn.textContent = text;
+  btn.dataset.originalText = btn.innerHTML;
+  btn.innerHTML = `<span class="material-symbols-outlined" style="animation: pulse 1s infinite;">sync</span> ${text}`;
   btn.disabled = true;
   btn.style.opacity = '0.7';
 }
 function clearButtonLoading(btn) {
-  btn.textContent = btn.dataset.originalText || 'Submit';
+  btn.innerHTML = btn.dataset.originalText || 'Submit';
   btn.disabled = false;
   btn.style.opacity = '1';
 }
@@ -87,11 +78,16 @@ function clearButtonLoading(btn) {
 /* ── Empty & Loading Skeletons ────────────────────────────────────── */
 
 function showEmptyState(container, icon, heading, message, btnHtml = '') {
+  // If a string (like a single emoji) is passed, change it to material symbol if it's text
+  let iconHtml = icon.length > 2 ? `<span class="material-symbols-outlined">${icon}</span>` : `<span style="font-size:1.5em">${icon}</span>`;
+  if (icon === '🔍') iconHtml = `<span class="material-symbols-outlined">search_off</span>`;
+  if (icon === '🏨') iconHtml = `<span class="material-symbols-outlined">location_city</span>`;
+
   container.innerHTML = `
-    <div class="empty-state card" style="display:flex;">
-      <div class="empty-state-icon">${icon}</div>
-      <h3>${heading}</h3>
-      <p class="text-muted mt-sm mb-lg">${message}</p>
+    <div class="empty-state card w-100" style="display:flex; flex-direction:column; align-items:center;">
+      <div class="empty-state-icon text-muted mb-sm">${iconHtml}</div>
+      <h3 class="mb-xs">${heading}</h3>
+      <p class="text-muted mt-sm mb-lg max-w-sm mx-auto">${message}</p>
       ${btnHtml}
     </div>`;
 }
@@ -99,12 +95,13 @@ function showEmptyState(container, icon, heading, message, btnHtml = '') {
 function showLoadingSkeleton(container, count = 3) {
   let html = '<div class="room-grid">';
   for (let i = 0; i < count; i++) {
-    html += `<div class="card room-card p-0" style="box-shadow:none;border:none;background:transparent;">
-      <div class="room-card-img loading-skeleton" style="border-radius:var(--radius-lg);"></div>
-      <div style="padding:var(--space-lg);">
-        <div class="loading-skeleton mb-sm" style="height:24px;width:60%;border-radius:4px;"></div>
-        <div class="loading-skeleton mb-md" style="height:16px;width:40%;border-radius:4px;"></div>
-        <div class="loading-skeleton" style="height:16px;width:80%;border-radius:4px;"></div>
+    html += `
+    <div class="card room-card p-0" style="box-shadow:none;border:1px solid var(--border-color);background:transparent;">
+      <div class="room-card-img-wrapper skeleton" style="height:220px; border-radius:var(--radius-lg) var(--radius-lg) 0 0;"></div>
+      <div class="p-md">
+        <div class="skeleton mb-sm" style="height:24px;width:60%;border-radius:4px;"></div>
+        <div class="skeleton mb-md" style="height:16px;width:40%;border-radius:4px;"></div>
+        <div class="skeleton" style="height:16px;width:80%;border-radius:4px;"></div>
       </div>
     </div>`;
   }
@@ -116,25 +113,27 @@ function showLoadingSkeleton(container, count = 3) {
 
 function updateNavbar() {
   const user = getCurrentUser();
-  // Update all nav-actions on the page
+  // Update nav-actions
   document.querySelectorAll('.nav-actions').forEach(nav => {
     if (user) {
       nav.innerHTML = `
-        <div class="d-flex align-items-center gap-sm" style="cursor:pointer;" id="navUserMenu">
-          <div style="width:36px;height:36px;border-radius:50%;background-color:var(--primary-light);color:var(--surface);display:flex;align-items:center;justify-content:center;font-weight:bold;">
-            ${user.fullName.charAt(0)}
-          </div>
-          <span class="text-muted" style="font-weight:500;">${user.fullName.split(' ')[0]}</span>
-        </div>
-        <button class="btn btn-ghost" id="logoutBtn" style="font-size:0.85rem;">Logout</button>
-        <button class="hamburger">☰</button>`;
+        <a href="dashboard.html" class="btn btn-primary d-none d-lg-inline-flex align-items-center gap-xs">Dashboard <span class="material-symbols-outlined" style="font-size:18px;">arrow_forward</span></a>
+        <button class="btn btn-ghost btn-icon" id="logoutBtn" title="Logout"><span class="material-symbols-outlined">logout</span></button>
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>`;
       const logoutBtn = nav.querySelector('#logoutBtn');
       if (logoutBtn) logoutBtn.addEventListener('click', logout);
     } else {
       nav.innerHTML = `
-        <a href="login.html" class="btn btn-ghost">Login</a>
+        <a href="login.html" class="btn btn-ghost">Sign In</a>
         <a href="rooms.html" class="btn btn-primary">Book Now</a>
-        <button class="hamburger">☰</button>`;
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>`;
     }
+  });
+
+  // Highlight active link
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === path) a.classList.add('active');
   });
 }

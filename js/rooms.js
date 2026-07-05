@@ -118,48 +118,64 @@ function renderRooms() {
     const statusBadge = r.status === 'Available'
       ? '<span class="badge badge-success room-card-badge">Available</span>'
       : r.status === 'Occupied'
-        ? '<span class="badge badge-danger room-card-badge">Occupied</span>'
+        ? '<span class="badge badge-error room-card-badge">Occupied</span>'
         : r.status === 'Reserved'
           ? '<span class="badge badge-info room-card-badge">Reserved</span>'
           : r.status === 'Under Cleaning'
             ? '<span class="badge badge-warning room-card-badge">Cleaning</span>'
-            : '<span class="badge badge-primary room-card-badge">Maintenance</span>';
+            : '<span class="badge badge-neutral room-card-badge">Maintenance</span>';
 
     const demandBadge = r.demandLevel === 'High Demand'
-      ? '<span class="badge badge-warning" style="font-size:0.6rem;padding:2px 6px;">High Demand</span>'
+      ? '<span class="badge badge-warning"><span class="material-symbols-outlined" style="font-size:14px;">trending_up</span> High Demand</span>'
       : r.demandLevel === 'Low Demand'
-        ? '<span class="badge badge-success" style="font-size:0.6rem;padding:2px 6px;">Low Demand</span>'
+        ? '<span class="badge badge-success"><span class="material-symbols-outlined" style="font-size:14px;">trending_down</span> Low Demand</span>'
         : '';
 
     const priceStrike = r.dynamicPrice !== r.basePrice
-      ? `<span class="room-price-strike">${formatCurrency(r.basePrice)}</span>` : '';
+      ? `<span class="text-muted" style="text-decoration:line-through; font-size:0.9rem;">${formatCurrency(r.basePrice)}</span>` : '';
 
     const bookBtn = r.status === 'Available'
-      ? `<a href="room-details.html?id=${r.id}" class="btn btn-primary" style="padding:8px 16px;">Book</a>`
-      : `<span class="text-muted" style="font-size:0.8rem;">${r.status}</span>`;
+      ? `<a href="room-details.html?id=${r.id}" class="btn btn-primary">Book Now</a>`
+      : `<span class="text-muted font-size-sm">${r.status}</span>`;
+
+    // Map room types to beautiful Unsplash images
+    let imgUrl = 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop';
+    if (r.type === 'Deluxe') imgUrl = 'https://images.unsplash.com/photo-1582719478250-c89404bb8a0e?q=80&w=800&auto=format&fit=crop';
+    else if (r.type === 'Suite') imgUrl = 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop';
+    else if (r.type === 'Penthouse') imgUrl = 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=800&auto=format&fit=crop';
 
     return `
-      <div class="card room-card p-0" data-room-id="${r.id}">
-        <div class="room-card-img">${statusBadge}</div>
-        <div class="room-card-content">
+      <div class="card room-card p-0 card-hover" data-room-id="${r.id}">
+        <div class="room-card-img-wrapper">
+          <img src="${imgUrl}" alt="${r.type}" class="room-card-img">
+          ${statusBadge}
+        </div>
+        <div class="room-card-body">
           <div class="d-flex justify-content-between align-items-start mb-sm">
             <div>
-              <h3 class="mb-xs">${r.type} <span class="text-muted" style="font-size:0.85rem;font-weight:500;">#${r.roomNumber}</span></h3>
-              <p class="text-muted" style="font-size:0.85rem;">Floor ${r.floor}</p>
+              <h3 class="mb-xs">${r.type} <span class="text-muted font-size-sm">#${r.roomNumber}</span></h3>
+              <p class="text-muted font-size-sm">Floor ${r.floor}</p>
             </div>
-            <div class="d-flex align-items-center"><span style="color:var(--secondary)">★</span> ${r.rating}</div>
+            <div class="d-flex align-items-center gap-xs text-secondary font-weight-600">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span> ${r.rating}
+            </div>
           </div>
-          <div class="room-amenities">
-            <span>👥 ${r.capacity} Guests</span><span>🛏️ ${r.bedType}</span>
-            ${r.amenities.slice(0, 2).map(a => `<span>${a}</span>`).join('')}
+          
+          <div class="room-features">
+            <span><span class="material-symbols-outlined">group</span> ${r.capacity}</span>
+            <span><span class="material-symbols-outlined">bed</span> ${r.bedType}</span>
+            ${r.amenities.slice(0, 2).map(a => `<span><span class="material-symbols-outlined">check_circle</span> ${a}</span>`).join('')}
           </div>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
+          
+          <div class="room-price-row mt-md pt-md border-top">
             <div>
-              <div class="d-flex align-items-center gap-sm">
-                <span class="label-md text-muted">Price/Night</span> ${demandBadge}
+              <div class="d-flex align-items-center gap-sm mb-xs">
+                <span class="text-muted font-size-sm text-uppercase">Per Night</span> ${demandBadge}
               </div>
-              <div class="room-price">${formatCurrency(r.dynamicPrice)}${priceStrike}</div>
-              ${r.dynamicPrice !== r.basePrice ? `<p class="text-muted" style="font-size:0.7rem;">${r.dynamicReason}</p>` : ''}
+              <div class="d-flex align-items-end gap-sm">
+                <span class="price-amount">${formatCurrency(r.dynamicPrice)}</span>
+                ${priceStrike}
+              </div>
             </div>
             ${bookBtn}
           </div>
@@ -182,7 +198,7 @@ function initRoomDetails() {
   const el = (id) => document.getElementById(id);
   if (el('rdTitle'))      el('rdTitle').textContent = room.type;
   if (el('rdRoomNum'))    el('rdRoomNum').textContent = `Room ${room.roomNumber} • Floor ${room.floor}`;
-  if (el('rdRating'))     el('rdRating').textContent = `★ ${room.rating}`;
+  if (el('rdRating'))     el('rdRating').textContent = room.rating;
   if (el('rdDescription'))el('rdDescription').textContent = room.description;
   if (el('rdCapacity'))   el('rdCapacity').textContent = `${room.capacity} Guests`;
   if (el('rdBedType'))    el('rdBedType').textContent = room.bedType;
@@ -199,7 +215,14 @@ function initRoomDetails() {
 
   // Amenities
   const amenList = el('rdAmenities');
-  if (amenList) amenList.innerHTML = room.amenities.map(a => `<li>${a}</li>`).join('');
+  if (amenList) {
+    amenList.innerHTML = room.amenities.map(a => `
+      <div class="d-flex align-items-center gap-sm">
+        <span class="material-symbols-outlined text-primary">check_circle</span>
+        <span>${a}</span>
+      </div>
+    `).join('');
+  }
 
   // Status badge
   const statusEl = el('rdStatus');
