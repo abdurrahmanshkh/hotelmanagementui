@@ -158,7 +158,7 @@ function initFeedback() {
 
   const user = getCurrentUser();
   const params = new URLSearchParams(window.location.search);
-  const bookingId = params.get('bookingId');
+  const bookingId = params.get('id') || sessionStorage.getItem('stayEasePro_viewBooking');
   const booking = bookingId ? findById('stayEasePro_bookings', bookingId) : null;
 
   // Check duplicate
