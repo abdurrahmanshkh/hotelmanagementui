@@ -57,6 +57,10 @@
 }
 
 /* ── 2. Admin Reset / Base ──────────────────────────────────────── */
+html {
+  overflow-x: hidden;
+}
+
 body.admin-body {
   margin: 0;
   padding: 0;
@@ -309,21 +313,22 @@ body.admin-body {
 /* Bento Grid */
 .admin-bento-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--admin-space-lg);
   margin-bottom: var(--admin-space-xl);
 }
 
-@media (min-width: 768px) {
-  .admin-bento-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.admin-grid-half {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--admin-space-lg);
 }
 
-@media (min-width: 1024px) {
-  .admin-bento-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+.admin-settings-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: var(--admin-space-lg);
+  align-items: start;
 }
 
 .admin-card {
@@ -659,8 +664,11 @@ body.admin-body {
   }
 }
 
-/* Mobile tables to cards */
+/* Mobile tables to cards & layout collapse */
 @media (max-width: 768px) {
+  .admin-grid-half, .admin-settings-layout {
+    grid-template-columns: 1fr;
+  }
   .admin-table thead {
     display: none;
   }
