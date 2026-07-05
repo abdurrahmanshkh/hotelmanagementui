@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Details - StayEase Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="brand-logo">
+        <span>Stay</span>Ease Pro
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="d-flex align-items-center gap-sm">
+          <div style="width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary-light); color: var(--surface); display: flex; align-items: center; justify-content: center; font-weight: bold;">
+            A
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="max-width: 1000px;">
+    
+    <div class="d-flex justify-content-between align-items-center mt-xl mb-md flex-wrap gap-md">
+      <div>
+        <a href="my-bookings.html" class="text-primary font-size-sm mb-xs" style="display:inline-block;">← Back to Bookings</a>
+        <div class="d-flex align-items-center gap-md mt-xs">
+          <h2 class="mb-0">Booking BK-2026-1042</h2>
+          <span class="badge badge-success">Checked In</span>
+        </div>
+      </div>
+      <div class="d-flex gap-sm">
+        <button class="btn btn-secondary">Download Invoice</button>
+        <a href="chat.html" class="btn btn-primary">Message Front Desk</a>
+      </div>
+    </div>
+
+    <div class="room-details-layout" style="grid-template-columns: 2fr 1fr;">
+      
+      <!-- Main Content -->
+      <main class="d-flex flex-column gap-lg">
+        
+        <!-- Room Details -->
+        <div class="card">
+          <h4 class="mb-md border-bottom pb-sm">Room Details</h4>
+          <div class="d-flex align-items-center gap-lg">
+            <div style="width: 120px; height: 100px; background-color: var(--border-color); border-radius: var(--radius-md);"></div>
+            <div>
+              <h3 class="mb-xs">Deluxe Room <span class="text-primary">#305</span></h3>
+              <p class="text-muted font-size-sm">3rd Floor • 2 Adults, 1 Child</p>
+            </div>
+          </div>
+          
+          <div class="d-flex justify-content-between mt-md bg-background p-md rounded-lg">
+            <div>
+              <p class="text-muted font-size-sm text-uppercase">Check-in</p>
+              <p class="font-weight-600">Jul 05, 2026</p>
+              <p class="text-muted font-size-sm">2:00 PM</p>
+            </div>
+            <div class="text-center text-muted flex-grow-1 d-flex align-items-center justify-content-center">
+              <span>→ 2 Nights →</span>
+            </div>
+            <div class="text-right">
+              <p class="text-muted font-size-sm text-uppercase">Check-out</p>
+              <p class="font-weight-600">Jul 07, 2026</p>
+              <p class="text-muted font-size-sm">11:00 AM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guest Details -->
+        <div class="card">
+          <h4 class="mb-md border-bottom pb-sm">Guest Details</h4>
+          <div class="d-flex flex-wrap gap-xl">
+            <div>
+              <span class="info-label">Primary Guest</span>
+              <p class="info-value mt-xs">Aarav Sharma</p>
+            </div>
+            <div>
+              <span class="info-label">Contact Email</span>
+              <p class="info-value mt-xs">guest@example.com</p>
+            </div>
+            <div>
+              <span class="info-label">Contact Phone</span>
+              <p class="info-value mt-xs">+91 98765 43210</p>
+            </div>
+            <div>
+              <span class="info-label">Govt ID</span>
+              <p class="info-value mt-xs">Aadhaar (Verified)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Details -->
+        <div class="card">
+          <h4 class="mb-md border-bottom pb-sm">Payment Details</h4>
+          <div class="d-flex justify-content-between mb-sm">
+            <span class="text-muted">Total Amount</span>
+            <span>₹ 11,446</span>
+          </div>
+          <div class="d-flex justify-content-between mb-sm">
+            <span class="text-muted">Status</span>
+            <span class="badge badge-success">Paid</span>
+          </div>
+          <div class="d-flex justify-content-between mb-sm">
+            <span class="text-muted">Payment ID</span>
+            <span>PAY-893021 (Card ending in 1111)</span>
+          </div>
+        </div>
+
+        <!-- Service Requests -->
+        <div class="card mb-3xl">
+          <div class="d-flex justify-content-between align-items-center mb-md border-bottom pb-sm">
+            <h4 class="mb-0">Service Requests</h4>
+            <a href="services.html" class="btn btn-ghost" style="padding: 4px 8px;">View All / New</a>
+          </div>
+          <div class="booking-list-item px-0">
+            <div>
+              <p class="font-weight-600">Extra Towels</p>
+              <p class="text-muted font-size-sm">Jul 05, 3:30 PM</p>
+            </div>
+            <span class="badge badge-warning">In Progress</span>
+          </div>
+          <div class="booking-list-item px-0 border-0">
+            <div>
+              <p class="font-weight-600">Room Cleaning</p>
+              <p class="text-muted font-size-sm">Jul 06, 10:00 AM</p>
+            </div>
+            <span class="badge badge-success">Completed</span>
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="d-flex flex-column gap-lg">
+        
+        <!-- Digital Passcode Card -->
+        <div class="card text-center passcode-card">
+          <h4 class="mb-sm">Digital Passcode</h4>
+          
+          <!-- State 1: Active (Current State) -->
+          <div class="passcode-active" style="border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-md);">
+            <div class="passcode-display mb-xs">482913</div>
+            <span class="badge badge-success">Active</span>
+            <p class="text-muted font-size-sm mt-sm">Use this passcode for room entry on the keypad.</p>
+          </div>
+          
+          <!-- State 2: Locked (Hidden conceptually) -->
+          <!-- 
+          <div class="passcode-locked" style="border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-md);">
+            <div class="passcode-display mb-xs">••••••</div>
+            <span class="badge badge-warning">Locked</span>
+            <p class="text-muted font-size-sm mt-sm">Your passcode will become active at check-in time.</p>
+          </div>
+          -->
+          
+          <!-- State 3: Expired (Hidden conceptually) -->
+          <!--
+          <div class="passcode-expired" style="border-radius: var(--radius-lg); padding: var(--space-md); margin-bottom: var(--space-md);">
+            <div class="passcode-display mb-xs">482913</div>
+            <span class="badge badge-danger">Expired</span>
+            <p class="text-muted font-size-sm mt-sm">This passcode has expired.</p>
+          </div>
+          -->
+
+          <div class="p-sm bg-background" style="border-radius: var(--radius-sm); border-left: 3px solid var(--primary);">
+            <p class="font-size-sm text-left">
+              <strong>Security Note:</strong> Do not share your room passcode. A unique passcode is generated for every booking to ensure previous guests cannot access the room.
+            </p>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

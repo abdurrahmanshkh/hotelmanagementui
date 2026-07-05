@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dummy Payment - StayEase Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar justify-content-center">
+      <div class="brand-logo">
+        <span>Stay</span>Ease Pro
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="max-width: 1000px;">
+    
+    <!-- Notice -->
+    <div class="mt-lg p-md text-center" style="background-color: var(--warning-bg); border-radius: var(--radius-md); border-left: 4px solid var(--warning);">
+      <p style="font-weight: 600; color: var(--warning);">This is a simulated dummy payment page for project testing. No real payment will be processed.</p>
+    </div>
+
+    <!-- Step Indicator -->
+    <div class="step-indicator">
+      <div class="step">1. Room</div>
+      <div class="step">2. Confirmation</div>
+      <div class="step active">3. Payment</div>
+    </div>
+
+    <div class="payment-layout">
+      
+      <!-- Payment Methods -->
+      <main>
+        <div class="card">
+          <div class="card-header border-0 pb-0">
+            <h3>Select Payment Method</h3>
+          </div>
+          
+          <div class="p-lg pt-0">
+            
+            <div class="payment-tabs mt-sm">
+              <div class="payment-tab active">Credit/Debit Card</div>
+              <div class="payment-tab">UPI</div>
+              <div class="payment-tab">Net Banking</div>
+              <div class="payment-tab">Wallet</div>
+            </div>
+
+            <!-- Card Form -->
+            <div class="payment-method-content active">
+              <form id="cardForm">
+                <div class="form-group">
+                  <label class="form-label">Cardholder Name</label>
+                  <input type="text" class="form-control" placeholder="Aarav Sharma" value="Aarav Sharma">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Card Number</label>
+                  <input type="text" class="form-control" placeholder="XXXX XXXX XXXX XXXX" value="4111 1111 1111 1111">
+                </div>
+                <div class="d-flex gap-md">
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">Expiry Date</label>
+                    <input type="text" class="form-control" placeholder="MM/YY" value="12/28">
+                  </div>
+                  <div class="form-group" style="flex: 1;">
+                    <label class="form-label">CVV</label>
+                    <input type="password" class="form-control" placeholder="•••" value="123">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Other forms hidden conceptually -->
+
+            <div class="d-flex flex-column gap-sm mt-lg pt-lg border-top">
+              <button class="btn btn-primary btn-block" style="padding: 16px; font-size: 1.1rem;">Pay ₹ 11,446</button>
+              <button class="btn btn-ghost btn-block">Simulate Failed Payment</button>
+              <a href="booking-confirmation.html" class="text-center text-muted mt-sm font-size-sm">← Back to Booking</a>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <!-- Order Summary -->
+      <aside>
+        <div class="card bg-background">
+          <h4 class="mb-md border-bottom pb-sm">Order Summary</h4>
+          <p class="font-weight-600 mb-xs">Deluxe Room</p>
+          <p class="text-muted font-size-sm mb-lg">2 Nights (Jul 05 - Jul 07)</p>
+          
+          <div class="price-summary-row">
+            <span class="text-muted">Total Amount</span>
+            <span class="font-weight-600">₹ 11,446</span>
+          </div>
+          
+          <div class="mt-xl text-center">
+            <p class="font-size-sm text-muted">🔒 Secure Encrypted Payment</p>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Success Modal (Static preview for styling) -->
+  <!-- <div class="modal-overlay modal-open"> -->
+  <div class="modal-overlay">
+    <div class="modal text-center">
+      <div style="width: 80px; height: 80px; border-radius: 50%; background-color: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto var(--space-lg) auto;">
+        ✓
+      </div>
+      <h2 class="mb-sm text-success">Payment Successful!</h2>
+      <p class="text-muted mb-lg">Your booking is confirmed.</p>
+      
+      <div class="bg-background p-md text-left mb-xl" style="border-radius: var(--radius-md);">
+        <div class="d-flex justify-content-between mb-xs">
+          <span class="text-muted">Payment ID:</span>
+          <span class="font-weight-600">PAY-893021</span>
+        </div>
+        <div class="d-flex justify-content-between mb-xs">
+          <span class="text-muted">Amount Paid:</span>
+          <span class="font-weight-600">₹ 11,446</span>
+        </div>
+      </div>
+      
+      <p class="font-size-sm text-primary mb-xl p-sm" style="background-color: var(--primary-fixed); border-radius: var(--radius-sm);">
+        ℹ️ Your digital room passcode will activate automatically at your check-in time.
+      </p>
+
+      <div class="d-flex gap-md justify-content-center">
+        <a href="dashboard.html" class="btn btn-secondary">Go to Dashboard</a>
+        <a href="booking-details.html" class="btn btn-primary">View Booking</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

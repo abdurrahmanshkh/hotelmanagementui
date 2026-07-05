@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - StayEase Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <div class="auth-layout">
+    <div class="auth-visual">
+      <h2>Welcome Back to StayEase</h2>
+      <p class="mt-md">Access your digital room passcode, manage bookings, and chat with the front desk instantly.</p>
+    </div>
+    
+    <div class="auth-form-container">
+      <div class="card auth-form-card">
+        <div class="brand-logo mb-xl justify-content-center">
+          <span>Stay</span>Ease Pro
+        </div>
+        
+        <h3 class="mb-sm text-center">Customer Login</h3>
+        <p class="text-muted text-center mb-xl">Please sign in to your account.</p>
+        
+        <form id="loginForm">
+          <!-- Normal Field -->
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="guest@example.com">
+          </div>
+          
+          <!-- Field with Validation Visual Placeholder -->
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <div style="position: relative;">
+              <input type="password" id="password" class="form-control w-100 input-error" placeholder="••••••••">
+              <!-- Show/Hide Placeholder -->
+              <span style="position: absolute; right: 15px; top: 12px; color: var(--text-muted); cursor: pointer; font-size: 0.875rem;">👁️</span>
+            </div>
+            <!-- Validation error example -->
+            <span class="error-message">Invalid credentials provided.</span>
+          </div>
+          
+          <div class="checkbox-group justify-content-between mb-lg">
+            <label class="d-flex align-items-center gap-sm">
+              <input type="checkbox"> 
+              <span class="text-muted font-size-sm">Remember me</span>
+            </label>
+            <a href="#" class="text-primary font-weight-600" style="font-size: 0.875rem;">Forgot password?</a>
+          </div>
+          
+          <button type="button" class="btn btn-primary btn-block mb-lg">Login</button>
+          
+          <p class="text-center text-muted">
+            Don't have an account? <a href="signup.html" class="text-primary" style="font-weight: 600;">Sign up</a>
+          </p>
+        </form>
+        
+        <!-- Demo Credentials Helper -->
+        <div class="mt-xl p-md" style="background-color: var(--info-bg); border-radius: var(--radius-md); border-left: 4px solid var(--info);">
+          <p style="font-size: 0.875rem; color: var(--info); font-weight: 600;" class="mb-xs">Demo Credentials</p>
+          <p style="font-size: 0.8rem; color: var(--text-main);">Email: guest@example.com <br> Pass: demo123</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

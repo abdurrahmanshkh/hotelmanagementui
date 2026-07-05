@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayEase Pro Customer Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="brand-logo">
+        <span>Stay</span>Ease Pro
+      </div>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Login</a>
+        <a href="rooms.html" class="btn btn-primary">Book Now</a>
+        <button class="hamburger">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="container">
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Experience Luxury, Simplified.</h1>
+        <p class="hero-subtitle">Book your stay in seconds with our advanced digital customer portal. Enjoy smart pricing and secure digital access.</p>
+        <div class="d-flex gap-sm">
+          <a href="rooms.html" class="btn btn-primary">View Available Rooms</a>
+          <a href="#how-it-works" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <!-- Placeholder for hero image -->
+        <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--primary); color: var(--secondary);">
+          <h2>Luxury Hotel Visual</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Booking Widget -->
+  <div class="container">
+    <form class="search-widget" id="bookingSearchWidget">
+      <div class="form-group mb-sm">
+        <label class="form-label">Check-in</label>
+        <input type="date" class="form-control" />
+      </div>
+      <div class="form-group mb-sm">
+        <label class="form-label">Check-out</label>
+        <input type="date" class="form-control" />
+      </div>
+      <div class="form-group mb-sm">
+        <label class="form-label">Guests</label>
+        <select class="form-control">
+          <option>1 Adult</option>
+          <option>2 Adults</option>
+          <option>2 Adults, 1 Child</option>
+          <option>3 Adults</option>
+        </select>
+      </div>
+      <div class="form-group mb-sm">
+        <label class="form-label">Room Type</label>
+        <select class="form-control">
+          <option>Any Type</option>
+          <option>Standard</option>
+          <option>Deluxe</option>
+          <option>Suite</option>
+        </select>
+      </div>
+      <div class="form-group mb-sm">
+        <button type="button" class="btn btn-primary btn-block" style="height: 44px;">Search Rooms</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Quick Stats -->
+  <section class="container">
+    <div class="stats-grid">
+      <div class="stat-card card">
+        <h2>120+</h2>
+        <p class="text-muted">Total Rooms</p>
+      </div>
+      <div class="stat-card card">
+        <h2>45</h2>
+        <p class="text-muted">Available Rooms</p>
+      </div>
+      <div class="stat-card card">
+        <h2>4.9</h2>
+        <p class="text-muted">Average Rating</p>
+      </div>
+      <div class="stat-card card">
+        <h2>24/7</h2>
+        <p class="text-muted">Digital Support</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Rooms -->
+  <section class="container mb-3xl">
+    <div class="d-flex justify-content-between align-items-center mb-xl">
+      <h2>Featured Rooms</h2>
+      <a href="rooms.html" class="btn btn-ghost">View All →</a>
+    </div>
+    
+    <div class="room-grid">
+      <!-- Standard Room -->
+      <div class="card room-card p-0">
+        <div class="room-card-img">
+          <!-- Image Placeholder -->
+          <span class="badge badge-success room-card-badge">Available</span>
+        </div>
+        <div class="room-card-content">
+          <div class="d-flex justify-content-between align-items-center mb-sm">
+            <h3>Standard Room</h3>
+            <div class="d-flex align-items-center">
+              <span class="text-warning">★</span> 4.7
+            </div>
+          </div>
+          <div class="room-amenities">
+            <span>👥 2 Guests</span>
+            <span>🛏️ Queen Bed</span>
+            <span>📶 Wi-Fi</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div>
+              <span class="label-md text-muted">Starting from</span>
+              <div class="room-price">₹ 2,499<span class="room-price-strike">₹ 3,000</span></div>
+            </div>
+            <a href="room-details.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Deluxe Room -->
+      <div class="card room-card p-0">
+        <div class="room-card-img">
+          <!-- Image Placeholder -->
+          <span class="badge badge-success room-card-badge">Available</span>
+        </div>
+        <div class="room-card-content">
+          <div class="d-flex justify-content-between align-items-center mb-sm">
+            <h3>Deluxe Room</h3>
+            <div class="d-flex align-items-center">
+              <span class="text-warning">★</span> 4.8
+            </div>
+          </div>
+          <div class="room-amenities">
+            <span>👥 3 Guests</span>
+            <span>🛏️ King Bed</span>
+            <span>📺 Smart TV</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div>
+              <span class="label-md text-muted">Starting from</span>
+              <div class="room-price">₹ 4,299<span class="room-price-strike">₹ 5,500</span></div>
+            </div>
+            <a href="room-details.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Suite Room -->
+      <div class="card room-card p-0">
+        <div class="room-card-img">
+          <!-- Image Placeholder -->
+          <span class="badge badge-warning room-card-badge">High Demand</span>
+        </div>
+        <div class="room-card-content">
+          <div class="d-flex justify-content-between align-items-center mb-sm">
+            <h3>Luxury Suite</h3>
+            <div class="d-flex align-items-center">
+              <span class="text-warning">★</span> 5.0
+            </div>
+          </div>
+          <div class="room-amenities">
+            <span>👥 4 Guests</span>
+            <span>🛏️ 2 King Beds</span>
+            <span>🍳 Kitchenette</span>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-auto">
+            <div>
+              <span class="label-md text-muted">Starting from</span>
+              <div class="room-price">₹ 8,999</div>
+            </div>
+            <a href="room-details.html" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="container mb-3xl">
+    <div class="text-center mb-xl">
+      <h2>Why Choose StayEase Pro?</h2>
+      <p class="text-muted mt-sm">A fully integrated experience for our premium guests.</p>
+    </div>
+    <div class="dashboard-grid">
+      <div class="card text-center">
+        <div class="empty-state-icon">📱</div>
+        <h3>Digital Room Passcode</h3>
+        <p class="text-muted mt-sm">No more lost keys. Get a secure digital passcode activated directly upon check-in.</p>
+      </div>
+      <div class="card text-center">
+        <div class="empty-state-icon">📈</div>
+        <h3>Smart Dynamic Pricing</h3>
+        <p class="text-muted mt-sm">Enjoy fair pricing based on demand. Best deals guaranteed for early bookings.</p>
+      </div>
+      <div class="card text-center">
+        <div class="empty-state-icon">💬</div>
+        <h3>24/7 Chat Support</h3>
+        <p class="text-muted mt-sm">Message the front desk instantly from your dashboard for any service requests.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="container mb-3xl" id="how-it-works">
+    <div class="card bg-background border-0">
+      <h2 class="text-center mb-xl">How It Works</h2>
+      <div class="d-flex justify-content-between flex-wrap gap-lg text-center">
+        <div style="flex: 1; min-width: 200px;">
+          <h1 class="text-light">1</h1>
+          <h4>Choose a Room</h4>
+          <p class="text-muted">Browse and select.</p>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <h1 class="text-light">2</h1>
+          <h4>Pick Dates</h4>
+          <p class="text-muted">Check-in and check-out.</p>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <h1 class="text-light">3</h1>
+          <h4>Dummy Payment</h4>
+          <p class="text-muted">Complete the test flow.</p>
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <h1 class="text-light">4</h1>
+          <h4>Get Passcode</h4>
+          <p class="text-muted">Access your room securely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo mb-md" style="color: var(--surface);">
+            <span style="color: var(--secondary);">Stay</span>Ease Pro
+          </div>
+          <p class="text-light">The advanced digital hotel management system bringing seamless luxury and smart automation to every guest.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Available Rooms</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Guest Portal</h4>
+          <ul>
+            <li><a href="dashboard.html">My Dashboard</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="services.html">Service Requests</a></li>
+            <li><a href="chat.html">24/7 Chat</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul>
+            <li><a href="#">support@stayeasepro.com</a></li>
+            <li><a href="#">+91 98765 43210</a></li>
+            <li><a href="#">123 Luxury Avenue, Cyber City</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

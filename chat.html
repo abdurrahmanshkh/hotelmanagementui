@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with Front Desk - StayEase Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="overflow: hidden;"> <!-- Prevent body scroll for chat app feel -->
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="brand-logo">
+        <span>Stay</span>Ease Pro
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="dashboard.html" class="btn btn-ghost" style="padding: 4px 8px;">✕ Close Chat</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="chat-layout">
+      
+      <!-- Chat Interface -->
+      <main class="card chat-card">
+        <div class="chat-header d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-sm">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background-color: var(--primary); display: flex; align-items: center; justify-content: center; color: white;">
+              FD
+            </div>
+            <div>
+              <h4 class="mb-0">Front Desk</h4>
+              <p class="text-muted font-size-sm d-flex align-items-center gap-xs">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--success); display: inline-block;"></span>
+                Online - Usually replies in 2 mins
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-messages">
+          <div class="text-center mb-md">
+            <span class="badge badge-primary font-size-sm">Today</span>
+          </div>
+          
+          <div class="chat-bubble chat-admin">
+            Hello Aarav! Welcome to StayEase Pro. How can we help you today?
+            <span class="chat-timestamp">2:05 PM</span>
+          </div>
+          
+          <div class="chat-bubble chat-customer">
+            Hi, I just checked into Room 305. Can I get two extra water bottles?
+            <span class="chat-timestamp">2:10 PM ✓✓</span>
+          </div>
+          
+          <div class="chat-bubble chat-admin">
+            Absolutely! I will send someone up with water right away. Anything else?
+            <span class="chat-timestamp">2:11 PM</span>
+          </div>
+          
+          <div class="chat-bubble chat-customer">
+            No, that's it. Thanks!
+            <span class="chat-timestamp">2:12 PM ✓✓</span>
+          </div>
+
+          <!-- Typing indicator placeholder -->
+          <div class="chat-bubble chat-admin text-muted font-size-sm" style="display: none; width: 60px; text-align: center;">
+            ...
+          </div>
+        </div>
+
+        <div class="chat-suggestions">
+          <span class="chat-suggestion-chip">Need room cleaning</span>
+          <span class="chat-suggestion-chip">Wi-Fi issue</span>
+          <span class="chat-suggestion-chip">Food order help</span>
+          <span class="chat-suggestion-chip">Late check-out request</span>
+        </div>
+
+        <div class="chat-input">
+          <button class="btn btn-ghost btn-icon">📎</button>
+          <input type="text" class="form-control flex-grow-1" placeholder="Type a message..." style="border: none; background-color: var(--background);">
+          <button class="btn btn-primary btn-icon" style="border-radius: var(--radius-md);">➤</button>
+        </div>
+      </main>
+
+      <!-- Booking Context Panel -->
+      <aside class="chat-context">
+        <div class="card h-100">
+          <h4 class="mb-md border-bottom pb-sm">Current Stay</h4>
+          <h3 class="mb-xs">Deluxe Room 305</h3>
+          <p class="text-muted font-size-sm mb-md">Aarav Sharma</p>
+          
+          <div class="info-item mb-md">
+            <span class="info-label">Booking ID</span>
+            <span class="info-value font-size-sm">BK-2026-1042</span>
+          </div>
+          
+          <div class="info-item mb-md">
+            <span class="info-label">Dates</span>
+            <span class="info-value font-size-sm">Jul 05 - Jul 07 (2 Nights)</span>
+          </div>
+          
+          <div class="info-item mb-lg">
+            <span class="info-label">Status</span>
+            <span class="badge badge-success mt-xs" style="width: fit-content;">Checked In</span>
+          </div>
+
+          <a href="booking-details.html" class="btn btn-secondary btn-block">View Full Details</a>
+          
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+</body>
+</html>

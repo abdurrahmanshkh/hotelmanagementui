@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Details - StayEase Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <div class="brand-logo">
+        <span>Stay</span>Ease Pro
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="rooms.html" class="active">Rooms</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Breadcrumb -->
+    <div class="mt-lg mb-md text-muted font-size-sm">
+      <a href="index.html">Home</a> / <a href="rooms.html">Available Rooms</a> / <span class="text-primary font-weight-500">Deluxe Room 305</span>
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="image-gallery">
+      <div class="image-main"></div>
+      <div class="image-thumb"></div>
+      <div class="image-thumb"></div>
+    </div>
+
+    <div class="room-details-layout">
+      
+      <!-- Main Content -->
+      <main>
+        <div class="d-flex justify-content-between align-items-start mb-md">
+          <div>
+            <div class="d-flex align-items-center gap-sm mb-xs">
+              <h1>Deluxe Room</h1>
+              <span class="badge badge-success">Available</span>
+            </div>
+            <p class="text-muted font-size-lg">Room 305 • 3rd Floor</p>
+          </div>
+          <div class="d-flex align-items-center text-warning" style="font-size: 1.25rem;">
+            ★ 4.8 <span class="text-muted font-size-sm ml-sm">(124 reviews)</span>
+          </div>
+        </div>
+
+        <p class="mb-xl text-muted" style="font-size: 1.1rem; line-height: 1.8;">
+          Experience ultimate comfort in our Deluxe Room. Featuring modern decor, premium bedding, and a stunning city view. Perfect for couples or small families looking for a luxurious stay.
+        </p>
+
+        <h3 class="mb-md">Room Information</h3>
+        <div class="d-flex flex-wrap gap-lg mb-xl p-lg bg-background" style="border-radius: var(--radius-lg);">
+          <div class="info-item" style="min-width: 100px;">
+            <span class="info-label">Capacity</span>
+            <span class="info-value">3 Guests</span>
+          </div>
+          <div class="info-item" style="min-width: 100px;">
+            <span class="info-label">Bed Type</span>
+            <span class="info-value">1 King Bed</span>
+          </div>
+          <div class="info-item" style="min-width: 100px;">
+            <span class="info-label">Room Size</span>
+            <span class="info-value">450 sq ft</span>
+          </div>
+          <div class="info-item" style="min-width: 100px;">
+            <span class="info-label">View</span>
+            <span class="info-value">City Skyline</span>
+          </div>
+        </div>
+
+        <h3 class="mb-md">Amenities</h3>
+        <ul class="features-list">
+          <li>High-Speed Wi-Fi</li>
+          <li>Smart TV with Streaming</li>
+          <li>Rain Shower</li>
+          <li>Mini Bar</li>
+          <li>In-room Safe</li>
+          <li>Work Desk</li>
+          <li>Coffee Maker</li>
+          <li>24/7 Room Service</li>
+        </ul>
+
+        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: var(--space-xl) 0;">
+
+        <h3 class="mb-md">Room Rules</h3>
+        <ul style="list-style-type: disc; margin-left: var(--space-xl); color: var(--text-muted); line-height: 1.8;">
+          <li>Check-in: After 2:00 PM</li>
+          <li>Check-out: Before 11:00 AM</li>
+          <li>No smoking indoors</li>
+          <li>Pets are not allowed</li>
+          <li>Quiet hours: 10:00 PM to 7:00 AM</li>
+        </ul>
+
+      </main>
+
+      <!-- Booking Panel -->
+      <aside class="booking-panel">
+        <div class="card">
+          <div class="d-flex justify-content-between align-items-center mb-md">
+            <div>
+              <div class="d-flex align-items-center gap-sm">
+                <span class="room-price" style="font-size: 2rem;">₹ 4,850</span>
+                <span class="text-muted">/ night</span>
+              </div>
+              <div class="mt-xs">
+                <span class="badge badge-warning">High Demand</span>
+                <p class="text-muted" style="font-size: 0.75rem; margin-top: 2px;">Dynamic pricing applied</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="roomBookingForm">
+            <div class="form-group">
+              <label class="form-label">Check-in</label>
+              <div class="d-flex gap-sm">
+                <input type="date" class="form-control" style="flex: 2;">
+                <input type="time" class="form-control" value="14:00" style="flex: 1;">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Check-out</label>
+              <div class="d-flex gap-sm">
+                <input type="date" class="form-control" style="flex: 2;">
+                <input type="time" class="form-control" value="11:00" style="flex: 1;">
+              </div>
+              <!-- Validation Message Placeholder -->
+              <span class="error-message" style="display: none;">Check-out must be after check-in.</span>
+            </div>
+            
+            <div class="form-group mb-lg">
+              <label class="form-label">Guests</label>
+              <select class="form-control">
+                <option>1 Adult</option>
+                <option>2 Adults</option>
+                <option selected>2 Adults, 1 Child</option>
+              </select>
+            </div>
+
+            <!-- Price Summary -->
+            <div class="bg-background p-md mb-lg" style="border-radius: var(--radius-md);">
+              <div class="price-summary-row">
+                <span class="text-muted">₹ 4,850 × 2 nights</span>
+                <span>₹ 9,700</span>
+              </div>
+              <div class="price-summary-row">
+                <span class="text-muted">Dynamic Price Adj.</span>
+                <span class="text-warning">+ ₹ 1,700</span>
+              </div>
+              <div class="price-summary-row">
+                <span class="text-muted">Taxes & Fees (18%)</span>
+                <span>₹ 1,746</span>
+              </div>
+              <div class="price-summary-row price-summary-total">
+                <span>Total</span>
+                <span>₹ 11,446</span>
+              </div>
+            </div>
+
+            <a href="booking-confirmation.html" class="btn btn-primary btn-block" style="font-size: 1.1rem; padding: 12px;">Reserve Now</a>
+            <p class="text-center text-muted mt-sm font-size-sm">You won't be charged yet.</p>
+          </form>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
