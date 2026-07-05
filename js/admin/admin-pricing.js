@@ -50,7 +50,7 @@ function renderPricingRules() {
         </label>
       </td>
       <td data-label="Actions">
-        <button class="admin-btn admin-btn-outline" style="padding:4px 12px; font-size:0.75rem;" onclick="showToast('Pricing edit modal will be fully added soon.', 'info')">Edit Rule</button>
+        <!-- Edit modal removed to simplify UI -->
       </td>
     `;
     tbody.appendChild(tr);

@@ -55,7 +55,7 @@ function renderHousekeeping(rooms) {
       <td data-label="Actions">
         <div class="d-flex gap-sm">
           ${actionBtn}
-          <button class="admin-btn admin-btn-icon text-danger" title="Report Issue" onclick="showToast('Issue reporting modal will be added soon.', 'info')"><span class="material-symbols-outlined" style="font-size:18px;">report</span></button>
+
         </div>
       </td>
     `;

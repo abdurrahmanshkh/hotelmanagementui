@@ -137,14 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Dark mode toggle placeholder
-  const darkModeToggle = document.querySelector('.topbar-right .topbar-action:nth-child(2)');
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      showToast('Dark mode feature will be fully implemented later.', 'info');
-    });
-  }
+
 
   // Bind Logout
   const profileDropdown = document.querySelector('.admin-profile');

@@ -60,7 +60,6 @@ function renderGuests(guestsList) {
       <td data-label="Status"><span class="admin-badge ${statusBadge}">${g.currentStatus}</span></td>
       <td data-label="Actions">
         <div class="d-flex gap-sm">
-          <button class="admin-btn admin-btn-icon profile-btn" data-id="${g.id}" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
           <button class="admin-btn admin-btn-icon chat-btn" data-id="${g.id}" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
         </div>
       </td>
@@ -68,11 +67,7 @@ function renderGuests(guestsList) {
     tbody.appendChild(tr);
   });
 
-  document.querySelectorAll('.profile-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      showToast('Guest profile view will be added later.', 'info');
-    });
-  });
+
   
   document.querySelectorAll('.chat-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {

@@ -55,7 +55,7 @@ function renderPayments(payments) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td data-label="Payment ID"><strong>${pay.id}</strong></td>
-      <td data-label="Booking ID"><a href="#" onclick="showToast('Go to booking details', 'info'); return false;">${pay.bookingId}</a></td>
+      <td data-label="Booking ID">${pay.bookingId}</td>
       <td data-label="Guest Name">${guestName}</td>
       <td data-label="Amount">${formatAdminCurrency(pay.amount)}</td>
       <td data-label="Method">${pay.method}</td>
@@ -63,7 +63,6 @@ function renderPayments(payments) {
       <td data-label="Date">${formatAdminDate(pay.paidAt)}</td>
       <td data-label="Actions">
         <div class="d-flex gap-sm">
-          <button class="admin-btn admin-btn-icon" title="View Receipt" onclick="showToast('Receipt will be implemented later', 'info')"><span class="material-symbols-outlined" style="font-size:18px;">receipt_long</span></button>
           ${pay.status === 'Paid' ? `<button class="admin-btn admin-btn-icon text-danger" title="Mark Refund" onclick="markRefund('${pay.id}')"><span class="material-symbols-outlined" style="font-size:18px;">undo</span></button>` : ''}
         </div>
       </td>

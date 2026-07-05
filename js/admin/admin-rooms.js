@@ -120,12 +120,6 @@ function bindRoomEvents() {
     saveBtn.addEventListener('click', saveRoom);
   }
 
-  // Import/Export Placeholders
-  document.querySelectorAll('.page-header .admin-btn-outline').forEach(btn => {
-    btn.addEventListener('click', () => {
-      showToast('Action will be implemented later.', 'info');
-    });
-  });
 }
 
 function openRoomModal(id) {
