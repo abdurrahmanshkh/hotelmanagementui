@@ -12,17 +12,14 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container navbar justify-content-center">
-      <div class="brand-logo">
-        <span>Stay</span>Ease Pro
-      </div>
+      <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
     </div>
   </header>
 
   <div class="container" style="max-width: 1000px;">
-    
     <!-- Notice -->
     <div class="mt-lg p-md text-center" style="background-color: var(--warning-bg); border-radius: var(--radius-md); border-left: 4px solid var(--warning);">
-      <p style="font-weight: 600; color: var(--warning);">This is a simulated dummy payment page for project testing. No real payment will be processed.</p>
+      <p style="font-weight: 600; color: var(--warning);">This is a simulated dummy payment page. No real payment will be processed.</p>
     </div>
 
     <!-- Step Indicator -->
@@ -32,56 +29,76 @@
       <div class="step active">3. Payment</div>
     </div>
 
-    <div class="payment-layout">
-      
+    <div class="payment-layout" id="paymentForm">
       <!-- Payment Methods -->
       <main>
         <div class="card">
-          <div class="card-header border-0 pb-0">
-            <h3>Select Payment Method</h3>
-          </div>
-          
+          <div class="card-header border-0 pb-0"><h3>Select Payment Method</h3></div>
           <div class="p-lg pt-0">
-            
             <div class="payment-tabs mt-sm">
-              <div class="payment-tab active">Credit/Debit Card</div>
-              <div class="payment-tab">UPI</div>
-              <div class="payment-tab">Net Banking</div>
-              <div class="payment-tab">Wallet</div>
+              <div class="payment-tab active" data-pay-tab="card">Credit/Debit Card</div>
+              <div class="payment-tab" data-pay-tab="upi">UPI</div>
+              <div class="payment-tab" data-pay-tab="netbanking">Net Banking</div>
+              <div class="payment-tab" data-pay-tab="wallet">Wallet</div>
             </div>
 
             <!-- Card Form -->
-            <div class="payment-method-content active">
-              <form id="cardForm">
-                <div class="form-group">
-                  <label class="form-label">Cardholder Name</label>
-                  <input type="text" class="form-control" placeholder="Aarav Sharma" value="Aarav Sharma">
+            <div class="payment-method-content active" id="pay-card">
+              <div class="form-group">
+                <label class="form-label">Cardholder Name</label>
+                <input type="text" class="form-control" id="cardName" placeholder="Aarav Sharma" value="Aarav Sharma">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber" placeholder="XXXX XXXX XXXX XXXX" value="4111111111111111" maxlength="19">
+              </div>
+              <div class="d-flex gap-md">
+                <div class="form-group" style="flex: 1;">
+                  <label class="form-label">Expiry Date</label>
+                  <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" value="12/28">
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Card Number</label>
-                  <input type="text" class="form-control" placeholder="XXXX XXXX XXXX XXXX" value="4111 1111 1111 1111">
+                <div class="form-group" style="flex: 1;">
+                  <label class="form-label">CVV</label>
+                  <input type="password" class="form-control" id="cardCVV" placeholder="•••" value="123" maxlength="3">
                 </div>
-                <div class="d-flex gap-md">
-                  <div class="form-group" style="flex: 1;">
-                    <label class="form-label">Expiry Date</label>
-                    <input type="text" class="form-control" placeholder="MM/YY" value="12/28">
-                  </div>
-                  <div class="form-group" style="flex: 1;">
-                    <label class="form-label">CVV</label>
-                    <input type="password" class="form-control" placeholder="•••" value="123">
-                  </div>
-                </div>
-              </form>
+              </div>
             </div>
 
-            <!-- Other forms hidden conceptually -->
+            <!-- UPI Form -->
+            <div class="payment-method-content" id="pay-upi" style="display:none;">
+              <div class="form-group">
+                <label class="form-label">UPI ID</label>
+                <input type="text" class="form-control" id="upiId" placeholder="name@bank">
+              </div>
+            </div>
+
+            <!-- Net Banking -->
+            <div class="payment-method-content" id="pay-netbanking" style="display:none;">
+              <div class="form-group">
+                <label class="form-label">Select Bank</label>
+                <select class="form-control" id="bankSelect">
+                  <option value="">Select a bank</option>
+                  <option>SBI</option><option>HDFC</option><option>ICICI</option><option>Axis</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Wallet -->
+            <div class="payment-method-content" id="pay-wallet" style="display:none;">
+              <div class="form-group">
+                <label class="form-label">Select Wallet</label>
+                <select class="form-control" id="walletSelect">
+                  <option value="">Select a wallet</option>
+                  <option>Paytm</option><option>PhonePe</option><option>Amazon Pay</option>
+                </select>
+              </div>
+            </div>
 
             <div class="d-flex flex-column gap-sm mt-lg pt-lg border-top">
-              <button class="btn btn-primary btn-block" style="padding: 16px; font-size: 1.1rem;">Pay ₹ 11,446</button>
-              <button class="btn btn-ghost btn-block">Simulate Failed Payment</button>
+              <button class="btn btn-primary btn-block" style="padding: 16px; font-size: 1.1rem;" id="payNowBtn"><span id="payBtnText">Pay</span></button>
+              <button class="btn btn-ghost btn-block" id="payFailBtn">Simulate Failed Payment</button>
               <a href="booking-confirmation.html" class="text-center text-muted mt-sm font-size-sm">← Back to Booking</a>
             </div>
-
           </div>
         </div>
       </main>
@@ -90,54 +107,37 @@
       <aside>
         <div class="card bg-background">
           <h4 class="mb-md border-bottom pb-sm">Order Summary</h4>
-          <p class="font-weight-600 mb-xs">Deluxe Room</p>
-          <p class="text-muted font-size-sm mb-lg">2 Nights (Jul 05 - Jul 07)</p>
-          
+          <p class="font-weight-600 mb-xs" id="payRoomInfo">—</p>
+          <p class="text-muted font-size-sm mb-lg" id="payDates">—</p>
           <div class="price-summary-row">
             <span class="text-muted">Total Amount</span>
-            <span class="font-weight-600">₹ 11,446</span>
+            <span class="font-weight-600" id="payTotal">—</span>
           </div>
-          
           <div class="mt-xl text-center">
             <p class="font-size-sm text-muted">🔒 Secure Encrypted Payment</p>
           </div>
         </div>
       </aside>
-
     </div>
   </div>
 
-  <!-- Success Modal (Static preview for styling) -->
-  <!-- <div class="modal-overlay modal-open"> -->
-  <div class="modal-overlay">
-    <div class="modal text-center">
-      <div style="width: 80px; height: 80px; border-radius: 50%; background-color: var(--success-bg); color: var(--success); display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto var(--space-lg) auto;">
-        ✓
-      </div>
-      <h2 class="mb-sm text-success">Payment Successful!</h2>
-      <p class="text-muted mb-lg">Your booking is confirmed.</p>
-      
-      <div class="bg-background p-md text-left mb-xl" style="border-radius: var(--radius-md);">
-        <div class="d-flex justify-content-between mb-xs">
-          <span class="text-muted">Payment ID:</span>
-          <span class="font-weight-600">PAY-893021</span>
-        </div>
-        <div class="d-flex justify-content-between mb-xs">
-          <span class="text-muted">Amount Paid:</span>
-          <span class="font-weight-600">₹ 11,446</span>
-        </div>
-      </div>
-      
-      <p class="font-size-sm text-primary mb-xl p-sm" style="background-color: var(--primary-fixed); border-radius: var(--radius-sm);">
-        ℹ️ Your digital room passcode will activate automatically at your check-in time.
-      </p>
-
-      <div class="d-flex gap-md justify-content-center">
-        <a href="dashboard.html" class="btn btn-secondary">Go to Dashboard</a>
-        <a href="booking-details.html" class="btn btn-primary">View Booking</a>
-      </div>
-    </div>
+  <!-- Payment Result Modal -->
+  <div class="modal-overlay" id="paymentResultModal" style="opacity:0;pointer-events:none;">
+    <div class="modal text-center" id="paymentResultBody"></div>
   </div>
 
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/passcode.js"></script>
+  <script src="js/rooms.js"></script>
+  <script src="js/bookings.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

@@ -12,9 +12,7 @@
   <!-- Header / Navbar -->
   <header class="site-header">
     <div class="container navbar">
-      <div class="brand-logo">
-        <span>Stay</span>Ease Pro
-      </div>
+      <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="rooms.html">Rooms</a>
@@ -40,7 +38,6 @@
         </div>
       </div>
       <div class="hero-image">
-        <!-- Placeholder for hero image -->
         <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--primary); color: var(--secondary);">
           <h2>Luxury Hotel Visual</h2>
         </div>
@@ -53,15 +50,15 @@
     <form class="search-widget" id="bookingSearchWidget">
       <div class="form-group mb-sm">
         <label class="form-label">Check-in</label>
-        <input type="date" class="form-control" />
+        <input type="date" class="form-control" id="homeCheckIn" />
       </div>
       <div class="form-group mb-sm">
         <label class="form-label">Check-out</label>
-        <input type="date" class="form-control" />
+        <input type="date" class="form-control" id="homeCheckOut" />
       </div>
       <div class="form-group mb-sm">
         <label class="form-label">Guests</label>
-        <select class="form-control">
+        <select class="form-control" id="homeGuests">
           <option>1 Adult</option>
           <option>2 Adults</option>
           <option>2 Adults, 1 Child</option>
@@ -70,32 +67,33 @@
       </div>
       <div class="form-group mb-sm">
         <label class="form-label">Room Type</label>
-        <select class="form-control">
-          <option>Any Type</option>
+        <select class="form-control" id="homeRoomType">
+          <option value="">Any Type</option>
           <option>Standard</option>
           <option>Deluxe</option>
           <option>Suite</option>
+          <option>Family</option>
         </select>
       </div>
       <div class="form-group mb-sm">
-        <button type="button" class="btn btn-primary btn-block" style="height: 44px;">Search Rooms</button>
+        <button type="button" class="btn btn-primary btn-block" style="height: 44px;" onclick="window.location.href='rooms.html'">Search Rooms</button>
       </div>
     </form>
   </div>
 
   <!-- Quick Stats -->
   <section class="container">
-    <div class="stats-grid">
+    <div class="stats-grid" id="homeStats">
       <div class="stat-card card">
-        <h2>120+</h2>
+        <h2>10</h2>
         <p class="text-muted">Total Rooms</p>
       </div>
       <div class="stat-card card">
-        <h2>45</h2>
+        <h2>6</h2>
         <p class="text-muted">Available Rooms</p>
       </div>
       <div class="stat-card card">
-        <h2>4.9</h2>
+        <h2>4.5</h2>
         <p class="text-muted">Average Rating</p>
       </div>
       <div class="stat-card card">
@@ -105,97 +103,14 @@
     </div>
   </section>
 
-  <!-- Featured Rooms -->
+  <!-- Featured Rooms (Dynamic) -->
   <section class="container mb-3xl">
     <div class="d-flex justify-content-between align-items-center mb-xl">
       <h2>Featured Rooms</h2>
       <a href="rooms.html" class="btn btn-ghost">View All →</a>
     </div>
-    
-    <div class="room-grid">
-      <!-- Standard Room -->
-      <div class="card room-card p-0">
-        <div class="room-card-img">
-          <!-- Image Placeholder -->
-          <span class="badge badge-success room-card-badge">Available</span>
-        </div>
-        <div class="room-card-content">
-          <div class="d-flex justify-content-between align-items-center mb-sm">
-            <h3>Standard Room</h3>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">★</span> 4.7
-            </div>
-          </div>
-          <div class="room-amenities">
-            <span>👥 2 Guests</span>
-            <span>🛏️ Queen Bed</span>
-            <span>📶 Wi-Fi</span>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <div>
-              <span class="label-md text-muted">Starting from</span>
-              <div class="room-price">₹ 2,499<span class="room-price-strike">₹ 3,000</span></div>
-            </div>
-            <a href="room-details.html" class="btn btn-primary">View Details</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Deluxe Room -->
-      <div class="card room-card p-0">
-        <div class="room-card-img">
-          <!-- Image Placeholder -->
-          <span class="badge badge-success room-card-badge">Available</span>
-        </div>
-        <div class="room-card-content">
-          <div class="d-flex justify-content-between align-items-center mb-sm">
-            <h3>Deluxe Room</h3>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">★</span> 4.8
-            </div>
-          </div>
-          <div class="room-amenities">
-            <span>👥 3 Guests</span>
-            <span>🛏️ King Bed</span>
-            <span>📺 Smart TV</span>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <div>
-              <span class="label-md text-muted">Starting from</span>
-              <div class="room-price">₹ 4,299<span class="room-price-strike">₹ 5,500</span></div>
-            </div>
-            <a href="room-details.html" class="btn btn-primary">View Details</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Suite Room -->
-      <div class="card room-card p-0">
-        <div class="room-card-img">
-          <!-- Image Placeholder -->
-          <span class="badge badge-warning room-card-badge">High Demand</span>
-        </div>
-        <div class="room-card-content">
-          <div class="d-flex justify-content-between align-items-center mb-sm">
-            <h3>Luxury Suite</h3>
-            <div class="d-flex align-items-center">
-              <span class="text-warning">★</span> 5.0
-            </div>
-          </div>
-          <div class="room-amenities">
-            <span>👥 4 Guests</span>
-            <span>🛏️ 2 King Beds</span>
-            <span>🍳 Kitchenette</span>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mt-auto">
-            <div>
-              <span class="label-md text-muted">Starting from</span>
-              <div class="room-price">₹ 8,999</div>
-            </div>
-            <a href="room-details.html" class="btn btn-primary">View Details</a>
-          </div>
-        </div>
-      </div>
+    <div class="room-grid" id="featuredRoomGrid">
+      <!-- JS will render featured room cards here -->
     </div>
   </section>
 
@@ -230,24 +145,16 @@
       <h2 class="text-center mb-xl">How It Works</h2>
       <div class="d-flex justify-content-between flex-wrap gap-lg text-center">
         <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">1</h1>
-          <h4>Choose a Room</h4>
-          <p class="text-muted">Browse and select.</p>
+          <h1 class="text-light">1</h1><h4>Choose a Room</h4><p class="text-muted">Browse and select.</p>
         </div>
         <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">2</h1>
-          <h4>Pick Dates</h4>
-          <p class="text-muted">Check-in and check-out.</p>
+          <h1 class="text-light">2</h1><h4>Pick Dates</h4><p class="text-muted">Check-in and check-out.</p>
         </div>
         <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">3</h1>
-          <h4>Dummy Payment</h4>
-          <p class="text-muted">Complete the test flow.</p>
+          <h1 class="text-light">3</h1><h4>Dummy Payment</h4><p class="text-muted">Complete the test flow.</p>
         </div>
         <div style="flex: 1; min-width: 200px;">
-          <h1 class="text-light">4</h1>
-          <h4>Get Passcode</h4>
-          <p class="text-muted">Access your room securely.</p>
+          <h1 class="text-light">4</h1><h4>Get Passcode</h4><p class="text-muted">Access your room securely.</p>
         </div>
       </div>
     </div>
@@ -258,36 +165,20 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <div class="brand-logo mb-md" style="color: var(--surface);">
-            <span style="color: var(--secondary);">Stay</span>Ease Pro
-          </div>
+          <div class="brand-logo mb-md" style="color: var(--surface);"><span style="color: var(--secondary);">Stay</span>Ease Pro</div>
           <p class="text-light">The advanced digital hotel management system bringing seamless luxury and smart automation to every guest.</p>
         </div>
         <div class="footer-col">
           <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="rooms.html">Available Rooms</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Signup</a></li>
-          </ul>
+          <ul><li><a href="index.html">Home</a></li><li><a href="rooms.html">Available Rooms</a></li><li><a href="login.html">Login</a></li><li><a href="signup.html">Signup</a></li></ul>
         </div>
         <div class="footer-col">
           <h4>Guest Portal</h4>
-          <ul>
-            <li><a href="dashboard.html">My Dashboard</a></li>
-            <li><a href="my-bookings.html">My Bookings</a></li>
-            <li><a href="services.html">Service Requests</a></li>
-            <li><a href="chat.html">24/7 Chat</a></li>
-          </ul>
+          <ul><li><a href="dashboard.html">My Dashboard</a></li><li><a href="my-bookings.html">My Bookings</a></li><li><a href="services.html">Service Requests</a></li><li><a href="chat.html">24/7 Chat</a></li></ul>
         </div>
         <div class="footer-col">
           <h4>Contact Us</h4>
-          <ul>
-            <li><a href="#">support@stayeasepro.com</a></li>
-            <li><a href="#">+91 98765 43210</a></li>
-            <li><a href="#">123 Luxury Avenue, Cyber City</a></li>
-          </ul>
+          <ul><li><a href="#">support@stayeasepro.com</a></li><li><a href="#">+91 98765 43210</a></li><li><a href="#">123 Luxury Avenue, Cyber City</a></li></ul>
         </div>
       </div>
       <div class="footer-bottom">
@@ -296,5 +187,19 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/passcode.js"></script>
+  <script src="js/rooms.js"></script>
+  <script src="js/bookings.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

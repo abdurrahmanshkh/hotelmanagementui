@@ -9,12 +9,10 @@
 </head>
 <body>
 
-  <!-- Header / Navbar (Logged In) -->
+  <!-- Header -->
   <header class="site-header">
     <div class="container navbar">
-      <div class="brand-logo">
-        <span>Stay</span>Ease Pro
-      </div>
+      <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="rooms.html">Rooms</a>
@@ -22,24 +20,18 @@
         <a href="dashboard.html" class="active">Dashboard</a>
       </nav>
       <div class="nav-actions">
-        <div class="d-flex align-items-center gap-sm">
-          <div style="width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary-light); color: var(--surface); display: flex; align-items: center; justify-content: center; font-weight: bold;">
-            A
-          </div>
-          <span class="text-muted" style="font-weight: 500;">Aarav S.</span>
-        </div>
         <button class="hamburger">☰</button>
       </div>
     </div>
   </header>
 
-  <div class="container">
+  <div class="container" id="dashboardContent">
     <div class="dashboard-layout">
-      
-      <!-- Welcome Section -->
+
+      <!-- Welcome -->
       <div class="d-flex justify-content-between align-items-center flex-wrap gap-md mt-lg">
         <div>
-          <h2 class="mb-xs">Welcome back, Aarav!</h2>
+          <h2 class="mb-xs" id="dashWelcome">Welcome back!</h2>
           <p class="text-muted">Manage your bookings, access digital keys, and request services.</p>
         </div>
         <div class="d-flex gap-sm">
@@ -49,57 +41,40 @@
 
       <!-- Main Dashboard Grid -->
       <div class="dashboard-grid mt-md">
-        
-        <!-- Current Booking Summary (Active State) -->
-        <div class="card" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-lg);">
+
+        <!-- Active Booking (shown if exists) -->
+        <div class="card" id="dashActiveBooking" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg);">
           <div>
             <div class="d-flex justify-content-between align-items-center mb-md">
               <h3 class="d-flex align-items-center gap-sm">Current Stay <span class="badge badge-success">Checked In</span></h3>
-              <span class="text-muted text-sm">BK-2026-1042</span>
+              <span class="text-muted text-sm" id="dashBookingId">—</span>
             </div>
-            
             <div class="d-flex align-items-center gap-lg mb-md">
-              <div style="width: 100px; height: 100px; border-radius: var(--radius-md); background-color: var(--border-color); overflow: hidden;">
-                <!-- Room Image Placeholder -->
-              </div>
+              <div style="width: 100px; height: 100px; border-radius: var(--radius-md); background-color: var(--border-color);"></div>
               <div>
-                <h4>Deluxe Room - 305</h4>
-                <p class="text-muted">3rd Floor</p>
-                <div class="mt-sm">
-                  <span class="badge badge-primary">Paid: ₹ 4,850</span>
-                </div>
+                <h4 id="dashRoomInfo">—</h4>
+                <div class="mt-sm"><span class="badge badge-primary" id="dashPayAmt">—</span></div>
               </div>
             </div>
-            
             <div class="d-flex justify-content-between mb-lg" style="border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: var(--space-sm) 0;">
-              <div class="info-item">
-                <span class="info-label">Check-in</span>
-                <span class="info-value">Jul 05, 2:00 PM</span>
-              </div>
-              <div class="info-item" style="text-align: right;">
-                <span class="info-label">Check-out</span>
-                <span class="info-value">Jul 08, 11:00 AM</span>
-              </div>
+              <div class="info-item"><span class="info-label">Check-in</span><span class="info-value" id="dashCheckIn">—</span></div>
+              <div class="info-item" style="text-align: right;"><span class="info-label">Check-out</span><span class="info-value" id="dashCheckOut">—</span></div>
             </div>
-            
-            <a href="booking-details.html" class="btn btn-secondary w-100">View Booking Details</a>
+            <a href="my-bookings.html" class="btn btn-secondary w-100">View Booking Details</a>
           </div>
-          
-          <!-- Digital Passcode Quick View -->
+          <!-- Passcode Quick View -->
           <div class="d-flex flex-column justify-content-center align-items-center" style="background-color: var(--background); border-radius: var(--radius-md); padding: var(--space-lg);">
             <h4 class="mb-sm">Digital Room Passcode</h4>
             <p class="text-muted text-center mb-md" style="font-size: 0.875rem;">Your room is accessible using this unique code.</p>
             <div class="passcode-card p-0 passcode-active" style="width: 100%;">
-              <div class="passcode-display w-100" style="margin: 0;">482913</div>
-              <div class="mt-sm">
-                <span class="badge badge-success">Active</span>
-              </div>
+              <div class="passcode-display w-100" id="dashPasscode" style="margin: 0;">—</div>
+              <div class="mt-sm"><span class="badge badge-success" id="dashPasscodeStatus">—</span></div>
             </div>
           </div>
         </div>
-        
-        <!-- Empty State Example (Hidden normally, but included for completeness) -->
-        <div class="card empty-state" style="display: none; grid-column: 1 / -1;">
+
+        <!-- Empty State (shown if no active booking) -->
+        <div class="card empty-state" id="dashEmptyState" style="display: none; grid-column: 1 / -1;">
           <div class="empty-state-icon">🏨</div>
           <h3>No Active Bookings</h3>
           <p class="text-muted mt-sm mb-lg">You don't have any upcoming or active stays right now.</p>
@@ -108,14 +83,11 @@
 
         <!-- Quick Actions -->
         <div class="card">
-          <div class="card-header">
-            <h4>Quick Actions</h4>
-          </div>
+          <div class="card-header"><h4>Quick Actions</h4></div>
           <div class="d-flex flex-column gap-sm">
             <a href="services.html" class="btn btn-ghost w-100" style="justify-content: flex-start;">🛎️ Request Room Service</a>
             <a href="chat.html" class="btn btn-ghost w-100" style="justify-content: flex-start;">💬 Chat with Front Desk</a>
-            <a href="#" class="btn btn-ghost w-100" style="justify-content: flex-start;">🧾 View Invoice</a>
-            <a href="#" class="btn btn-ghost w-100" style="justify-content: flex-start;">⭐ Give Feedback</a>
+            <a href="my-bookings.html" class="btn btn-ghost w-100" style="justify-content: flex-start;">🧾 View My Bookings</a>
           </div>
         </div>
 
@@ -125,27 +97,16 @@
             <h4>Upcoming Stays</h4>
             <a href="my-bookings.html" class="text-primary font-size-sm font-weight-600">View All</a>
           </div>
-          <div class="d-flex justify-content-between align-items-center mb-sm">
-            <div>
-              <p class="font-weight-600">Executive Suite</p>
-              <p class="text-muted text-sm">Oct 12 - Oct 15, 2026</p>
-            </div>
-            <span class="badge badge-warning">Pending Payment</span>
-          </div>
-          <div class="mt-md" style="border-top: 1px solid var(--border-color); padding-top: var(--space-sm);">
-            <a href="payment.html" class="text-primary" style="font-weight: 500; font-size: 0.875rem;">Complete Payment →</a>
-          </div>
+          <div id="dashUpcoming"><p class="text-muted" style="font-size:0.85rem;">Loading...</p></div>
         </div>
 
-        <!-- Support Card -->
-        <div class="card" style="background-color: var(--primary); color: var(--surface);">
-          <div class="card-header" style="border-color: rgba(255,255,255,0.1);">
-            <h4 style="color: var(--surface);">Need Assistance?</h4>
+        <!-- Notifications -->
+        <div class="card">
+          <div class="card-header">
+            <h4>Recent Notifications</h4>
+            <button class="text-primary font-size-sm font-weight-600 border-0 bg-transparent" style="cursor:pointer;" onclick="markAllRead(); renderNotificationList('dashNotifications');">Mark All Read</button>
           </div>
-          <p style="opacity: 0.8; margin-bottom: var(--space-md);">Our staff is available 24/7 to help you with anything you need.</p>
-          <div class="d-flex gap-sm">
-            <a href="chat.html" class="btn btn-accent w-100">Open Chat</a>
-          </div>
+          <div id="dashNotifications" style="max-height:300px;overflow-y:auto;"><p class="text-muted" style="font-size:0.85rem;">Loading...</p></div>
         </div>
 
       </div>
@@ -154,12 +115,21 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
-      </div>
-    </div>
+    <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>
 
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/passcode.js"></script>
+  <script src="js/rooms.js"></script>
+  <script src="js/bookings.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

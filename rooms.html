@@ -12,9 +12,7 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container navbar">
-      <div class="brand-logo">
-        <span>Stay</span>Ease Pro
-      </div>
+      <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
         <a href="rooms.html" class="active">Rooms</a>
@@ -22,192 +20,85 @@
       </nav>
       <div class="nav-actions">
         <a href="login.html" class="btn btn-ghost">Login</a>
+        <button class="hamburger">☰</button>
       </div>
     </div>
   </header>
 
   <div class="container">
-    
-    <div class="d-flex justify-content-between align-items-center mt-xl mb-md">
+    <div class="d-flex justify-content-between align-items-center mt-xl mb-md flex-wrap gap-md">
       <div>
         <h2>Available Rooms</h2>
-        <p class="text-muted">Showing 15 available rooms for your dates.</p>
+        <p class="text-muted">Browse and filter rooms to find your perfect stay.</p>
       </div>
       <div class="d-flex gap-sm align-items-center">
         <label class="text-muted font-weight-500">Sort by:</label>
-        <select class="form-control" style="width: auto;">
-          <option>Recommended</option>
-          <option>Price: Low to High</option>
-          <option>Price: High to Low</option>
-          <option>Highest Rated</option>
+        <select class="form-control" id="roomSort" style="width: auto;">
+          <option value="recommended">Recommended</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
         </select>
       </div>
     </div>
 
     <div class="rooms-layout">
-      
+
       <!-- Filter Sidebar -->
       <aside class="filter-sidebar">
         <div class="card p-md">
           <div class="d-flex justify-content-between align-items-center mb-md border-bottom pb-sm">
             <h4>Filters</h4>
-            <button class="text-primary font-size-sm font-weight-600 border-0 bg-transparent" style="cursor:pointer;">Reset</button>
+            <button class="text-primary font-size-sm font-weight-600 border-0 bg-transparent" style="cursor:pointer;" id="resetFilters">Reset</button>
           </div>
-          
           <div class="filter-section">
             <h5 class="mb-sm">Room Type</h5>
-            <div class="checkbox-group"><input type="checkbox" id="t1" checked><label for="t1">Standard</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="t2" checked><label for="t2">Deluxe</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="t3"><label for="t3">Suite</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="t4"><label for="t4">Family</label></div>
+            <div class="checkbox-group"><input type="checkbox" id="t1" data-filter-type="Standard"><label for="t1">Standard</label></div>
+            <div class="checkbox-group"><input type="checkbox" id="t2" data-filter-type="Deluxe"><label for="t2">Deluxe</label></div>
+            <div class="checkbox-group"><input type="checkbox" id="t3" data-filter-type="Suite"><label for="t3">Suite</label></div>
+            <div class="checkbox-group"><input type="checkbox" id="t4" data-filter-type="Family"><label for="t4">Family</label></div>
           </div>
-          
           <div class="filter-section">
-            <h5 class="mb-sm">Price Range (₹)</h5>
-            <input type="range" class="w-100 mb-sm" min="1000" max="15000" value="8000">
+            <h5 class="mb-sm">Max Price (₹)</h5>
+            <input type="range" class="w-100 mb-sm" id="priceRange" min="1000" max="10000" value="10000" oninput="document.getElementById('priceVal').textContent='₹'+this.value">
             <div class="d-flex justify-content-between text-muted font-size-sm">
-              <span>₹1,000</span>
-              <span>₹8,000+</span>
+              <span>₹1,000</span><span id="priceVal">₹10,000</span>
             </div>
           </div>
-          
           <div class="filter-section">
-            <h5 class="mb-sm">Capacity</h5>
-            <div class="checkbox-group"><input type="checkbox" id="c1"><label for="c1">1-2 Guests</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="c2" checked><label for="c2">3-4 Guests</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="c3"><label for="c3">5+ Guests</label></div>
+            <h5 class="mb-sm">Search</h5>
+            <input type="text" class="form-control" id="roomSearch" placeholder="Search by room # or type…">
           </div>
-
-          <div class="filter-section border-0">
-            <h5 class="mb-sm">Amenities</h5>
-            <div class="checkbox-group"><input type="checkbox" id="a1" checked><label for="a1">Wi-Fi</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="a2"><label for="a2">Bathtub</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="a3"><label for="a3">City View</label></div>
-            <div class="checkbox-group"><input type="checkbox" id="a4"><label for="a4">Mini Bar</label></div>
-          </div>
-          
-          <button class="btn btn-primary btn-block mt-sm">Apply Filters</button>
+          <button class="btn btn-primary btn-block mt-sm" id="applyFilters">Apply Filters</button>
         </div>
       </aside>
 
       <!-- Room Grid -->
       <main>
-        <!-- Active Filter Chips -->
-        <div class="d-flex gap-sm mb-lg flex-wrap">
-          <span class="badge badge-primary d-flex align-items-center gap-xs">Standard <span style="cursor:pointer">×</span></span>
-          <span class="badge badge-primary d-flex align-items-center gap-xs">Deluxe <span style="cursor:pointer">×</span></span>
-          <span class="badge badge-primary d-flex align-items-center gap-xs">3-4 Guests <span style="cursor:pointer">×</span></span>
+        <div id="roomGrid" class="room-grid">
+          <!-- JS renders room cards here -->
         </div>
-
-        <div class="room-grid">
-          
-          <!-- Room Card 1 -->
-          <div class="card room-card p-0">
-            <div class="room-card-img">
-              <span class="badge badge-success room-card-badge">Available</span>
-            </div>
-            <div class="room-card-content">
-              <div class="d-flex justify-content-between align-items-start mb-sm">
-                <div>
-                  <h3 class="mb-xs">Deluxe Room <span class="text-muted font-size-sm font-weight-500 ml-sm">#305</span></h3>
-                  <p class="text-muted font-size-sm">3rd Floor</p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <span class="text-warning">★</span> 4.8
-                </div>
-              </div>
-              
-              <div class="room-amenities">
-                <span>👥 3 Guests</span>
-                <span>🛏️ King Bed</span>
-                <span>📶 Wi-Fi</span>
-                <span>🚿 Rain Shower</span>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center mt-auto">
-                <div>
-                  <div class="d-flex align-items-center gap-sm">
-                    <span class="label-md text-muted">Price/Night</span>
-                    <span class="badge badge-warning" style="font-size: 0.6rem; padding: 2px 6px;">High Demand</span>
-                  </div>
-                  <div class="room-price">₹ 4,850<span class="room-price-strike">₹ 4,000</span></div>
-                  <p class="text-muted" style="font-size: 0.7rem;">+ Dynamic Pricing applied</p>
-                </div>
-                <div class="d-flex flex-column gap-sm">
-                  <a href="room-details.html" class="btn btn-primary" style="padding: 8px 16px;">Book</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Room Card 2 -->
-          <div class="card room-card p-0">
-            <div class="room-card-img">
-              <span class="badge badge-success room-card-badge">Available</span>
-            </div>
-            <div class="room-card-content">
-              <div class="d-flex justify-content-between align-items-start mb-sm">
-                <div>
-                  <h3 class="mb-xs">Standard Room <span class="text-muted font-size-sm font-weight-500 ml-sm">#210</span></h3>
-                  <p class="text-muted font-size-sm">2nd Floor</p>
-                </div>
-                <div class="d-flex align-items-center">
-                  <span class="text-warning">★</span> 4.5
-                </div>
-              </div>
-              
-              <div class="room-amenities">
-                <span>👥 2 Guests</span>
-                <span>🛏️ Queen Bed</span>
-                <span>📶 Wi-Fi</span>
-              </div>
-              
-              <div class="d-flex justify-content-between align-items-center mt-auto">
-                <div>
-                  <span class="label-md text-muted">Price/Night</span>
-                  <div class="room-price">₹ 2,499</div>
-                </div>
-                <div class="d-flex flex-column gap-sm">
-                  <a href="room-details.html" class="btn btn-primary" style="padding: 8px 16px;">Book</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Room Card 3 - Loading Skeleton Placeholder -->
-          <div class="card room-card p-0 border-0" style="box-shadow: none; background: transparent;">
-            <div class="room-card-img loading-skeleton mb-md" style="border-radius: var(--radius-lg);"></div>
-            <div class="loading-skeleton mb-sm" style="height: 24px; width: 60%; border-radius: 4px;"></div>
-            <div class="loading-skeleton mb-md" style="height: 16px; width: 40%; border-radius: 4px;"></div>
-            <div class="loading-skeleton mb-xl" style="height: 16px; width: 80%; border-radius: 4px;"></div>
-            <div class="d-flex justify-content-between mt-auto">
-              <div class="loading-skeleton" style="height: 32px; width: 40%; border-radius: 4px;"></div>
-              <div class="loading-skeleton" style="height: 32px; width: 30%; border-radius: var(--radius-lg);"></div>
-            </div>
-          </div>
-
-        </div>
-        
-        <!-- Empty State Example (Hidden normally) -->
-        <div class="card empty-state mt-lg" style="display: none;">
-          <div class="empty-state-icon">🔍</div>
-          <h3>No Rooms Found</h3>
-          <p class="text-muted mt-sm mb-lg">We couldn't find any rooms matching your current filters.</p>
-          <button class="btn btn-secondary">Clear Filters</button>
-        </div>
-
       </main>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
-      </div>
-    </div>
+    <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
   </footer>
 
+  <script src="js/data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/passcode.js"></script>
+  <script src="js/rooms.js"></script>
+  <script src="js/bookings.js"></script>
+  <script src="js/payment.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
