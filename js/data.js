@@ -27,6 +27,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "TV", "Telephone"],
       status: "Available", cleaningStatus: "Clean", rating: 4.3,
       description: "A comfortable standard room with all essential amenities for a pleasant stay.",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -36,6 +37,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "TV"],
       status: "Available", cleaningStatus: "Clean", rating: 4.1,
       description: "Bright twin-bed standard room ideal for friends or colleagues travelling together.",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -45,6 +47,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Mini Bar", "Rain Shower"],
       status: "Available", cleaningStatus: "Clean", rating: 4.6,
       description: "Spacious deluxe room with a king bed, city view, and premium in-room amenities.",
+      image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -54,6 +57,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Bathtub", "Work Desk"],
       status: "Available", cleaningStatus: "Clean", rating: 4.7,
       description: "Our popular deluxe room featuring a relaxing bathtub and a dedicated work desk.",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -63,6 +67,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Rain Shower", "Coffee Maker", "In-room Safe"],
       status: "Occupied", cleaningStatus: "Clean", rating: 4.8,
       description: "Premium corner deluxe room with panoramic windows and top-tier furnishings.",
+      image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -72,6 +77,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Living Area", "Kitchenette", "Bathtub", "City View"],
       status: "Available", cleaningStatus: "Clean", rating: 4.9,
       description: "Luxury suite with a separate living area, kitchenette, and breathtaking city view.",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -81,6 +87,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Living Area", "Jacuzzi", "Mini Bar"],
       status: "Maintenance", cleaningStatus: "Pending", rating: 5.0,
       description: "Our finest suite with a private jacuzzi and world-class finishes throughout.",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -90,6 +97,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Kids Area", "Extra Towels", "Refrigerator"],
       status: "Available", cleaningStatus: "Clean", rating: 4.5,
       description: "Spacious family room with a dedicated kids area and extra sleeping arrangements.",
+      image: "https://images.unsplash.com/photo-1629632072367-48b5b8e22ca2?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -99,6 +107,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Kids Area", "Kitchenette", "Balcony"],
       status: "Available", cleaningStatus: "Clean", rating: 4.4,
       description: "Our largest family room with a private balcony and full kitchenette for extended stays.",
+      image: "https://images.unsplash.com/photo-1629632072367-48b5b8e22ca2?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -108,6 +117,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "TV", "Work Desk"],
       status: "Under Cleaning", cleaningStatus: "Pending", rating: 4.2,
       description: "A cozy standard room with a work desk, perfect for business travellers.",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     }
   ],

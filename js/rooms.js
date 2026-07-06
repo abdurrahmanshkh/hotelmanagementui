@@ -144,10 +144,13 @@ function renderRooms() {
     else if (r.type === 'Suite') imgUrl = 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop';
     else if (r.type === 'Penthouse') imgUrl = 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=800&auto=format&fit=crop';
 
+    // Use room image if available, otherwise use type-based image
+    const displayImg = r.image || imgUrl;
+
     return `
       <div class="card room-card p-0 card-hover" data-room-id="${r.id}">
         <div class="room-card-img-wrapper">
-          <img src="${imgUrl}" alt="${r.type}" class="room-card-img">
+          <img src="${displayImg}" alt="${r.type}" class="room-card-img" onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop'">
           ${statusBadge}
         </div>
         <div class="room-card-body">
@@ -331,22 +334,41 @@ function initHomeFeaturedRooms() {
   if (!grid) return;
   recalculateDynamicPricing();
   const rooms = getData('stayEasePro_rooms', []).filter(r => r.status === 'Available').slice(0, 3);
-  grid.innerHTML = rooms.map(r => `
+  
+  grid.innerHTML = rooms.map(r => {
+    // Map room types to images
+    let imgUrl = r.image || 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop';
+    if (r.type === 'Deluxe') imgUrl = r.image || 'https://images.unsplash.com/photo-1582719478250-c89404bb8a0e?q=80&w=800&auto=format&fit=crop';
+    else if (r.type === 'Suite') imgUrl = r.image || 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop';
+    else if (r.type === 'Family') imgUrl = r.image || 'https://images.unsplash.com/photo-1629632072367-48b5b8e22ca2?w=500&h=400&fit=crop';
+    
+    return `
     <div class="card room-card p-0">
-      <div class="room-card-img"><span class="badge badge-success room-card-badge">Available</span></div>
-      <div class="room-card-content">
+      <div class="room-card-img-wrapper" style="height: 200px; overflow: hidden;">
+        <img src="${imgUrl}" alt="${r.type}" class="room-card-img" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop'">
+        <span class="badge badge-success room-card-badge">Available</span>
+      </div>
+      <div class="room-card-body">
         <div class="d-flex justify-content-between align-items-center mb-sm">
-          <h3>${r.type}</h3>
-          <div class="d-flex align-items-center"><span style="color:var(--secondary)">★</span> ${r.rating}</div>
+          <h3 class="mb-0">${r.type}</h3>
+          <div class="d-flex align-items-center gap-xs" style="color: var(--secondary);">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span> ${r.rating}
+          </div>
         </div>
-        <div class="room-amenities"><span>👥 ${r.capacity} Guests</span><span>🛏️ ${r.bedType}</span></div>
-        <div class="d-flex justify-content-between align-items-center mt-auto">
+        <p class="text-muted font-size-sm mb-md">${r.description}</p>
+        <div class="room-features mb-md">
+          <span><span class="material-symbols-outlined">group</span> ${r.capacity} Guests</span>
+          <span><span class="material-symbols-outlined">bed</span> ${r.bedType}</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-auto pt-md border-top">
           <div>
-            <span class="label-md text-muted">Starting from</span>
-            <div class="room-price">${formatCurrency(r.dynamicPrice)}${r.dynamicPrice !== r.basePrice ? `<span class="room-price-strike">${formatCurrency(r.basePrice)}</span>` : ''}</div>
+            <p class="text-muted font-size-sm mb-xs">Starting from</p>
+            <div class="price-amount">${formatCurrency(r.dynamicPrice)}</div>
+            ${r.dynamicPrice !== r.basePrice ? `<span class="text-muted" style="text-decoration:line-through; font-size:0.85rem;">${formatCurrency(r.basePrice)}</span>` : ''}
           </div>
           <a href="room-details.html?id=${r.id}" class="btn btn-primary">View Details</a>
         </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
