@@ -78,35 +78,37 @@
 
       <!-- Booking Widget -->
       <aside>
-        <div class="card booking-widget p-xl">
-          <div class="d-flex justify-content-between align-items-center mb-md flex-wrap gap-sm">
-            <div>
-              <span class="price-amount" id="rdPrice" style="font-size: 2rem;">$0</span>
-              <span class="text-muted font-size-sm">/ night</span>
+        <div class="card booking-widget p-xl" style="position: sticky; top: 100px; box-shadow: var(--shadow-hover);">
+          <div class="mb-lg">
+            <div class="d-flex justify-content-between align-items-baseline gap-sm mb-sm">
+              <div>
+                <span class="price-amount" id="rdPrice" style="font-size: 2.5rem;">$0</span>
+                <span class="text-muted font-size-sm d-block">per night</span>
+              </div>
+              <span id="rdDemand" class="badge badge-primary">Normal</span>
             </div>
-            <span id="rdDemand" class="badge">Normal</span>
+            <p class="text-error font-size-sm mb-0" id="rdDemandReason"></p>
           </div>
-          <p class="text-error font-size-sm mb-lg" id="rdDemandReason"></p>
 
           <div class="form-group">
-            <label class="form-label d-flex align-items-center gap-xs"><span class="material-symbols-outlined">calendar_today</span> Check-in</label>
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;"><span class="material-symbols-outlined" style="font-size: 1.2rem;">calendar_today</span> Check-in</label>
             <input type="date" class="form-control" id="rdCheckIn">
           </div>
           <div class="form-group mb-lg">
-            <label class="form-label d-flex align-items-center gap-xs"><span class="material-symbols-outlined">calendar_today</span> Check-out</label>
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;"><span class="material-symbols-outlined" style="font-size: 1.2rem;">calendar_today</span> Check-out</label>
             <input type="date" class="form-control" id="rdCheckOut">
           </div>
 
-          <div class="bg-background p-md mb-lg" style="border-radius: var(--radius-md);">
-            <div class="d-flex justify-content-between mb-sm"><span class="text-muted font-size-sm">Total Nights</span><span class="font-weight-600" id="rdNights">0</span></div>
-            <div class="d-flex justify-content-between mb-sm"><span class="text-muted font-size-sm">Room Total</span><span class="font-weight-600" id="rdRoomTotal">$0</span></div>
-            <div class="d-flex justify-content-between pt-sm border-top mt-sm">
-              <span class="font-weight-600">Total Payable</span>
-              <span class="font-weight-600 text-primary" id="rdGrandTotal">$0</span>
+          <div class="bg-background p-lg mb-lg" style="border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <div class="d-flex justify-content-between mb-sm"><span class="text-muted font-size-sm">Nights</span><span class="font-weight-600" id="rdNights">0</span></div>
+            <div class="d-flex justify-content-between mb-lg"><span class="text-muted font-size-sm">Room Total</span><span class="font-weight-600" id="rdRoomTotal">$0</span></div>
+            <div class="d-flex justify-content-between pt-lg border-top" style="border-color: var(--border-color);">
+              <span class="font-weight-600 font-size-sm text-uppercase">Total Payable</span>
+              <span class="price-amount" id="rdGrandTotal">$0</span>
             </div>
           </div>
 
-          <button class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1.1rem;" id="rdBookBtn">Proceed to Booking</button>
+          <button class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px;" id="rdBookBtn">Proceed to Booking</button>
         </div>
       </aside>
     </div>

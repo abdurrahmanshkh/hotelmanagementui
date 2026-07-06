@@ -27,7 +27,7 @@
     </div>
 
     <div class="card mt-xl">
-      <h2 class="mb-lg border-bottom pb-md">Confirm Your Stay</h2>
+      <h2 class="mb-lg border-bottom pb-md" style="font-size: 1.75rem;">Review & Confirm Your Booking</h2>
       
       <div class="d-flex justify-content-between align-items-start mb-xl flex-wrap gap-md">
         <div>
@@ -69,14 +69,14 @@
         <textarea class="form-control" id="cfSpecialRequest" placeholder="Any specific needs or preferences? (e.g. early check-in)"></textarea>
       </div>
 
-      <h4 class="mb-sm border-bottom pb-sm">Price Summary</h4>
-      <div class="p-md mb-lg">
-        <div class="d-flex justify-content-between mb-sm"><span class="text-muted">Room Charges</span><span id="cfRoomAmt">—</span></div>
-        <div class="d-flex justify-content-between mb-sm"><span class="text-muted">Taxes (12%)</span><span id="cfTaxes">—</span></div>
-        <div class="d-flex justify-content-between mb-sm"><span class="text-muted">Service Fee (5%)</span><span id="cfFee">—</span></div>
-        <div class="d-flex justify-content-between mt-md pt-md border-top">
-          <span class="font-weight-600 font-size-lg">Total Payable</span>
-          <span class="font-weight-600 text-primary" style="font-size: 1.5rem;" id="cfTotal">—</span>
+      <h4 class="mb-md border-bottom pb-md" style="font-size: 1.1rem;">Price Breakdown</h4>
+      <div class="p-lg mb-lg bg-background" style="border-radius: var(--radius-md);">
+        <div class="d-flex justify-content-between mb-md"><span class="text-muted">Room Charges</span><span class="font-weight-600" id="cfRoomAmt">—</span></div>
+        <div class="d-flex justify-content-between mb-md"><span class="text-muted">Taxes (12%)</span><span class="font-weight-600" id="cfTaxes">—</span></div>
+        <div class="d-flex justify-content-between mb-lg"><span class="text-muted">Service Fee (5%)</span><span class="font-weight-600" id="cfFee">—</span></div>
+        <div class="d-flex justify-content-between pt-lg border-top" style="border-color: var(--border-color);">
+          <span class="font-weight-600 font-size-lg text-uppercase">Total Payable</span>
+          <span class="price-amount" id="cfTotal">—</span>
         </div>
       </div>
 
@@ -85,9 +85,9 @@
         <label for="cfPolicy" class="font-size-sm text-muted mb-0">I agree to the <span class="text-primary font-weight-600">Hotel Policies</span> and <span class="text-primary font-weight-600">Cancellation Rules</span>.</label>
       </div>
 
-      <div class="d-flex gap-md justify-content-end">
-        <button class="btn btn-ghost" id="cfCancelBtn" style="color:var(--error);">Cancel Booking</button>
-        <button class="btn btn-primary" id="cfProceedBtn" style="padding: 1rem 2rem;">Proceed to Payment <span class="material-symbols-outlined">arrow_forward</span></button>
+      <div class="d-flex gap-md justify-content-end flex-wrap">
+        <button class="btn btn-ghost" id="cfCancelBtn">Cancel Booking</button>
+        <button class="btn btn-primary" id="cfProceedBtn" style="padding: 1rem 2.5rem; font-weight: 600;">Proceed to Payment <span class="material-symbols-outlined">arrow_forward</span></button>
       </div>
     </div>
   </div>

@@ -31,25 +31,33 @@
     <!-- Form Side -->
     <div class="split-content">
       <div class="auth-form-container">
-        <h2 class="mb-sm text-center">Sign In</h2>
-        <p class="text-muted text-center mb-xl">Use <code style="color:var(--primary); font-size:0.85rem; padding:2px 4px; background:var(--primary-light); border-radius:4px;">guest@example.com</code> / <code>Guest@123</code></p>
+        <div style="margin-bottom: var(--space-xl);">
+          <h2 class="mb-sm text-center">Welcome Back</h2>
+          <p class="text-muted text-center" style="font-size: 0.95rem;">Access your bookings and exclusive benefits</p>
+        </div>
+        
+        <div style="background: var(--primary-light); padding: var(--space-md); border-radius: var(--radius-md); margin-bottom: var(--space-xl); text-align: center;">
+          <p class="text-muted font-size-sm mb-xs">Demo Credentials</p>
+          <p style="font-family: monospace; color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">guest@example.com</p>
+          <p style="font-family: monospace; color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0;">Guest@123</p>
+        </div>
         
         <form id="loginForm">
           <div class="form-group">
-            <label class="form-label" for="loginEmail">Email Address</label>
+            <label class="form-label" for="loginEmail" style="font-weight: 600;">Email Address</label>
             <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" required>
             <small class="text-error" id="loginEmailErr" style="display:none;"></small>
           </div>
           <div class="form-group mb-xl">
-            <label class="form-label" for="loginPass">Password</label>
+            <label class="form-label" for="loginPass" style="font-weight: 600;">Password</label>
             <input type="password" id="loginPass" class="form-control" placeholder="••••••••" required>
             <small class="text-error" id="loginPassErr" style="display:none;"></small>
           </div>
           
-          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block" style="padding: 1rem; font-weight: 600;">Sign In</button>
           
           <div class="text-center mt-lg">
-            <p class="text-muted font-size-sm">Don't have an account? <a href="signup.html" class="font-weight-600">Sign Up</a></p>
+            <p class="text-muted font-size-sm">New here? <a href="signup.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">Create an account</a></p>
           </div>
         </form>
       </div>

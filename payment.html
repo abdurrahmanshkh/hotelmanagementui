@@ -33,7 +33,7 @@
       <!-- Payment Methods -->
       <main>
         <div class="card">
-          <h3 class="mb-lg border-bottom pb-sm d-flex align-items-center gap-sm"><span class="material-symbols-outlined">payments</span> Select Payment Method</h3>
+          <h3 class="mb-lg border-bottom pb-md d-flex align-items-center gap-sm" style="font-size: 1.3rem;"><span class="material-symbols-outlined">credit_card</span> Secure Payment</h3>
           
           <div class="tabs mb-lg">
             <div class="tab active" data-pay-tab="card">Credit/Debit Card</div>
@@ -107,17 +107,17 @@
 
       <!-- Order Summary -->
       <aside>
-        <div class="card bg-background" style="position: sticky; top: var(--space-xl);">
-          <h4 class="mb-md border-bottom pb-sm">Order Summary</h4>
+        <div class="card bg-background" style="position: sticky; top: 100px; border: 1px solid var(--border-color);">
+          <h4 class="mb-md border-bottom pb-md" style="font-size: 1.1rem;">Booking Summary</h4>
           <p class="font-weight-600 mb-xs font-family-sora" id="payRoomInfo" style="font-size: 1.1rem;">—</p>
           <p class="text-muted font-size-sm mb-lg d-flex align-items-center gap-xs" id="payDates"><span class="material-symbols-outlined" style="font-size:16px;">calendar_month</span> —</p>
-          <div class="d-flex justify-content-between align-items-center bg-surface p-md rounded-sm border flex-wrap gap-sm">
-            <span class="text-muted">Total Amount</span>
-            <span class="font-weight-600 text-primary" style="font-size: 1.5rem;" id="payTotal">—</span>
+          <div class="d-flex justify-content-between align-items-center bg-surface p-lg rounded-sm border flex-wrap gap-sm">
+            <span class="text-muted font-weight-600">Total Amount</span>
+            <span class="price-amount" id="payTotal">—</span>
           </div>
-          <div class="mt-xl text-center d-flex align-items-center justify-content-center gap-sm text-muted bg-surface-alt p-sm rounded-sm flex-wrap">
-            <span class="material-symbols-outlined" style="font-size:18px;">lock</span>
-            <span class="font-size-sm">Secure Encrypted Payment</span>
+          <div class="mt-lg text-center d-flex align-items-center justify-content-center gap-sm text-muted bg-success-bg p-md rounded-sm flex-wrap" style="border-left: 3px solid var(--success);">
+            <span class="material-symbols-outlined" style="font-size:18px; color: var(--success);">verified</span>
+            <span class="font-size-sm" style="color: var(--success);">Secure Encrypted Payment</span>
           </div>
         </div>
       </aside>
