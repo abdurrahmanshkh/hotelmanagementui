@@ -31,19 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initHousekeepingPage === 'function') initHousekeepingPage();
   }
   else if (currentPath.includes('admin-login.html')) {
-    // Basic login bind
-    const loginBtn = document.querySelector('.admin-btn-primary');
-    if (loginBtn) {
-      loginBtn.addEventListener('click', (e) => {
+    // Login form handler
+    const loginForm = document.getElementById('adminLoginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('email').value;
-        const pass = document.getElementById('password').value;
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const staffCode = document.getElementById('staffCode').value.trim();
         
-        const res = adminLogin(email, pass);
+        if (!email || !password) {
+          showToast('Please enter email and password.', 'warning');
+          return;
+        }
+        
+        const res = adminLogin(email, password, staffCode);
         if (res.success) {
-          window.location.href = 'dashboard.html';
+          showToast('Login successful!', 'success');
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 500);
         } else {
-          showToast(res.message, 'error');
+          showToast(res.message || 'Login failed. Invalid credentials.', 'error');
         }
       });
     }
