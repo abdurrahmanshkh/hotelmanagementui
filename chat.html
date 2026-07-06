@@ -27,13 +27,13 @@
       <!-- Chat Interface -->
       <main class="card chat-card">
         <div class="chat-header d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center gap-sm">
-            <div class="bg-primary text-inverse rounded-full d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+          <div class="d-flex align-items-center gap-md">
+            <div class="bg-primary text-inverse rounded-full d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; font-size: 1.5rem;">
               <span class="material-symbols-outlined">support_agent</span>
             </div>
             <div>
-              <h4 class="mb-0 font-size-sm">Front Desk Concierge</h4>
-              <span class="text-success font-size-sm d-flex align-items-center gap-xs"><span style="display:inline-block; width:8px; height:8px; background:var(--success); border-radius:50%;"></span> Online</span>
+              <h4 class="mb-xs font-size-md font-weight-600">Front Desk Concierge</h4>
+              <span class="text-success font-size-sm d-flex align-items-center gap-xs"><span style="display:inline-block; width:10px; height:10px; background:var(--success); border-radius:50%;"></span> Online & Responding</span>
             </div>
           </div>
           <a href="dashboard.html" class="btn btn-ghost btn-icon"><span class="material-symbols-outlined">close</span></a>
@@ -43,24 +43,24 @@
           <!-- Populated by JS -->
         </div>
 
-        <div class="chat-input-area d-flex flex-column gap-sm">
-          <div id="chatSuggestions">
-            <span class="chat-suggestion-chip">What's the WiFi password?</span>
-            <span class="chat-suggestion-chip">Can I get a late checkout?</span>
-            <span class="chat-suggestion-chip">Where is the gym?</span>
+        <div class="chat-input-area d-flex flex-column gap-md">
+          <div id="chatSuggestions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">WiFi password?</span>
+            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Late checkout?</span>
+            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Gym location?</span>
           </div>
           <form id="chatForm" class="d-flex gap-sm w-100">
-            <input type="text" class="form-control" id="chatInput" placeholder="Type your message..." required autocomplete="off" style="border-radius: 2rem; padding-left: 1.25rem;">
-            <button type="submit" class="btn btn-primary btn-icon" style="border-radius: 50%; width: 46px; height: 46px;"><span class="material-symbols-outlined">send</span></button>
+            <input type="text" class="form-control" id="chatInput" placeholder="Ask anything... we're here to help" required autocomplete="off" style="border-radius: 2rem; padding-left: 1.25rem;">
+            <button type="submit" class="btn btn-primary btn-icon" style="border-radius: 50%; width: 46px; height: 46px; font-weight: 600;"><span class="material-symbols-outlined">send</span></button>
           </form>
         </div>
       </main>
 
       <!-- Sidebar (Optional info) -->
       <aside class="d-none d-lg-block">
-        <div class="card h-100 bg-background">
-          <h4 class="mb-md border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">info</span> Need Help?</h4>
-          <p class="text-muted font-size-sm mb-lg">Our front desk team is available 24/7 to assist you with anything you need during your stay.</p>
+        <div class="card h-100 bg-background" style="border: 1px solid var(--border-color);">
+          <h4 class="mb-md border-bottom pb-md d-flex align-items-center gap-xs" style="font-size: 1.05rem;"><span class="material-symbols-outlined text-primary">info</span> Quick Help</h4>
+          <p class="text-muted font-size-sm mb-lg" style="line-height: 1.6;">Our concierge team is available 24/7 to answer any questions and assist with your stay.</p>
           
           <h5 class="mb-xs">Common Requests</h5>
           <ul class="text-muted font-size-sm" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem;">
