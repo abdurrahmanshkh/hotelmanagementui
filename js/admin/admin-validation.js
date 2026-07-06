@@ -52,3 +52,38 @@ function clearAllErrors(formElement) {
   const inputs = formElement.querySelectorAll('.admin-form-control');
   inputs.forEach(input => clearInlineError(input));
 }
+
+function isValidCardNumber(cardNumber) {
+  const cleaned = String(cardNumber).replace(/\s/g, '');
+  return /^\d{16}$/.test(cleaned);
+}
+
+function isValidCVV(cvv) {
+  return /^\d{3,4}$/.test(String(cvv).trim());
+}
+
+function isValidUPI(upi) {
+  return /^[\w.-]+@[\w.-]+$/.test(String(upi).toLowerCase().trim());
+}
+
+function isValidURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isValidName(name) {
+  return isRequired(name) && name.length >= 2;
+}
+
+function isValidRoomNumber(roomNumber) {
+  return /^[A-Z0-9-]+$/.test(String(roomNumber).toUpperCase());
+}
+
+function isValidPrice(price) {
+  const num = Number(price);
+  return !isNaN(num) && num >= 0;
+}

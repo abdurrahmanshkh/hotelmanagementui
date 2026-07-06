@@ -25,12 +25,13 @@
   </header>
 
   <div class="container mt-xl mb-xl">
-    <div class="d-flex justify-content-between align-items-center mb-lg flex-wrap gap-sm">
-      <h2 class="mb-0 d-flex align-items-center gap-sm"><span class="material-symbols-outlined text-primary" style="font-size:2.5rem;">room_service</span> Concierge Services</h2>
+    <div class="d-flex justify-content-between align-items-start mb-xl flex-wrap gap-md">
+      <div style="flex: 1;">
+        <h1 class="mb-sm d-flex align-items-center gap-md"><span class="material-symbols-outlined text-primary" style="font-size:2.5rem;">room_service</span> Concierge Services</h1>
+        <p class="text-muted" style="font-size: 1.05rem;">Request housekeeping, room service, or any assistance you need. Available 24/7.</p>
+      </div>
       <a href="dashboard.html" class="btn btn-ghost"><span class="material-symbols-outlined">arrow_back</span> Dashboard</a>
     </div>
-    
-    <p class="text-muted mb-xl">Request fresh towels, housekeeping, or room service directly to your room.</p>
 
     <!-- Room Selection -->
     <div class="card mb-xl bg-background" style="max-width: 600px;">
@@ -68,7 +69,7 @@
 
     <!-- Custom Request Form -->
     <div class="card">
-      <h3 class="mb-md d-flex align-items-center gap-xs"><span class="material-symbols-outlined">edit_note</span> Custom Request</h3>
+      <h3 class="mb-lg d-flex align-items-center gap-xs" style="font-size: 1.3rem;"><span class="material-symbols-outlined">edit_note</span> Custom Request</h3>
       <form id="srvCustomForm">
         <div class="d-flex gap-md flex-wrap mb-md">
           <div class="form-group" style="flex:1; min-width:200px;">
@@ -93,7 +94,7 @@
 
     <!-- Active Requests List -->
     <div class="mt-xl">
-      <h3 class="mb-md border-bottom pb-sm">My Active Requests</h3>
+      <h3 class="mb-lg border-bottom pb-md" style="font-size: 1.3rem;">My Active Requests</h3>
       <div id="srvList" class="d-flex flex-column gap-sm">
         <!-- Rendered by JS -->
       </div>

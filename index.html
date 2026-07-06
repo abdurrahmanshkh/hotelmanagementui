@@ -34,14 +34,17 @@
       <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1542314831-c6a4d27ce66f?q=80&w=2000&auto=format&fit=crop');"></div>
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <h1 class="hero-title">Experience Effortless Luxury</h1>
-        <p class="hero-subtitle">Curated boutique stays with seamless digital access.</p>
-        
-        <div class="hero-search-widget glass-panel" style="display: flex; justify-content: center; padding: var(--space-md);">
-          <a href="rooms.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
-            <span class="material-symbols-outlined" style="margin-right: 8px;">travel_explore</span> 
-            Browse Our Rooms
-          </a>
+        <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+          <span class="badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: var(--space-md); display: inline-block;">Welcome to Luxury</span>
+          <h1 class="hero-title">Experience Effortless Luxury</h1>
+          <p class="hero-subtitle" style="font-size: 1.2rem; line-height: 1.6;">Curated boutique stays with seamless digital access. Your room, your rules, always at your fingertips.</p>
+          
+          <div class="hero-search-widget glass-panel" style="display: flex; justify-content: center; padding: var(--space-md); margin-top: var(--space-xl);">
+            <a href="rooms.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+              <span class="material-symbols-outlined" style="margin-right: 8px;">travel_explore</span> 
+              Browse Our Rooms
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -56,41 +59,44 @@
       </div>
       <a href="rooms.html" class="btn btn-ghost">View All <span class="material-symbols-outlined">arrow_forward</span></a>
     </div>
-    <div class="room-grid" id="featuredRooms">
+    <div class="room-grid" id="featuredRoomGrid">
       <!-- Injected via JS -->
       <div class="card p-lg text-center text-muted col-span-full">Loading premium suites...</div>
     </div>
   </div>
 
   <!-- Highlights Bento Grid -->
-  <div class="bg-surface border-top pt-xl pb-xl">
+  <section class="bg-surface border-top pt-xl pb-xl">
     <div class="container">
-      <h2 class="text-center mb-xl">Why StayEase Pro?</h2>
+      <div style="text-align: center; margin-bottom: var(--space-xl);">
+        <h2 class="mb-sm">Why Choose StayEase Pro?</h2>
+        <p class="text-muted">Premium features designed for the modern traveler</p>
+      </div>
       <div class="room-grid">
-        <div class="card card-hover d-flex flex-column align-items-center text-center">
-          <div class="p-sm bg-primary-light text-primary rounded-full mb-md">
-            <span class="material-symbols-outlined" style="font-size: 2rem;">key</span>
+        <div class="card card-hover d-flex flex-column align-items-center text-center" style="padding: var(--space-xl);">
+          <div class="p-lg bg-primary-light text-primary rounded-full mb-lg" style="border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 2.5rem;">key</span>
           </div>
-          <h4 class="mb-xs">Digital Passcode</h4>
-          <p class="text-muted font-size-sm">Skip the front desk. Secure your room with a digital entry code accessible directly from your phone.</p>
+          <h4 class="mb-sm">Digital Passcode</h4>
+          <p class="text-muted font-size-sm" style="line-height: 1.6;">Skip the front desk. Secure your room with a digital entry code accessible directly from your phone. No keys needed.</p>
         </div>
-        <div class="card card-hover d-flex flex-column align-items-center text-center">
-          <div class="p-sm bg-secondary-light text-secondary mb-md" style="border-radius: 50%;">
-            <span class="material-symbols-outlined" style="font-size: 2rem;">currency_exchange</span>
+        <div class="card card-hover d-flex flex-column align-items-center text-center" style="padding: var(--space-xl);">
+          <div class="p-lg bg-secondary-light text-secondary rounded-full mb-lg" style="border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 2.5rem;">currency_exchange</span>
           </div>
-          <h4 class="mb-xs">Smart Pricing</h4>
-          <p class="text-muted font-size-sm">Our dynamic algorithm ensures you get the fairest price based on real-time availability and demand.</p>
+          <h4 class="mb-sm">Smart Pricing</h4>
+          <p class="text-muted font-size-sm" style="line-height: 1.6;">Our dynamic algorithm ensures you get the fairest price based on real-time availability and demand. No hidden fees.</p>
         </div>
-        <div class="card card-hover d-flex flex-column align-items-center text-center">
-          <div class="p-sm" style="background-color: #dbeafe; color: #3b82f6; border-radius: 50%; margin-bottom: 1.5rem;">
-            <span class="material-symbols-outlined" style="font-size: 2rem;">room_service</span>
+        <div class="card card-hover d-flex flex-column align-items-center text-center" style="padding: var(--space-xl);">
+          <div class="p-lg text-primary rounded-full mb-lg" style="background-color: rgba(212, 165, 116, 0.2); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 2.5rem;">room_service</span>
           </div>
-          <h4 class="mb-xs">Instant Concierge</h4>
-          <p class="text-muted font-size-sm">Request fresh towels, order room service, or chat with the front desk via our digital portal.</p>
+          <h4 class="mb-sm">Instant Concierge</h4>
+          <p class="text-muted font-size-sm" style="line-height: 1.6;">Request fresh towels, order room service, or chat with our concierge team 24/7 via the app.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -113,10 +119,9 @@
   <script src="js/validation.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/passcode.js"></script>
   <script src="js/rooms.js"></script>
   <script src="js/bookings.js"></script>
-  <script src="js/payment.js"></script>
+  <script src="js/payments.js"></script>
   <script src="js/services.js"></script>
   <script src="js/chat.js"></script>
   <script src="js/notifications.js"></script>

@@ -27,9 +27,12 @@
   <div class="container mt-xl mb-xl">
     <a href="my-bookings.html" class="btn btn-ghost mb-md px-0" style="padding-left:0;"><span class="material-symbols-outlined">arrow_back</span> Back to Bookings</a>
     
-    <div class="d-flex justify-content-between align-items-center mb-md flex-wrap gap-sm">
-      <h2 class="mb-0 d-flex align-items-center gap-xs">Booking <span id="bdBookingId" class="text-primary" style="font-family: var(--font-sora);">#—</span></h2>
-      <span id="bdStatus" class="badge badge-primary">—</span>
+    <div class="d-flex justify-content-between align-items-center mb-lg flex-wrap gap-sm">
+      <div>
+        <h2 class="mb-xs">Booking Details</h2>
+        <p class="text-muted font-size-sm">Reservation <span id="bdBookingId" class="text-primary font-weight-600" style="font-family: monospace;">#—</span></p>
+      </div>
+      <span id="bdStatus" class="badge badge-primary" style="font-weight: 600; font-size: 0.95rem;">—</span>
     </div>
 
     <!-- Wide Image -->
@@ -109,21 +112,21 @@
       <!-- Sidebar -->
       <aside class="d-flex flex-column gap-lg">
         <!-- Payment Info -->
-        <div class="card bg-background">
-          <h4 class="mb-sm border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">payments</span> Payment Details</h4>
-          <div class="d-flex justify-content-between mb-xs">
-            <span class="text-muted font-size-sm">Status</span>
-            <span class="badge" id="bdPaymentStatus">—</span>
+        <div class="card bg-background" style="border: 1px solid var(--border-color);">
+          <h4 class="mb-lg border-bottom pb-md d-flex align-items-center gap-xs" style="font-size: 1.05rem;"><span class="material-symbols-outlined">credit_card</span> Payment Summary</h4>
+          <div class="d-flex justify-content-between mb-md">
+            <span class="text-muted font-size-sm text-uppercase">Payment Status</span>
+            <span class="badge badge-primary" id="bdPaymentStatus" style="font-weight: 600;">—</span>
           </div>
-          <div class="d-flex justify-content-between mt-sm pt-sm border-top">
+          <div class="d-flex justify-content-between pt-md border-top" style="border-color: var(--border-color);">
             <span class="font-weight-600">Total Amount</span>
-            <span class="font-weight-600 text-primary" style="font-size: 1.25rem;" id="bdTotalAmount">—</span>
+            <span class="price-amount" id="bdTotalAmount">—</span>
           </div>
         </div>
 
         <!-- Digital Key -->
-        <div class="card text-center" id="bdKeyCard" style="display:none;">
-          <h4 class="mb-sm d-flex justify-content-center align-items-center gap-xs"><span class="material-symbols-outlined text-primary">key</span> Digital Key</h4>
+        <div class="card text-center" id="bdKeyCard" style="display:none; background: linear-gradient(135deg, var(--primary-light), rgba(212,165,116,0.1)); border: 1px solid var(--border-color);">
+          <h4 class="mb-md d-flex justify-content-center align-items-center gap-xs text-primary" style="font-size: 1.05rem;"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">key</span> Digital Key</h4>
           <div id="bdPasscodeDisplay"></div>
         </div>
       </aside>
