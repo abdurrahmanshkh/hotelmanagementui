@@ -76,38 +76,40 @@ function initDashboard() {
   const active = bookings.find(b => b.status === 'Checked In' || (b.status === 'Confirmed' && new Date() >= new Date(b.checkIn) && new Date() <= new Date(b.checkOut)));
   const upcoming = bookings.filter(b => (b.status === 'Confirmed' || b.status === 'Pending Payment') && new Date(b.checkIn) > new Date());
 
-  const activeContainer = document.getElementById('dashActiveBooking');
+  const activeContainer = document.getElementById('dashActiveStay');
   const emptyContainer = document.getElementById('dashEmptyState');
 
   if (active && activeContainer) {
     if (emptyContainer) emptyContainer.style.display = 'none';
-    activeContainer.style.display = '';
-    document.getElementById('dashBookingId').textContent = active.id;
-    document.getElementById('dashRoomInfo').textContent = `${active.roomType} Room - ${active.roomNumber}`;
-    document.getElementById('dashCheckIn').textContent = formatDateTime(active.checkIn);
-    document.getElementById('dashCheckOut').textContent = formatDateTime(active.checkOut);
-    document.getElementById('dashPayAmt').textContent = `Paid: ${formatCurrency(active.totalAmount)}`;
+    activeContainer.style.display = 'block';
+
+    if (document.getElementById('dashRoomInfo')) {
+      document.getElementById('dashRoomInfo').textContent = `${active.roomType} Room - #${active.roomNumber}`;
+    }
+
+    if (document.getElementById('dashDates')) {
+      document.getElementById('dashDates').textContent = `${formatDateOnly(active.checkIn)} – ${formatDateOnly(active.checkOut)}`;
+    }
 
     // Passcode
-    const pcDisplay = document.getElementById('dashPasscode');
-    const pcStatus = document.getElementById('dashPasscodeStatus');
-    const status = getPasscodeStatus(active);
-    if (pcDisplay && pcStatus) {
+    const passcodeContainer = document.getElementById('dashPasscodeContainer');
+    if (passcodeContainer) {
+      const status = getPasscodeStatus(active);
       if (status === 'Active') {
-        pcDisplay.textContent = active.passcode;
-        pcDisplay.style.color = 'var(--success)';
-        pcStatus.textContent = 'Active';
-        pcStatus.className = 'badge badge-success';
+        passcodeContainer.innerHTML = `
+          <div style="font-size: 2.5rem; font-weight: 700; letter-spacing: 4px; color: var(--success); font-family: monospace; margin: 10px 0;">${active.passcode}</div>
+          <span class="badge badge-success">Active</span>
+        `;
       } else if (status === 'Locked') {
-        pcDisplay.textContent = '🔒 Locked';
-        pcDisplay.style.cssText = 'color:var(--text-muted);font-size:1.5rem;letter-spacing:normal;';
-        pcStatus.textContent = 'Locked';
-        pcStatus.className = 'badge badge-warning';
+        passcodeContainer.innerHTML = `
+          <div style="font-size: 1.5rem; font-weight: 600; color: var(--text-muted); margin: 10px 0;">🔒 Locked</div>
+          <span class="badge badge-warning">Locked</span>
+        `;
       } else {
-        pcDisplay.textContent = active.passcode;
-        pcDisplay.style.color = 'var(--error)';
-        pcStatus.textContent = status;
-        pcStatus.className = 'badge badge-danger';
+        passcodeContainer.innerHTML = `
+          <div style="font-size: 2.5rem; font-weight: 700; letter-spacing: 4px; color: var(--error); font-family: monospace; margin: 10px 0;">${active.passcode || '—'}</div>
+          <span class="badge badge-danger">${status}</span>
+        `;
       }
     }
   } else {
