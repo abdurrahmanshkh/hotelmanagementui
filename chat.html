@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat with Concierge - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body style="height: 100vh; overflow: hidden; display: flex; flex-direction: column;">
+
+<body style="overflow: hidden; display: flex; flex-direction: column;">
 
   <!-- Header -->
   <header class="site-header" style="flex-shrink: 0;">
@@ -22,21 +24,25 @@
     </div>
   </header>
 
-  <div class="container flex-grow-1 d-flex flex-column" style="overflow: hidden;">
+  <div class="container flex-grow-1 d-flex flex-column" style="overflow: hidden; padding-bottom: 20px;">
     <div class="chat-layout" style="flex-grow: 1;">
       <!-- Chat Interface -->
       <main class="card chat-card">
         <div class="chat-header d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center gap-md">
-            <div class="bg-primary text-inverse rounded-full d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; font-size: 1.5rem;">
+            <div class="bg-primary text-inverse rounded-full d-flex align-items-center justify-content-center"
+              style="width: 48px; height: 48px; font-size: 1.5rem;">
               <span class="material-symbols-outlined">support_agent</span>
             </div>
             <div>
               <h4 class="mb-xs font-size-md font-weight-600">Front Desk Concierge</h4>
-              <span class="text-success font-size-sm d-flex align-items-center gap-xs"><span style="display:inline-block; width:10px; height:10px; background:var(--success); border-radius:50%;"></span> Online & Responding</span>
+              <span class="text-success font-size-sm d-flex align-items-center gap-xs"><span
+                  style="display:inline-block; width:10px; height:10px; background:var(--success); border-radius:50%;"></span>
+                Online & Responding</span>
             </div>
           </div>
-          <a href="dashboard.html" class="btn btn-ghost btn-icon"><span class="material-symbols-outlined">close</span></a>
+          <a href="dashboard.html" class="btn btn-ghost btn-icon"><span
+              class="material-symbols-outlined">close</span></a>
         </div>
 
         <div class="chat-messages" id="chatMessages">
@@ -45,14 +51,25 @@
 
         <div class="chat-input-area d-flex flex-column gap-md">
           <div id="chatSuggestions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">WiFi password?</span>
-            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Late checkout?</span>
-            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Gym location?</span>
-            <span class="chat-suggestion-chip" style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Rooftop pool?</span>
+            <span class="chat-suggestion-chip"
+              style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">WiFi
+              password?</span>
+            <span class="chat-suggestion-chip"
+              style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Late
+              checkout?</span>
+            <span class="chat-suggestion-chip"
+              style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Gym
+              location?</span>
+            <span class="chat-suggestion-chip"
+              style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">Rooftop
+              pool?</span>
           </div>
           <form id="chatForm" class="d-flex gap-sm w-100">
-            <input type="text" class="form-control" id="chatInput" placeholder="Ask anything... we're here to help" required autocomplete="off" style="border-radius: 2rem; padding-left: 1.25rem;">
-            <button type="submit" class="btn btn-primary btn-icon" style="border-radius: 50%; width: 46px; height: 46px; font-weight: 600;"><span class="material-symbols-outlined">send</span></button>
+            <input type="text" class="form-control" id="chatInput" placeholder="Ask anything... we're here to help"
+              required autocomplete="off" style="border-radius: 2rem; padding-left: 1.25rem;">
+            <button type="submit" class="btn btn-primary btn-icon"
+              style="border-radius: 50%; width: 46px; height: 46px; font-weight: 600;"><span
+                class="material-symbols-outlined">send</span></button>
           </form>
         </div>
       </main>
@@ -60,24 +77,40 @@
       <!-- Sidebar (Optional info) -->
       <aside class="d-none d-lg-block">
         <div class="card h-100 bg-background" style="border: 1px solid var(--border-color);">
-          <h4 class="mb-md border-bottom pb-md d-flex align-items-center gap-xs" style="font-size: 1.05rem;"><span class="material-symbols-outlined text-primary">info</span> Quick Help</h4>
-          <p class="text-muted font-size-sm mb-lg" style="line-height: 1.6;">Our concierge team is available 24/7 to answer any questions and assist with your stay.</p>
-          
+          <h4 class="mb-md border-bottom pb-md d-flex align-items-center gap-xs" style="font-size: 1.05rem;"><span
+              class="material-symbols-outlined text-primary">info</span> Quick Help</h4>
+          <p class="text-muted font-size-sm mb-lg" style="line-height: 1.6;">Our concierge team is available 24/7 to
+            answer any questions and assist with your stay.</p>
+
           <h5 class="mb-xs">Common Requests</h5>
-          <ul class="text-muted font-size-sm" style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem;">
-            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">wifi</span> WiFi issues</li>
-            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">restaurant</span> Room service</li>
-            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">schedule</span> Checkout times</li>
-            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary" style="font-size:16px;">local_taxi</span> Transportation</li>
+          <ul class="text-muted font-size-sm"
+            style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem;">
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"
+                style="font-size:16px;">wifi</span> WiFi issues</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"
+                style="font-size:16px;">restaurant</span> Room service</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"
+                style="font-size:16px;">schedule</span> Checkout times</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"
+                style="font-size:16px;">local_taxi</span> Transportation</li>
           </ul>
 
-          <div class="mt-auto pt-lg border-top">
+          <div class="mt-auto pt-lg border-top" style="margin-top: 30px;">
             <a href="services.html" class="btn btn-secondary btn-block">Go to Services</a>
           </div>
         </div>
       </aside>
     </div>
   </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
 
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>
@@ -93,4 +126,5 @@
   <script src="js/notifications.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>
