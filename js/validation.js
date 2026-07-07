@@ -2,15 +2,15 @@
    validation.js — Reusable validation helpers
    =================================================================== */
 
-const isRequired      = v => v !== undefined && v !== null && String(v).trim() !== '';
-const isValidEmail    = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const isRequired     = v => v !== undefined && v !== null && String(v).trim() !== '';
+const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 const isValidPhone    = v => /^\d{10}$/.test(v);
-const isStrongPassword = v => v && v.length >= 8;
+const isStrongPassword = v => /^(?=.*[A-Z])(?=.*\d).{8,}$/.test(v || '');
 const doPasswordsMatch = (a, b) => a === b;
 const isPositiveNumber = v => !isNaN(v) && Number(v) > 0;
 const isValidCardNumber = v => /^\d{16}$/.test(String(v).replace(/\s/g, ''));
 const isValidCVV      = v => /^\d{3}$/.test(v);
-const isValidUPI      = v => /^[\w.\-]+@[\w]+$/.test(v);
+const isValidUPI      = v => /^[\w.-]+@[\w]+$/.test(v);
 const isValidRating   = v => Number(v) >= 1 && Number(v) <= 5;
 
 /** Returns true if dateStr (YYYY-MM-DD or ISO) is today or in the future. */
