@@ -243,6 +243,33 @@ function initRoomDetails() {
     }
   }
 
+  // Date constraints
+  const todayStr = new Date().toISOString().split('T')[0];
+  const ciInput = document.getElementById('rdCheckInDate');
+  const coInput = document.getElementById('rdCheckOutDate');
+  if (ciInput) {
+    ciInput.min = todayStr;
+    ciInput.addEventListener('change', () => {
+      if (ciInput.value) {
+        const nextDay = new Date(ciInput.value);
+        nextDay.setDate(nextDay.getDate() + 1);
+        const nextDayStr = nextDay.toISOString().split('T')[0];
+        if (coInput) {
+          coInput.min = nextDayStr;
+          if (coInput.value && coInput.value < nextDayStr) {
+            coInput.value = nextDayStr;
+            updatePrice();
+          }
+        }
+      }
+    });
+  }
+  if (coInput) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    coInput.min = tomorrow.toISOString().split('T')[0];
+  }
+
   // Live price update
   const updatePrice = () => {
     const ciDate = document.getElementById('rdCheckInDate')?.value;
@@ -255,11 +282,11 @@ function initRoomDetails() {
     const taxes = Math.round(roomAmt * 0.12);
     const fee = Math.round(roomAmt * 0.05);
     const total = roomAmt + taxes + fee;
-    if (el('priceNights'))   el('priceNights').textContent = `${formatCurrency(room.dynamicPrice)} × ${nights} night${nights > 1 ? 's' : ''}`;
-    if (el('priceRoomAmt'))  el('priceRoomAmt').textContent = formatCurrency(roomAmt);
-    if (el('priceDynamic'))  el('priceDynamic').textContent = adj ? `+ ${formatCurrency(Math.abs(adj))}` : '—';
-    if (el('priceTax'))      el('priceTax').textContent = formatCurrency(taxes);
-    if (el('priceTotal'))    el('priceTotal').textContent = formatCurrency(total);
+    if (el('rdNights'))      el('rdNights').textContent = nights;
+    if (el('rdRoomTotal'))   el('rdRoomTotal').textContent = formatCurrency(roomAmt);
+    if (el('rdTax'))         el('rdTax').textContent = formatCurrency(taxes);
+    if (el('rdServiceFee'))  el('rdServiceFee').textContent = formatCurrency(fee);
+    if (el('rdGrandTotal'))  el('rdGrandTotal').textContent = formatCurrency(total);
   };
   document.getElementById('rdCheckInDate')?.addEventListener('change', updatePrice);
   document.getElementById('rdCheckOutDate')?.addEventListener('change', updatePrice);
