@@ -82,33 +82,91 @@
           <div class="mb-lg">
             <div class="d-flex justify-content-between align-items-baseline gap-sm mb-sm">
               <div>
-                <span class="price-amount" id="rdPrice" style="font-size: 2.5rem;">$0</span>
+                <span class="price-amount" id="rdPrice" style="font-size: 2.5rem;">₹ 0</span>
                 <span class="text-muted font-size-sm d-block">per night</span>
               </div>
               <span id="rdDemand" class="badge badge-primary">Normal</span>
             </div>
-            <p class="text-error font-size-sm mb-0" id="rdDemandReason"></p>
+            <p class="text-muted font-size-sm mb-0" id="rdDemandReason"></p>
           </div>
 
           <div class="form-group">
-            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;"><span class="material-symbols-outlined" style="font-size: 1.2rem;">calendar_today</span> Check-in</label>
-            <input type="date" class="form-control" id="rdCheckIn">
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;">
+              <span class="material-symbols-outlined" style="font-size: 1.2rem;">calendar_today</span>
+              Check-in Date
+            </label>
+            <input type="date" class="form-control" id="rdCheckInDate">
           </div>
-          <div class="form-group mb-lg">
-            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;"><span class="material-symbols-outlined" style="font-size: 1.2rem;">calendar_today</span> Check-out</label>
-            <input type="date" class="form-control" id="rdCheckOut">
+
+          <div class="form-group">
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;">
+              <span class="material-symbols-outlined" style="font-size: 1.2rem;">schedule</span>
+              Check-in Time
+            </label>
+            <input type="time" class="form-control" id="rdCheckInTime" value="14:00">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;">
+              <span class="material-symbols-outlined" style="font-size: 1.2rem;">calendar_today</span>
+              Check-out Date
+            </label>
+            <input type="date" class="form-control" id="rdCheckOutDate">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;">
+              <span class="material-symbols-outlined" style="font-size: 1.2rem;">schedule</span>
+              Check-out Time
+            </label>
+            <input type="time" class="form-control" id="rdCheckOutTime" value="11:00">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label d-flex align-items-center gap-xs" style="font-weight: 600;">
+              <span class="material-symbols-outlined" style="font-size: 1.2rem;">group</span>
+              Guests
+            </label>
+            <select class="form-control" id="rdGuests">
+              <option value="">Select guests</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 600;">Special Request Optional</label>
+            <textarea class="form-control" id="rdSpecialRequest" placeholder="Any special request?"></textarea>
           </div>
 
           <div class="bg-background p-lg mb-lg" style="border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-            <div class="d-flex justify-content-between mb-sm"><span class="text-muted font-size-sm">Nights</span><span class="font-weight-600" id="rdNights">0</span></div>
-            <div class="d-flex justify-content-between mb-lg"><span class="text-muted font-size-sm">Room Total</span><span class="font-weight-600" id="rdRoomTotal">$0</span></div>
+            <div class="d-flex justify-content-between mb-sm">
+              <span class="text-muted font-size-sm">Nights</span>
+              <span class="font-weight-600" id="rdNights">0</span>
+            </div>
+
+            <div class="d-flex justify-content-between mb-sm">
+              <span class="text-muted font-size-sm">Room Total</span>
+              <span class="font-weight-600" id="rdRoomTotal">₹ 0</span>
+            </div>
+
+            <div class="d-flex justify-content-between mb-sm">
+              <span class="text-muted font-size-sm">Taxes 12%</span>
+              <span class="font-weight-600" id="rdTax">₹ 0</span>
+            </div>
+
+            <div class="d-flex justify-content-between mb-lg">
+              <span class="text-muted font-size-sm">Service Fee 5%</span>
+              <span class="font-weight-600" id="rdServiceFee">₹ 0</span>
+            </div>
+
             <div class="d-flex justify-content-between pt-lg border-top" style="border-color: var(--border-color);">
               <span class="font-weight-600 font-size-sm text-uppercase">Total Payable</span>
-              <span class="price-amount" id="rdGrandTotal">$0</span>
+              <span class="price-amount" id="rdGrandTotal">₹ 0</span>
             </div>
           </div>
 
-          <button class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px;" id="rdBookBtn">Proceed to Booking</button>
+          <button class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px;" id="rdBookBtn">
+            Proceed to Booking
+          </button>
         </div>
       </aside>
     </div>

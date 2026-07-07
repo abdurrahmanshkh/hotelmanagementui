@@ -38,37 +38,56 @@
         
         <form id="signupForm">
           <div class="form-group">
-            <label class="form-label" for="signupName" style="font-weight: 600;">Full Name</label>
-            <input type="text" id="signupName" class="form-control" placeholder="John Doe" required>
-            <small class="text-error" id="signupNameErr" style="display:none;"></small>
+            <label class="form-label">Full Name</label>
+            <input type="text" id="fullname" class="form-control" required>
           </div>
           <div class="form-group">
-            <label class="form-label" for="signupEmail" style="font-weight: 600;">Email Address</label>
-            <input type="email" id="signupEmail" class="form-control" placeholder="name@example.com" required>
-            <small class="text-error" id="signupEmailErr" style="display:none;"></small>
+            <label class="form-label">Email Address</label>
+            <input type="email" id="email" class="form-control" required>
           </div>
           <div class="form-group">
-            <label class="form-label" for="signupPhone" style="font-weight: 600;">Phone Number</label>
-            <input type="tel" id="signupPhone" class="form-control" placeholder="(555) 000-0000" required>
-            <small class="text-error" id="signupPhoneErr" style="display:none;"></small>
+            <label class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" required>
           </div>
-          <div class="form-group mb-xl">
-            <label class="form-label" for="signupPass" style="font-weight: 600;">Password</label>
-            <input type="password" id="signupPass" class="form-control" placeholder="Min 8 characters" required>
-            <p class="text-muted font-size-sm mt-xs mb-0">At least 8 characters, 1 uppercase letter, 1 number</p>
-            <small class="text-error" id="signupPassErr" style="display:none;"></small>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="newPassword" class="form-control" required>
           </div>
-          
-          <button type="submit" class="btn btn-primary btn-block" style="padding: 1rem; font-weight: 600;">Create Account</button>
-          
-          <div class="text-center mt-lg">
-            <p class="text-muted font-size-sm">Already have an account? <a href="login.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">Sign in here</a></p>
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <input type="password" id="confirmPassword" class="form-control" required>
           </div>
+          <div class="form-group">
+            <label class="form-label">Government ID Type</label>
+            <select id="idType" class="form-control">
+              <option value="Aadhaar">Aadhaar</option>
+              <option value="PAN">PAN</option>
+              <option value="Passport">Passport</option>
+              <option value="Driving License">Driving License</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Government ID Number</label>
+            <input type="text" id="idNumber" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label style="display:flex; gap:10px; align-items:flex-start;">
+              <input type="checkbox" id="terms">
+              <span>I agree to the Terms & Conditions</span>
+            </label>
+          </div>
+          <button type="submit"
+              class="btn btn-primary btn-block"
+              style="padding:1rem;font-weight:600;">
+              Create Account
+          </button>
+
         </form>
       </div>
     </div>
   </div>
 
+  <script src="js/notifications.js"></script>
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/validation.js"></script>
