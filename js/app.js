@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('bdContent')) initBookingDetails();
 
   // Services
-  if (document.getElementById('serviceRequestForm')) initServices();
+  if (document.getElementById('srvBookingSelect')) initServices();
 
   // Chat
   if (document.getElementById('chatMessages')) initChat();
