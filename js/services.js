@@ -63,6 +63,9 @@ function submitServiceRequest(category, details) {
     roomNumber: booking.roomNumber,
     category: category,
     details: details,
+    serviceType: details,
+    description: details,
+    priority: category === 'maintenance' ? 'High' : (category === 'room_service' ? 'Medium' : 'Low'),
     status: 'Pending',
     adminResponse: '',
     createdAt: new Date().toISOString()

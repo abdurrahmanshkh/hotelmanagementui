@@ -86,11 +86,11 @@ function recalculateDynamicPrices() {
       const occPercentage = total > 0 ? Math.round((occupied / total) * 100) : 0;
 
       if (occPercentage < 30) {
-        demandLevel = 'Low';
+        demandLevel = 'Low Demand';
         dynamicReason = `Low demand (${occPercentage}% occupancy). Applied ${rule.lowDemandDiscount}% discount.`;
         newDynPrice = room.basePrice * (1 - rule.lowDemandDiscount / 100);
       } else if (occPercentage >= 70) {
-        demandLevel = 'High';
+        demandLevel = 'High Demand';
         dynamicReason = `High demand (${occPercentage}% occupancy). Applied ${rule.highDemandIncrease}% markup.`;
         newDynPrice = room.basePrice * (1 + rule.highDemandIncrease / 100);
       }

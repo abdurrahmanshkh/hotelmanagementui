@@ -71,21 +71,21 @@
         <div class="admin-card">
           <h3 style="margin:0 0 24px 0;">Property Details</h3>
           
-          <form>
+          <form id="settingsForm">
             <div class="d-flex gap-md mb-md">
               <div class="admin-form-group w-100">
                 <label class="admin-form-label">Hotel Name</label>
-                <input type="text" class="admin-form-control" value="StayEase Pro Bengaluru">
+                <input type="text" id="setHotelName" class="admin-form-control" value="StayEase Pro Bengaluru">
               </div>
               <div class="admin-form-group w-100">
                 <label class="admin-form-label">Support Email</label>
-                <input type="email" class="admin-form-control" value="support@stayease.com">
+                <input type="email" id="setSupportEmail" class="admin-form-control" value="support@stayease.com">
               </div>
             </div>
 
             <div class="admin-form-group mb-lg">
               <label class="admin-form-label">Address</label>
-              <textarea class="admin-form-control" rows="3">123 Tech Park Road, Whitefield, Bengaluru, Karnataka 560066</textarea>
+              <textarea id="setAddress" class="admin-form-control" rows="3">123 Tech Park Road, Whitefield, Bengaluru, Karnataka 560066</textarea>
             </div>
 
             <h3 style="margin:24px 0 16px 0; border-top:1px solid var(--admin-surface-border); padding-top:24px;">Check-in Policies</h3>
@@ -93,17 +93,17 @@
             <div class="d-flex gap-md mb-md">
               <div class="admin-form-group w-100">
                 <label class="admin-form-label">Standard Check-in Time</label>
-                <input type="time" class="admin-form-control" value="14:00">
+                <input type="time" id="setCheckInTime" class="admin-form-control" value="14:00">
               </div>
               <div class="admin-form-group w-100">
                 <label class="admin-form-label">Standard Check-out Time</label>
-                <input type="time" class="admin-form-control" value="11:00">
+                <input type="time" id="setCheckOutTime" class="admin-form-control" value="11:00">
               </div>
             </div>
 
             <div class="admin-form-group">
               <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
-                <input type="checkbox" checked style="accent-color:var(--admin-primary); width:18px; height:18px;">
+                <input type="checkbox" id="setAllowEarlyCheckIn" checked style="accent-color:var(--admin-primary); width:18px; height:18px;">
                 Allow early check-in (subject to availability)
               </label>
             </div>

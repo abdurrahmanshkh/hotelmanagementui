@@ -9,6 +9,7 @@ function initPaymentsPage() {
   allPayments = getData('stayEasePro_payments', []);
   allBookingsForPayments = getData('stayEasePro_bookings', []);
   renderPayments(allPayments);
+  renderPaymentMetrics();
 
   const searchInput = document.querySelector('.search-bar input');
   const statusSelect = document.querySelectorAll('.admin-form-control')[1];
@@ -84,4 +85,31 @@ function markRefund(id) {
     showToast('Payment refunded.', 'success');
     initPaymentsPage();
   }
+}
+
+function renderPaymentMetrics() {
+  const cards = document.querySelectorAll('.admin-bento-grid .admin-card');
+  if (cards.length < 3) return;
+
+  const today = new Date().toISOString().split('T')[0];
+  const thisMonth = today.substring(0, 7); // YYYY-MM
+
+  // 1. Revenue Today
+  const revenueToday = allPayments
+    .filter(p => p.status === 'Paid' && p.paidAt && p.paidAt.startsWith(today))
+    .reduce((sum, p) => sum + p.amount, 0);
+
+  // 2. Pending Payments
+  const pendingPayments = allBookingsForPayments
+    .filter(b => b.status !== 'Cancelled' && (b.paymentStatus === 'Pending' || b.paymentStatus === 'Unpaid' || b.paymentStatus === 'Pending Payment'))
+    .reduce((sum, b) => sum + b.totalAmount, 0);
+
+  // 3. Refunds This Month
+  const refundsMonth = allPayments
+    .filter(p => p.status === 'Refunded' && p.paidAt && p.paidAt.startsWith(thisMonth))
+    .reduce((sum, p) => sum + p.amount, 0);
+
+  cards[0].querySelector('.metric-value').textContent = formatAdminCurrency(revenueToday);
+  cards[1].querySelector('.metric-value').textContent = formatAdminCurrency(pendingPayments);
+  cards[2].querySelector('.metric-value').textContent = formatAdminCurrency(refundsMonth);
 }

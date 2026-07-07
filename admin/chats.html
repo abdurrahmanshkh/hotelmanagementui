@@ -66,7 +66,7 @@
               <input type="text" placeholder="Search chats...">
             </div>
           </div>
-          <div style="overflow-y:auto; flex:1;">
+          <div class="chat-list" style="overflow-y:auto; flex:1;">
             <!-- Chat Item Active -->
             <div style="padding:var(--admin-space-md); border-bottom:1px solid var(--admin-surface-border); background-color:var(--admin-primary-light); cursor:pointer;">
               <div class="d-flex justify-between align-center mb-xs">
@@ -94,13 +94,13 @@
         <!-- Panel 2: Active Chat -->
         <div class="chat-panel">
           <!-- Chat Header -->
-          <div style="padding:var(--admin-space-md); border-bottom:1px solid var(--admin-surface-border); display:flex; align-items:center; gap:var(--admin-space-md);">
+          <div class="chat-main-header" style="padding:var(--admin-space-md); border-bottom:1px solid var(--admin-surface-border); display:flex; align-items:center; gap:var(--admin-space-md);">
             <div style="width:40px; height:40px; border-radius:50%; background:var(--admin-surface-alt); display:flex; align-items:center; justify-content:center;">
               <span class="material-symbols-outlined text-muted">person</span>
             </div>
             <div>
               <h4 style="margin:0; font-size:1rem;">Aarav Sharma</h4>
-              <p style="margin:0; font-size:0.75rem; color:var(--admin-success); display:flex; align-items:center; gap:4px;"><span style="width:6px; height:6px; border-radius:50%; background:var(--admin-success); display:inline-block;"></span> Online (Room 305)</p>
+              <p class="text-muted" style="margin:0; font-size:0.75rem; color:var(--admin-success); display:flex; align-items:center; gap:4px;"><span style="width:6px; height:6px; border-radius:50%; background:var(--admin-success); display:inline-block;"></span> Online (Room 305)</p>
             </div>
           </div>
           
@@ -125,7 +125,7 @@
           </div>
 
           <!-- Input Area -->
-          <div style="padding:var(--admin-space-md); border-top:1px solid var(--admin-surface-border); background:var(--admin-bg);">
+          <div class="chat-input-area" style="padding:var(--admin-space-md); border-top:1px solid var(--admin-surface-border); background:var(--admin-bg);">
             <div class="d-flex gap-sm mb-sm overflow-x-auto" style="padding-bottom:4px;">
               <span class="admin-badge badge-neutral" style="cursor:pointer;">Sure, I'll check availability.</span>
               <span class="admin-badge badge-neutral" style="cursor:pointer;">Checkout is at 11 AM.</span>
@@ -139,23 +139,25 @@
 
         <!-- Panel 3: Info Panel -->
         <div class="chat-panel chat-info-panel" style="padding:var(--admin-space-lg); background:var(--admin-bg);">
-          <div class="text-center mb-lg">
-            <div style="width:80px; height:80px; border-radius:50%; background:var(--admin-surface-border); margin:0 auto 12px auto; display:flex; align-items:center; justify-content:center;">
-              <span class="material-symbols-outlined" style="font-size:40px; color:var(--admin-text-muted);">person</span>
+          <div class="chat-info-content">
+            <div class="text-center mb-lg">
+              <div style="width:80px; height:80px; border-radius:50%; background:var(--admin-surface-border); margin:0 auto 12px auto; display:flex; align-items:center; justify-content:center;">
+                <span class="material-symbols-outlined" style="font-size:40px; color:var(--admin-text-muted);">person</span>
+              </div>
+              <h3 style="margin:0;">Aarav Sharma</h3>
+              <p class="text-muted" style="margin:4px 0 0 0; font-size:0.875rem;">aarav@example.com</p>
             </div>
-            <h3 style="margin:0;">Aarav Sharma</h3>
-            <p class="text-muted" style="margin:4px 0 0 0; font-size:0.875rem;">aarav@example.com</p>
-          </div>
-          
-          <h4 style="margin:0 0 12px 0; border-bottom:1px solid var(--admin-surface-border); padding-bottom:8px;">Current Stay</h4>
-          <div class="d-flex justify-between mb-sm" style="font-size:0.875rem;">
-            <span class="text-muted">Room</span> <strong>305 (Deluxe)</strong>
-          </div>
-          <div class="d-flex justify-between mb-sm" style="font-size:0.875rem;">
-            <span class="text-muted">Check-in</span> <strong>Oct 12</strong>
-          </div>
-          <div class="d-flex justify-between mb-sm" style="font-size:0.875rem;">
-            <span class="text-muted">Check-out</span> <strong>Oct 15</strong>
+            
+            <h4 style="margin:0 0 12px 0; border-bottom:1px solid var(--admin-surface-border); padding-bottom:8px;">Current Stay</h4>
+            <div class="d-flex justify-between mb-sm" style="font-size:0.875rem;">
+              <span class="text-muted">Room</span> <strong>305 (Deluxe)</strong>
+            </div>
+            <div class="d-flex justify-between mb-sm" style="font-size:0.875rem;">
+              <span class="text-muted">Check-in</span> <strong>Oct 12</strong>
+            </div>
+            <div class="d-flex justify-between mb-sm" style="font-size:0.875rem;">
+              <span class="text-muted">Check-out</span> <strong>Oct 15</strong>
+            </div>
           </div>
           
           <h4 style="margin:16px 0 12px 0; border-bottom:1px solid var(--admin-surface-border); padding-bottom:8px;">Quick Actions</h4>

@@ -94,7 +94,7 @@ function openChat(chatId) {
   if (updated) renderChatList(allChats);
 
   // Update header
-  const header = document.querySelector('.chat-main-header h3');
+  const header = document.querySelector('.chat-main-header h4');
   if (header) header.textContent = chat.guestName;
   
   const subtitle = document.querySelector('.chat-main-header .text-muted');
@@ -136,7 +136,7 @@ function renderMessages() {
     const isCustomer = m.sender === 'customer';
     const alignClass = isCustomer ? '' : 'admin';
     const bgClass = isCustomer ? 'var(--admin-surface)' : 'var(--admin-primary)';
-    const colorClass = isCustomer ? 'var(--admin-text)' : '#fff';
+    const colorClass = isCustomer ? 'var(--admin-text-main)' : '#fff';
 
     const div = document.createElement('div');
     div.className = `chat-bubble ${alignClass}`;

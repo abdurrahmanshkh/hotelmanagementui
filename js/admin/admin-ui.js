@@ -125,6 +125,15 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle.addEventListener('click', toggleSidebar);
   }
 
+  // Set current admin profile name
+  if (typeof getActiveAdmin === 'function') {
+    const currentAdmin = getActiveAdmin();
+    const profileName = document.querySelector('.admin-profile-name');
+    if (currentAdmin && profileName) {
+      profileName.textContent = currentAdmin.fullName;
+    }
+  }
+
   // Close modals on overlay click or close button
   document.addEventListener('click', (e) => {
     // Close on overlay background click

@@ -96,7 +96,7 @@ function openBookingDetails(id) {
   
   const bBody = document.querySelector('#bookingDetailModal .admin-modal-body');
   bBody.innerHTML = `
-    <div class="admin-bento-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:0;">
+    <div class="admin-grid-half" style="margin-bottom:0;">
       <div class="admin-card" style="box-shadow:none; border-color:var(--admin-surface-border);">
         <h4 style="margin:0 0 16px 0;">Stay Details</h4>
         <p><strong>Guest:</strong> ${bookingToView.guestName}</p>

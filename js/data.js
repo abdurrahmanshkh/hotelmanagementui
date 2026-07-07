@@ -15,6 +15,17 @@ const MOCK_DATA = {
       governmentIdNumber: "XXXX-XXXX-1234",
       role: "customer",
       createdAt: "2026-07-01T10:00:00"
+    },
+    {
+      id: "USR-1002",
+      fullName: "Emily Chen",
+      email: "emily@example.com",
+      phone: "9876543211",
+      password: "Guest@123",
+      governmentIdType: "Passport",
+      governmentIdNumber: "L8932018",
+      role: "customer",
+      createdAt: "2026-07-02T11:00:00"
     }
   ],
 
@@ -75,7 +86,7 @@ const MOCK_DATA = {
       capacity: 4, bedType: "2 King Beds", basePrice: 4500,
       dynamicPrice: 4500, demandLevel: "Normal", dynamicReason: "Normal pricing active.",
       amenities: ["Wi-Fi", "AC", "Smart TV", "Living Area", "Kitchenette", "Bathtub", "City View"],
-      status: "Available", cleaningStatus: "Clean", rating: 4.9,
+      status: "Occupied", cleaningStatus: "Clean", rating: 4.9,
       description: "Luxury suite with a separate living area, kitchenette, and breathtaking city view.",
       image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
@@ -85,7 +96,7 @@ const MOCK_DATA = {
       capacity: 4, bedType: "2 King Beds", basePrice: 4500,
       dynamicPrice: 4500, demandLevel: "Normal", dynamicReason: "Normal pricing active.",
       amenities: ["Wi-Fi", "AC", "Smart TV", "Living Area", "Jacuzzi", "Mini Bar"],
-      status: "Maintenance", cleaningStatus: "Pending", rating: 5.0,
+      status: "Occupied", cleaningStatus: "Clean", rating: 5.0,
       description: "Our finest suite with a private jacuzzi and world-class finishes throughout.",
       image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
@@ -151,6 +162,42 @@ const MOCK_DATA = {
       createdAt: "2026-07-04T12:00:00"
     },
     {
+      id: "BK-2026-1043",
+      userId: "USR-1002",
+      guestName: "Emily Chen",
+      roomId: "RM-310",
+      roomNumber: "310",
+      roomType: "Suite",
+      checkIn: "2026-07-06T14:00",
+      checkOut: "2026-07-09T11:00",
+      guests: 2,
+      specialRequest: "Near elevator.",
+      status: "Checked In",
+      paymentStatus: "Paid",
+      passcode: "109483",
+      passcodeStatus: "Active",
+      totalAmount: 15930,
+      createdAt: "2026-07-05T09:30:00"
+    },
+    {
+      id: "BK-2026-1044",
+      userId: "USR-1002",
+      guestName: "Emily Chen",
+      roomId: "RM-312",
+      roomNumber: "312",
+      roomType: "Suite",
+      checkIn: "2026-07-06T14:00",
+      checkOut: "2026-07-09T11:00",
+      guests: 3,
+      specialRequest: "",
+      status: "Checked In",
+      paymentStatus: "Paid",
+      passcode: "839201",
+      passcodeStatus: "Active",
+      totalAmount: 15930,
+      createdAt: "2026-07-05T10:15:00"
+    },
+    {
       id: "BK-2026-1015",
       userId: "USR-1001",
       guestName: "Aarav Sharma",
@@ -173,6 +220,8 @@ const MOCK_DATA = {
   /* ── Payments ───────────────────────────────────────────────────── */
   payments: [
     { id: "PAY-893021", bookingId: "BK-2026-1042", userId: "USR-1001", amount: 11446, method: "Card", status: "Paid", paidAt: "2026-07-04T12:15:00" },
+    { id: "PAY-893022", bookingId: "BK-2026-1043", userId: "USR-1002", amount: 15930, method: "UPI",  status: "Paid", paidAt: "2026-07-08T09:30:00" },
+    { id: "PAY-893023", bookingId: "BK-2026-1044", userId: "USR-1002", amount: 15930, method: "Card", status: "Paid", paidAt: "2026-07-08T10:15:00" },
     { id: "PAY-870112", bookingId: "BK-2026-1015", userId: "USR-1001", amount: 4248,  method: "UPI",  status: "Paid", paidAt: "2026-06-18T09:30:00" }
   ],
 
@@ -182,13 +231,15 @@ const MOCK_DATA = {
       id: "SR-4021", userId: "USR-1001", bookingId: "BK-2026-1042",
       roomNumber: "305", serviceType: "Extra Towels", priority: "Medium",
       preferredTime: "15:30", description: "Need 2 extra bath towels.",
+      category: "housekeeping", details: "Extra Towels: Need 2 extra bath towels.",
       status: "In Progress", adminResponse: "Housekeeping is on the way.",
       createdAt: "2026-07-05T15:30:00", updatedAt: "2026-07-05T15:35:00"
     },
     {
       id: "SR-4022", userId: "USR-1001", bookingId: "BK-2026-1042",
       roomNumber: "305", serviceType: "Room Cleaning", priority: "Low",
-      preferredTime: "10:00", description: "",
+      preferredTime: "10:00", description: "Standard daily cleaning request.",
+      category: "housekeeping", details: "Room Cleaning: Standard daily cleaning request.",
       status: "Completed", adminResponse: "Room has been cleaned.",
       createdAt: "2026-07-06T10:00:00", updatedAt: "2026-07-06T10:45:00"
     }
@@ -204,6 +255,15 @@ const MOCK_DATA = {
         { id: "MSG-002", sender: "customer", text: "Hi, I just checked into Room 305. Can I get two extra water bottles?", timestamp: "2026-07-05T14:10:00", read: true },
         { id: "MSG-003", sender: "admin",    text: "Absolutely! I will send someone up with water right away. Anything else?", timestamp: "2026-07-05T14:11:00", read: true },
         { id: "MSG-004", sender: "customer", text: "No, that's it. Thanks!", timestamp: "2026-07-05T14:12:00", read: true }
+      ]
+    },
+    {
+      id: "CHAT-310-1043", userId: "USR-1002", bookingId: "BK-2026-1043",
+      roomNumber: "310", guestName: "Emily Chen", archived: false,
+      messages: [
+        { id: "MSG-010", sender: "customer", text: "Hello! Is pool access free for suite guests?", timestamp: "2026-07-07T16:00:00", read: true },
+        { id: "MSG-011", sender: "admin",    text: "Hi Emily! Yes, rooftop pool access is complimentary for all Suite guests. It is open from 6:00 AM to 10:00 PM.", timestamp: "2026-07-07T16:05:00", read: true },
+        { id: "MSG-012", sender: "customer", text: "Great! Can I get late checkout tomorrow?", timestamp: "2026-07-08T10:42:00", read: false }
       ]
     }
   ],
@@ -231,7 +291,8 @@ const MOCK_DATA = {
  * Call this on every page load via app.js.
  */
 function seedData() {
-  if (localStorage.getItem('stayEasePro_initialized')) return;
+  const users = JSON.parse(localStorage.getItem('stayEasePro_users') || '[]');
+  if (localStorage.getItem('stayEasePro_initialized') && users.length >= 2) return;
 
   localStorage.setItem('stayEasePro_users',           JSON.stringify(MOCK_DATA.users));
   localStorage.setItem('stayEasePro_rooms',           JSON.stringify(MOCK_DATA.rooms));
