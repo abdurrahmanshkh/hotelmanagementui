@@ -135,8 +135,8 @@ function renderRooms() {
       ? `<span class="text-muted" style="text-decoration:line-through; font-size:0.9rem;">${formatCurrency(r.basePrice)}</span>` : '';
 
     const bookBtn = r.status === 'Available'
-      ? `<a href="room-details.html?id=${r.id}" class="btn btn-primary">Book Now</a>`
-      : `<span class="text-muted font-size-sm">${r.status}</span>`;
+      ? `<a href="room-details.html?id=${r.id}" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: var(--radius-sm); white-space: nowrap;">Book Now</a>`
+      : `<button class="btn btn-secondary" disabled style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: var(--radius-sm); opacity: 0.5; cursor: not-allowed; pointer-events: none; white-space: nowrap;">${r.status}</button>`;
 
     // Map room types to beautiful Unsplash images
     let imgUrl = 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop';
