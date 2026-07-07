@@ -4,22 +4,30 @@
 
 const ADMIN_REPLIES = {
   clean:    "We have received your cleaning request. Housekeeping will be there shortly.",
-  wifi:     "Our team will check the Wi-Fi issue shortly. Try restarting the router in your room.",
+  wifi:     "The Wi-Fi network is 'StayEase_Guest' (no password required, just accept terms) or 'StayEase_Pro_Fast' with password 'Welcome2026'.",
   towel:    "Extra towels will be sent to your room within 10 minutes.",
   food:     "Our staff will assist you with food ordering. Check the in-room menu card.",
   passcode: "Please check your booking details page for your current passcode status.",
-  checkout: "Late check-out can be arranged subject to availability. We'll confirm shortly.",
+  checkout: "Late check-out can be arranged subject to availability (usually up to 1:00 PM for free, or ₹1000 per extra hour). We'll confirm shortly.",
+  gym:      "Our state-of-the-art Fitness Center is located on the 2nd Floor and is open 24/7. Your room keycard grants access.",
+  pool:     "The rooftop swimming pool is on the 12th Floor. Hours: 6:00 AM - 10:00 PM daily. Towels are provided on-site.",
+  transport:"We can arrange local taxi services, private cars, or airport transfers. Let us know your destination and preferred departure time.",
+  breakfast:"Complimentary breakfast is served daily at our 'Spice Route' restaurant on the lobby level from 7:00 AM to 10:30 AM.",
   default:  "Thank you for contacting support. We will assist you shortly."
 };
 
 function getAdminReply(text) {
   const t = text.toLowerCase();
   if (t.includes('clean'))       return ADMIN_REPLIES.clean;
-  if (t.includes('wifi') || t.includes('wi-fi') || t.includes('internet')) return ADMIN_REPLIES.wifi;
+  if (t.includes('wifi') || t.includes('wi-fi') || t.includes('internet') || t.includes('password')) return ADMIN_REPLIES.wifi;
   if (t.includes('towel'))       return ADMIN_REPLIES.towel;
-  if (t.includes('food') || t.includes('order') || t.includes('menu'))    return ADMIN_REPLIES.food;
+  if (t.includes('food') || t.includes('order') || t.includes('menu') || t.includes('dining'))    return ADMIN_REPLIES.food;
   if (t.includes('passcode') || t.includes('key') || t.includes('code'))  return ADMIN_REPLIES.passcode;
   if (t.includes('checkout') || t.includes('check-out') || t.includes('late')) return ADMIN_REPLIES.checkout;
+  if (t.includes('gym') || t.includes('fitness') || t.includes('workout')) return ADMIN_REPLIES.gym;
+  if (t.includes('pool') || t.includes('swim')) return ADMIN_REPLIES.pool;
+  if (t.includes('taxi') || t.includes('transport') || t.includes('cab') || t.includes('airport')) return ADMIN_REPLIES.transport;
+  if (t.includes('breakfast') || t.includes('eat') || t.includes('restaurant')) return ADMIN_REPLIES.breakfast;
   return ADMIN_REPLIES.default;
 }
 
