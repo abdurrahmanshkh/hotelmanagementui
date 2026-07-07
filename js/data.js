@@ -47,7 +47,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Mini Bar", "Rain Shower"],
       status: "Available", cleaningStatus: "Clean", rating: 4.6,
       description: "Spacious deluxe room with a king bed, city view, and premium in-room amenities.",
-      image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -67,7 +67,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Rain Shower", "Coffee Maker", "In-room Safe"],
       status: "Occupied", cleaningStatus: "Clean", rating: 4.8,
       description: "Premium corner deluxe room with panoramic windows and top-tier furnishings.",
-      image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
