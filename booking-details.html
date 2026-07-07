@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking Details - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- Header -->
@@ -24,19 +26,23 @@
     </div>
   </header>
 
-  <div class="container mt-xl mb-xl">
-    <a href="my-bookings.html" class="btn btn-ghost mb-md px-0" style="padding-left:0;"><span class="material-symbols-outlined">arrow_back</span> Back to Bookings</a>
-    
+  <div class="container mt-xl mb-xl" id="bdContent">
+    <a href="my-bookings.html" class="btn btn-ghost mb-md px-0" style="padding-left:0;"><span
+        class="material-symbols-outlined">arrow_back</span> Back to Bookings</a>
+
     <div class="d-flex justify-content-between align-items-center mb-lg flex-wrap gap-sm">
       <div>
         <h2 class="mb-xs">Booking Details</h2>
-        <p class="text-muted font-size-sm">Reservation <span id="bdBookingId" class="text-primary font-weight-600" style="font-family: monospace;">#—</span></p>
+        <p class="text-muted font-size-sm">Reservation <span id="bdBookingId" class="text-primary font-weight-600"
+            style="font-family: monospace;">#—</span></p>
       </div>
       <span id="bdStatus" class="badge badge-primary" style="font-weight: 600; font-size: 0.95rem;">—</span>
     </div>
 
     <!-- Wide Image -->
-    <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop" alt="Room" class="room-hero-img" style="height: 250px;">
+    <img id="bdRoomImage"
+      src="https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=1200&auto=format&fit=crop" alt="Room"
+      class="room-hero-img" style="height: 250px;">
 
     <div class="room-details-layout">
       <!-- Main Details -->
@@ -48,15 +54,18 @@
             <div class="d-flex flex-wrap gap-xl">
               <div>
                 <p class="text-muted font-size-sm text-uppercase mb-xs">Guests</p>
-                <p class="font-weight-600 d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary">group</span> <span id="bdGuests">—</span></p>
+                <p class="font-weight-600 d-flex align-items-center gap-xs"><span
+                    class="material-symbols-outlined text-primary">group</span> <span id="bdGuests">—</span></p>
               </div>
               <div>
                 <p class="text-muted font-size-sm text-uppercase mb-xs">Check-in</p>
-                <p class="font-weight-600 d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary">login</span> <span id="bdCheckIn">—</span></p>
+                <p class="font-weight-600 d-flex align-items-center gap-xs"><span
+                    class="material-symbols-outlined text-primary">login</span> <span id="bdCheckIn">—</span></p>
               </div>
               <div>
                 <p class="text-muted font-size-sm text-uppercase mb-xs">Check-out</p>
-                <p class="font-weight-600 d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary">logout</span> <span id="bdCheckOut">—</span></p>
+                <p class="font-weight-600 d-flex align-items-center gap-xs"><span
+                    class="material-symbols-outlined text-primary">logout</span> <span id="bdCheckOut">—</span></p>
               </div>
             </div>
           </div>
@@ -64,7 +73,8 @@
 
         <!-- Guest Info -->
         <div class="card">
-          <h4 class="mb-sm border-bottom pb-sm d-flex align-items-center gap-xs"><span class="material-symbols-outlined">person</span> Guest Information</h4>
+          <h4 class="mb-sm border-bottom pb-sm d-flex align-items-center gap-xs"><span
+              class="material-symbols-outlined">person</span> Guest Information</h4>
           <div class="d-flex flex-wrap gap-xl">
             <div>
               <p class="text-muted font-size-sm text-uppercase mb-xs">Primary Guest</p>
@@ -88,7 +98,8 @@
 
         <!-- Feedback Section (Shown if completed) -->
         <div class="card" id="feedbackSection" style="display:none;">
-          <h4 class="mb-md d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span> Leave a Review</h4>
+          <h4 class="mb-md d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-secondary"
+              style="font-variation-settings: 'FILL' 1;">star</span> Leave a Review</h4>
           <form id="feedbackForm">
             <div class="form-group">
               <label class="form-label">Rating</label>
@@ -113,7 +124,8 @@
       <aside class="d-flex flex-column gap-lg">
         <!-- Payment Info -->
         <div class="card bg-background" style="border: 1px solid var(--border-color);">
-          <h4 class="mb-lg border-bottom pb-md d-flex align-items-center gap-xs" style="font-size: 1.05rem;"><span class="material-symbols-outlined">credit_card</span> Payment Summary</h4>
+          <h4 class="mb-lg border-bottom pb-md d-flex align-items-center gap-xs" style="font-size: 1.05rem;"><span
+              class="material-symbols-outlined">credit_card</span> Payment Summary</h4>
           <div class="d-flex justify-content-between mb-md">
             <span class="text-muted font-size-sm text-uppercase">Payment Status</span>
             <span class="badge badge-primary" id="bdPaymentStatus" style="font-weight: 600;">—</span>
@@ -129,8 +141,11 @@
         </div>
 
         <!-- Digital Key -->
-        <div class="card text-center" id="bdKeyCard" style="display:none; background: linear-gradient(135deg, var(--primary-light), rgba(212,165,116,0.1)); border: 1px solid var(--border-color);">
-          <h4 class="mb-md d-flex justify-content-center align-items-center gap-xs text-primary" style="font-size: 1.05rem;"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">key</span> Digital Key</h4>
+        <div class="card text-center" id="bdKeyCard"
+          style="display:none; background: linear-gradient(135deg, var(--primary-light), rgba(212,165,116,0.1)); border: 1px solid var(--border-color);">
+          <h4 class="mb-md d-flex justify-content-center align-items-center gap-xs text-primary"
+            style="font-size: 1.05rem;"><span class="material-symbols-outlined"
+              style="font-variation-settings: 'FILL' 1;">key</span> Digital Key</h4>
           <div id="bdPasscodeDisplay"></div>
         </div>
       </aside>
@@ -138,7 +153,11 @@
   </div>
 
   <footer class="site-footer">
-    <div class="container"><div class="footer-bottom"><p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p></div></div>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
+      </div>
+    </div>
   </footer>
 
   <script src="js/data.js"></script>
@@ -155,4 +174,5 @@
   <script src="js/notifications.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>

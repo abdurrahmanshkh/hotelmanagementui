@@ -206,24 +206,15 @@ function cancelBookingFromList(bookingId) {
 function initBookingDetails() {
   const container = document.getElementById('bdContent');
 
-
   if (!container) return;
   if (!requireAuth()) return;
 
-
-  if (el('bdPaymentId')) {
-    el('bdPaymentId').textContent = payment
-      ? `${payment.id} (${payment.method})`
-      : '—';
-  }
-
+  const el = id => document.getElementById(id);
 
   refreshPasscodeStatuses();
 
-
   const params = new URLSearchParams(window.location.search);
   const bookingId = params.get('id') || sessionStorage.getItem('stayEasePro_viewBooking');
-
 
   if (!bookingId) {
     showToast('No booking selected.', 'warning');
@@ -233,12 +224,9 @@ function initBookingDetails() {
     return;
   }
 
-
   sessionStorage.setItem('stayEasePro_viewBooking', bookingId);
 
-
   const booking = findById('stayEasePro_bookings', bookingId);
-
 
   if (!booking) {
     showToast('Booking not found.', 'error');
@@ -248,9 +236,7 @@ function initBookingDetails() {
     return;
   }
 
-
   const currentUser = getCurrentUser();
-
 
   if (!currentUser || booking.userId !== currentUser.id) {
     showToast('You are not allowed to view this booking.', 'error');
@@ -260,15 +246,16 @@ function initBookingDetails() {
     return;
   }
 
-
   const payment = getData('stayEasePro_payments', [])
     .find(p => p.bookingId === booking.id);
 
-
   const room = findById('stayEasePro_rooms', booking.roomId);
 
-
-  const el = id => document.getElementById(id);
+  if (el('bdPaymentId')) {
+    el('bdPaymentId').textContent = payment
+      ? `${payment.id} (${payment.method})`
+      : '—';
+  }
 
 
   const statusClassMap = {
