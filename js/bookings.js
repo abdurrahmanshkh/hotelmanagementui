@@ -454,7 +454,7 @@ function renderBookingDetailsActions(booking, payment) {
 
   if (booking.status === 'Pending Payment') {
     html += `
-      payment.html?id=${booking.id}
+      <a href="payment.html?id=${booking.id}" class="btn btn-primary">
         <span class="material-symbols-outlined">payments</span>
         Complete Payment
       </a>
@@ -464,13 +464,11 @@ function renderBookingDetailsActions(booking, payment) {
 
   if (booking.status === 'Confirmed' || booking.status === 'Checked In') {
     html += `
-      services.html?booking=${booking.id}
+      <a href="services.html?booking=${booking.id}" class="btn btn-primary">
         <span class="material-symbols-outlined">room_service</span>
         Request Service
       </a>
-
-
-      chat.html?booking=${booking.id}
+      <a href="chat.html?booking=${booking.id}" class="btn btn-secondary">
         <span class="material-symbols-outlined">chat</span>
         Chat with Admin
       </a>
