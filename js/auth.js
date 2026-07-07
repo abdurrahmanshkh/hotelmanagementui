@@ -39,10 +39,19 @@ function initSignup() {
   const form = document.getElementById('signupForm');
   if (!form) return;
 
-  form.addEventListener('submit', e => e.preventDefault());
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    handleSignup();
+  });
 
   const btn = form.querySelector('.btn-primary');
-  if (btn) btn.addEventListener('click', handleSignup);
+
+  if (btn) {
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      handleSignup();
+    });
+  }
 }
 
 function handleSignup() {
@@ -116,12 +125,25 @@ function initLogin() {
   const form = document.getElementById('loginForm');
   if (!form) return;
 
-  // If already logged in, redirect to dashboard
-  if (getCurrentUser()) { window.location.href = 'dashboard.html'; return; }
+  if (getCurrentUser()) {
+    window.location.href = 'dashboard.html';
+    return;
+  }
 
-  form.addEventListener('submit', e => e.preventDefault());
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    handleLogin();
+  });
+
   const btn = form.querySelector('.btn-primary');
-  if (btn) btn.addEventListener('click', handleLogin);
+
+
+  if (btn) {
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      handleLogin();
+    });
+  }
 }
 
 function handleLogin() {
