@@ -473,3 +473,28 @@ function initHomeFeaturedRooms() {
     </div>`;
   }).join('');
 }
+
+// Toggle filter sidebar drawer on mobile
+document.addEventListener('click', (e) => {
+  const toggleBtn = e.target.closest('#toggleFiltersBtn');
+  const closeBtn = e.target.closest('.filter-close-btn');
+  const filterPanel = document.querySelector('.rooms-filter-panel');
+
+  if (toggleBtn) {
+    if (filterPanel) filterPanel.classList.add('active');
+    let overlay = document.querySelector('.filter-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'filter-overlay';
+      document.body.appendChild(overlay);
+      setTimeout(() => overlay.classList.add('active'), 10);
+    }
+  } else if (closeBtn || e.target.classList.contains('filter-overlay') || e.target.closest('#applyFilters')) {
+    if (filterPanel) filterPanel.classList.remove('active');
+    const overlay = document.querySelector('.filter-overlay');
+    if (overlay) {
+      overlay.classList.remove('active');
+      setTimeout(() => overlay.remove(), 300);
+    }
+  }
+});

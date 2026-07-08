@@ -744,7 +744,33 @@ html {
     }
 
     .rooms-filter-panel {
-        position: static;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 320px;
+        max-width: 85%;
+        height: 100vh;
+        z-index: 1000;
+        background: var(--surface);
+        box-shadow: var(--shadow-lg);
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        padding: var(--space-lg);
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .rooms-filter-panel.active {
+        transform: translateX(0);
+    }
+
+    .filter-tune-icon {
+        display: none !important;
+    }
+
+    .filter-close-btn {
+        display: block !important;
     }
 
     .rooms-benefits-grid {
@@ -1160,4 +1186,22 @@ html {
     .room-price-main {
         font-size: 2rem;
     }
+}
+
+/* Filter Backdrop Overlay */
+.filter-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    pointer-events: none;
+}
+
+.filter-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
