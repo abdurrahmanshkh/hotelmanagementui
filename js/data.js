@@ -58,7 +58,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Mini Bar", "Rain Shower"],
       status: "Available", cleaningStatus: "Clean", rating: 4.6,
       description: "Spacious deluxe room with a king bed, city view, and premium in-room amenities.",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -68,7 +68,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Bathtub", "Work Desk"],
       status: "Available", cleaningStatus: "Clean", rating: 4.7,
       description: "Our popular deluxe room featuring a relaxing bathtub and a dedicated work desk.",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -78,7 +78,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Rain Shower", "Coffee Maker", "In-room Safe"],
       status: "Occupied", cleaningStatus: "Clean", rating: 4.8,
       description: "Premium corner deluxe room with panoramic windows and top-tier furnishings.",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -88,7 +88,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Living Area", "Kitchenette", "Bathtub", "City View"],
       status: "Occupied", cleaningStatus: "Clean", rating: 4.9,
       description: "Luxury suite with a separate living area, kitchenette, and breathtaking city view.",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -98,7 +98,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Living Area", "Jacuzzi", "Mini Bar"],
       status: "Occupied", cleaningStatus: "Clean", rating: 5.0,
       description: "Our finest suite with a private jacuzzi and world-class finishes throughout.",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&h=400&fit=crop",
       bookedDates: []
     },
     {
@@ -108,7 +108,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Kids Area", "Extra Towels", "Refrigerator"],
       status: "Available", cleaningStatus: "Clean", rating: 4.5,
       description: "Spacious family room with a dedicated kids area and extra sleeping arrangements.",
-      image: "https://images.unsplash.com/photo-1629632072367-48b5b8e22ca2?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop",
       bookedDates: []
     },
     {
@@ -118,7 +118,7 @@ const MOCK_DATA = {
       amenities: ["Wi-Fi", "AC", "Smart TV", "Kids Area", "Kitchenette", "Balcony"],
       status: "Available", cleaningStatus: "Clean", rating: 4.4,
       description: "Our largest family room with a private balcony and full kitchenette for extended stays.",
-      image: "https://images.unsplash.com/photo-1629632072367-48b5b8e22ca2?w=500&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop",
       bookedDates: []
     },
     {
@@ -135,10 +135,10 @@ const MOCK_DATA = {
 
   /* ── Pricing Rules ──────────────────────────────────────────────── */
   pricingRules: [
-    { roomType: "Standard",  basePrice: 1800, lowDemandDiscount: 15, highDemandIncrease: 25, minPrice: 1400, maxPrice: 2500, enabled: true },
-    { roomType: "Deluxe",    basePrice: 2800, lowDemandDiscount: 15, highDemandIncrease: 25, minPrice: 2200, maxPrice: 4000, enabled: true },
-    { roomType: "Suite",     basePrice: 4500, lowDemandDiscount: 10, highDemandIncrease: 30, minPrice: 3800, maxPrice: 6500, enabled: true },
-    { roomType: "Family",    basePrice: 5200, lowDemandDiscount: 10, highDemandIncrease: 25, minPrice: 4500, maxPrice: 7000, enabled: true }
+    { roomType: "Standard", basePrice: 1800, lowDemandDiscount: 15, highDemandIncrease: 25, minPrice: 1400, maxPrice: 2500, enabled: true },
+    { roomType: "Deluxe", basePrice: 2800, lowDemandDiscount: 15, highDemandIncrease: 25, minPrice: 2200, maxPrice: 4000, enabled: true },
+    { roomType: "Suite", basePrice: 4500, lowDemandDiscount: 10, highDemandIncrease: 30, minPrice: 3800, maxPrice: 6500, enabled: true },
+    { roomType: "Family", basePrice: 5200, lowDemandDiscount: 10, highDemandIncrease: 25, minPrice: 4500, maxPrice: 7000, enabled: true }
   ],
 
   /* ── Bookings (sample pre-seeded) ───────────────────────────────── */
@@ -220,9 +220,9 @@ const MOCK_DATA = {
   /* ── Payments ───────────────────────────────────────────────────── */
   payments: [
     { id: "PAY-893021", bookingId: "BK-2026-1042", userId: "USR-1001", amount: 11446, method: "Card", status: "Paid", paidAt: "2026-07-04T12:15:00" },
-    { id: "PAY-893022", bookingId: "BK-2026-1043", userId: "USR-1002", amount: 15930, method: "UPI",  status: "Paid", paidAt: "2026-07-08T09:30:00" },
+    { id: "PAY-893022", bookingId: "BK-2026-1043", userId: "USR-1002", amount: 15930, method: "UPI", status: "Paid", paidAt: "2026-07-08T09:30:00" },
     { id: "PAY-893023", bookingId: "BK-2026-1044", userId: "USR-1002", amount: 15930, method: "Card", status: "Paid", paidAt: "2026-07-08T10:15:00" },
-    { id: "PAY-870112", bookingId: "BK-2026-1015", userId: "USR-1001", amount: 4248,  method: "UPI",  status: "Paid", paidAt: "2026-06-18T09:30:00" }
+    { id: "PAY-870112", bookingId: "BK-2026-1015", userId: "USR-1001", amount: 4248, method: "UPI", status: "Paid", paidAt: "2026-06-18T09:30:00" }
   ],
 
   /* ── Service Requests ───────────────────────────────────────────── */
@@ -251,9 +251,9 @@ const MOCK_DATA = {
       id: "CHAT-305-1042", userId: "USR-1001", bookingId: "BK-2026-1042",
       roomNumber: "305", guestName: "Aarav Sharma", archived: false,
       messages: [
-        { id: "MSG-001", sender: "admin",    text: "Hello Aarav! Welcome to StayEase Pro. How can we help you today?", timestamp: "2026-07-05T14:05:00", read: true },
+        { id: "MSG-001", sender: "admin", text: "Hello Aarav! Welcome to StayEase Pro. How can we help you today?", timestamp: "2026-07-05T14:05:00", read: true },
         { id: "MSG-002", sender: "customer", text: "Hi, I just checked into Room 305. Can I get two extra water bottles?", timestamp: "2026-07-05T14:10:00", read: true },
-        { id: "MSG-003", sender: "admin",    text: "Absolutely! I will send someone up with water right away. Anything else?", timestamp: "2026-07-05T14:11:00", read: true },
+        { id: "MSG-003", sender: "admin", text: "Absolutely! I will send someone up with water right away. Anything else?", timestamp: "2026-07-05T14:11:00", read: true },
         { id: "MSG-004", sender: "customer", text: "No, that's it. Thanks!", timestamp: "2026-07-05T14:12:00", read: true }
       ]
     },
@@ -262,7 +262,7 @@ const MOCK_DATA = {
       roomNumber: "310", guestName: "Emily Chen", archived: false,
       messages: [
         { id: "MSG-010", sender: "customer", text: "Hello! Is pool access free for suite guests?", timestamp: "2026-07-07T16:00:00", read: true },
-        { id: "MSG-011", sender: "admin",    text: "Hi Emily! Yes, rooftop pool access is complimentary for all Suite guests. It is open from 6:00 AM to 10:00 PM.", timestamp: "2026-07-07T16:05:00", read: true },
+        { id: "MSG-011", sender: "admin", text: "Hi Emily! Yes, rooftop pool access is complimentary for all Suite guests. It is open from 6:00 AM to 10:00 PM.", timestamp: "2026-07-07T16:05:00", read: true },
         { id: "MSG-012", sender: "customer", text: "Great! Can I get late checkout tomorrow?", timestamp: "2026-07-08T10:42:00", read: false }
       ]
     }
@@ -270,9 +270,9 @@ const MOCK_DATA = {
 
   /* ── Notifications ──────────────────────────────────────────────── */
   notifications: [
-    { id: "NTF-001", userId: "USR-1001", type: "booking",  message: "Booking BK-2026-1042 confirmed. Have a great stay!", read: false, createdAt: "2026-07-04T12:15:00", relatedId: "BK-2026-1042" },
-    { id: "NTF-002", userId: "USR-1001", type: "payment",  message: "Payment of ₹11,446 received successfully.",         read: true,  createdAt: "2026-07-04T12:15:00", relatedId: "PAY-893021" },
-    { id: "NTF-003", userId: "USR-1001", type: "passcode", message: "Your room passcode is now active for Room 305.",     read: false, createdAt: "2026-07-05T14:00:00", relatedId: "BK-2026-1042" }
+    { id: "NTF-001", userId: "USR-1001", type: "booking", message: "Booking BK-2026-1042 confirmed. Have a great stay!", read: false, createdAt: "2026-07-04T12:15:00", relatedId: "BK-2026-1042" },
+    { id: "NTF-002", userId: "USR-1001", type: "payment", message: "Payment of ₹11,446 received successfully.", read: true, createdAt: "2026-07-04T12:15:00", relatedId: "PAY-893021" },
+    { id: "NTF-003", userId: "USR-1001", type: "passcode", message: "Your room passcode is now active for Room 305.", read: false, createdAt: "2026-07-05T14:00:00", relatedId: "BK-2026-1042" }
   ],
 
   /* ── Feedback ───────────────────────────────────────────────────── */
@@ -294,25 +294,25 @@ function seedData() {
   const users = JSON.parse(localStorage.getItem('stayEasePro_users') || '[]');
   if (localStorage.getItem('stayEasePro_initialized') && users.length >= 2) return;
 
-  localStorage.setItem('stayEasePro_users',           JSON.stringify(MOCK_DATA.users));
-  localStorage.setItem('stayEasePro_rooms',           JSON.stringify(MOCK_DATA.rooms));
-  localStorage.setItem('stayEasePro_pricingRules',    JSON.stringify(MOCK_DATA.pricingRules));
-  localStorage.setItem('stayEasePro_bookings',        JSON.stringify(MOCK_DATA.bookings));
-  localStorage.setItem('stayEasePro_payments',        JSON.stringify(MOCK_DATA.payments));
+  localStorage.setItem('stayEasePro_users', JSON.stringify(MOCK_DATA.users));
+  localStorage.setItem('stayEasePro_rooms', JSON.stringify(MOCK_DATA.rooms));
+  localStorage.setItem('stayEasePro_pricingRules', JSON.stringify(MOCK_DATA.pricingRules));
+  localStorage.setItem('stayEasePro_bookings', JSON.stringify(MOCK_DATA.bookings));
+  localStorage.setItem('stayEasePro_payments', JSON.stringify(MOCK_DATA.payments));
   localStorage.setItem('stayEasePro_serviceRequests', JSON.stringify(MOCK_DATA.serviceRequests));
-  localStorage.setItem('stayEasePro_chats',           JSON.stringify(MOCK_DATA.chats));
-  localStorage.setItem('stayEasePro_notifications',   JSON.stringify(MOCK_DATA.notifications));
-  localStorage.setItem('stayEasePro_feedback',        JSON.stringify(MOCK_DATA.feedback));
-  localStorage.setItem('stayEasePro_initialized',     'true');
+  localStorage.setItem('stayEasePro_chats', JSON.stringify(MOCK_DATA.chats));
+  localStorage.setItem('stayEasePro_notifications', JSON.stringify(MOCK_DATA.notifications));
+  localStorage.setItem('stayEasePro_feedback', JSON.stringify(MOCK_DATA.feedback));
+  localStorage.setItem('stayEasePro_initialized', 'true');
 }
 
 /** Wipe ALL app data and re-seed with defaults. */
 function resetAllData() {
   const keys = [
-    'stayEasePro_users','stayEasePro_rooms','stayEasePro_pricingRules',
-    'stayEasePro_bookings','stayEasePro_payments','stayEasePro_serviceRequests',
-    'stayEasePro_chats','stayEasePro_notifications','stayEasePro_feedback',
-    'stayEasePro_initialized','stayEasePro_currentUser'
+    'stayEasePro_users', 'stayEasePro_rooms', 'stayEasePro_pricingRules',
+    'stayEasePro_bookings', 'stayEasePro_payments', 'stayEasePro_serviceRequests',
+    'stayEasePro_chats', 'stayEasePro_notifications', 'stayEasePro_feedback',
+    'stayEasePro_initialized', 'stayEasePro_currentUser'
   ];
   keys.forEach(k => localStorage.removeItem(k));
   sessionStorage.clear();
