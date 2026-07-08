@@ -13,6 +13,12 @@ const isValidCVV      = v => /^\d{3}$/.test(v);
 const isValidUPI      = v => /^[\w.-]+@[\w]+$/.test(v);
 const isValidRating   = v => Number(v) >= 1 && Number(v) <= 5;
 
+/* Government ID validation */
+const isValidAadhaar  = v => /^\d{12}$/.test(String(v).replace(/[\s-]/g, ''));
+const isValidPAN      = v => /^[A-Z]{5}\d{4}[A-Z]$/i.test(v);
+const isValidPassport = v => /^[A-Z]\d{7}$/i.test(v);
+const isValidDL       = v => /^[A-Z]{2}\d{2}\d{4}\d{7}$/i.test(String(v).replace(/[\s-]/g, ''));
+
 /** Returns true if dateStr (YYYY-MM-DD or ISO) is today or in the future. */
 function isFutureOrToday(dateStr) {
   if (!dateStr) return false;
@@ -35,14 +41,28 @@ function showInlineError(input, msg) {
   const span = document.createElement('span');
   span.className = 'error-message';
   span.textContent = msg;
-  input.parentNode.appendChild(span);
+  
+  const wrap = input.closest('.auth-input-wrap, .rooms-input-icon');
+  if (wrap) {
+    wrap.parentNode.appendChild(span);
+    wrap.classList.add('input-error');
+  } else {
+    input.parentNode.appendChild(span);
+  }
 }
 
 /** Remove inline error from a form field. */
 function clearInlineError(input) {
   input.classList.remove('input-error');
-  const existing = input.parentNode.querySelector('.error-message');
-  if (existing) existing.remove();
+  const wrap = input.closest('.auth-input-wrap, .rooms-input-icon');
+  if (wrap) {
+    wrap.classList.remove('input-error');
+    const existing = wrap.parentNode.querySelector('.error-message');
+    if (existing) existing.remove();
+  } else {
+    const existing = input.parentNode.querySelector('.error-message');
+    if (existing) existing.remove();
+  }
 }
 
 /** Clear all inline errors inside a form element. */

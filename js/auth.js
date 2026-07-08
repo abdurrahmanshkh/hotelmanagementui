@@ -39,13 +39,27 @@ function initSignup() {
   const form = document.getElementById('signupForm');
   if (!form) return;
 
+  const idTypeSelect = document.getElementById('idType');
+  const idNumInput = document.getElementById('idNumber');
+
+  function updateIdPlaceholder() {
+    if (!idTypeSelect || !idNumInput) return;
+    const type = idTypeSelect.value;
+    if (type === 'Aadhaar') idNumInput.placeholder = 'e.g. 1234 5678 9012';
+    else if (type === 'PAN') idNumInput.placeholder = 'e.g. ABCDE1234F';
+    else if (type === 'Passport') idNumInput.placeholder = 'e.g. A1234567';
+    else if (type === 'Driving License') idNumInput.placeholder = 'e.g. DL1420110012345';
+  }
+
+  idTypeSelect?.addEventListener('change', updateIdPlaceholder);
+  updateIdPlaceholder(); // Set initial placeholder
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     handleSignup();
   });
 
   const btn = form.querySelector('.btn-primary');
-
   if (btn) {
     btn.addEventListener('click', function(e){
       e.preventDefault();
@@ -74,12 +88,46 @@ function handleSignup() {
     { showInlineError(email, 'Valid email is required.'); valid = false; }
   if (!isValidPhone(phone?.value))
     { showInlineError(phone, 'Phone must be exactly 10 digits.'); valid = false; }
-  if (!isStrongPassword(pwd?.value))
-    { showInlineError(pwd, 'Password must be at least 8 characters.'); valid = false; }
-  if (!doPasswordsMatch(pwd?.value, cpwd?.value))
-    { showInlineError(cpwd, 'Passwords do not match.'); valid = false; }
-  if (!isRequired(idNum?.value))
-    { showInlineError(idNum, 'Government ID number is required.'); valid = false; }
+
+  // Detailed password validation
+  const pwdVal = pwd?.value || '';
+  const missingRequirements = [];
+  if (pwdVal.length < 8) missingRequirements.push('at least 8 characters');
+  if (!/[A-Z]/.test(pwdVal)) missingRequirements.push('at least 1 uppercase letter');
+  if (!/\d/.test(pwdVal)) missingRequirements.push('at least 1 number');
+
+  if (missingRequirements.length > 0) {
+    showInlineError(pwd, 'Password missing: ' + missingRequirements.join(', ') + '.');
+    valid = false;
+  }
+
+  if (!doPasswordsMatch(pwd?.value, cpwd?.value)) {
+    showInlineError(cpwd, 'Passwords do not match.');
+    valid = false;
+  }
+
+  // ID validation
+  const selectedIdType = idType?.value;
+  const idNumVal = idNum?.value || '';
+  if (!isRequired(idNumVal)) {
+    showInlineError(idNum, 'Government ID number is required.');
+    valid = false;
+  } else {
+    if (selectedIdType === 'Aadhaar' && !isValidAadhaar(idNumVal)) {
+      showInlineError(idNum, 'Invalid Aadhaar format. Must be 12 digits.');
+      valid = false;
+    } else if (selectedIdType === 'PAN' && !isValidPAN(idNumVal)) {
+      showInlineError(idNum, 'Invalid PAN format. E.g., ABCDE1234F.');
+      valid = false;
+    } else if (selectedIdType === 'Passport' && !isValidPassport(idNumVal)) {
+      showInlineError(idNum, 'Invalid Passport format. E.g., A1234567.');
+      valid = false;
+    } else if (selectedIdType === 'Driving License' && !isValidDL(idNumVal)) {
+      showInlineError(idNum, 'Invalid DL format. E.g., DL1420110012345.');
+      valid = false;
+    }
+  }
+
   if (terms && !terms.checked)
     { showToast('You must accept Terms and Conditions.', 'warning'); valid = false; }
 
