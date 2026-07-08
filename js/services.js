@@ -112,7 +112,7 @@ function renderServiceHistory() {
     return `
       <div class="card p-md d-flex justify-content-between align-items-center gap-md flex-wrap">
         <div class="d-flex gap-sm align-items-center">
-          <div class="bg-surface-alt p-sm rounded-full text-muted"><span class="material-symbols-outlined">${icon}</span></div>
+          <div class="bg-surface-alt p-sm text-muted" style="border-radius: 50%;"><span class="material-symbols-outlined">${icon}</span></div>
           <div>
             <h4 class="mb-xs font-size-sm">${req.details}</h4>
             <p class="text-muted font-size-sm">Room #${req.roomNumber} • ${new Date(req.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>

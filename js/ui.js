@@ -87,7 +87,7 @@ function showEmptyState(container, icon, heading, message, btnHtml = '') {
     <div class="empty-state card w-100" style="display:flex; flex-direction:column; align-items:center;">
       <div class="empty-state-icon text-muted mb-sm">${iconHtml}</div>
       <h3 class="mb-xs">${heading}</h3>
-      <p class="text-muted mt-sm mb-lg max-w-sm mx-auto">${message}</p>
+      <p class="text-muted mt-sm mb-lg" style="margin-left:auto; margin-right:auto; max-width: 450px;">${message}</p>
       ${btnHtml}
     </div>`;
 }
