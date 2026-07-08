@@ -1,106 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StayEase Pro Admin - Login</title>
   <link rel="stylesheet" href="../css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
   <style>
-    .admin-login-wrapper {
+    body.admin-body {
+      margin: 0;
+      padding: 0;
+      background: #f9f7f4;
+      display: block;
+    }
+
+    .admin-login-page {
+      position: relative;
       min-height: 100vh;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(212, 165, 116, 0.24), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(45, 90, 107, 0.16), transparent 36%),
+        linear-gradient(135deg, #f9f7f4 0%, #f3eee8 100%);
+    }
+
+    .admin-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(12px);
+      pointer-events: none;
+      opacity: 0.5;
+      animation: adminFloatOrb 8s ease-in-out infinite;
+    }
+
+    .admin-bg-orb-1 {
+      width: 260px;
+      height: 260px;
+      left: -90px;
+      top: 10%;
+      background: rgba(212, 165, 116, 0.28);
+    }
+
+    .admin-bg-orb-2 {
+      width: 300px;
+      height: 300px;
+      right: -120px;
+      bottom: 6%;
+      background: rgba(45, 90, 107, 0.18);
+      animation-delay: 1.5s;
+    }
+
+    @keyframes adminFloatOrb {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-15px) scale(1.05);
+      }
+    }
+
+    .admin-shell {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      min-height: 100vh;
+    }
+
+    /* Visual Side */
+    .admin-visual-panel {
+      position: relative;
+      overflow: hidden;
+      background-image: linear-gradient(rgba(45, 90, 107, 0.88), rgba(31, 63, 79, 0.95)),
+        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+    }
+
+    .admin-visual-content {
+      position: relative;
+      z-index: 2;
+      max-width: 580px;
+      padding-bottom: 7.5rem;
+    }
+
+    .admin-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--admin-secondary);
+      background: rgba(212, 165, 116, 0.15);
+      border: 1px solid rgba(212, 165, 116, 0.25);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-kicker .material-symbols-outlined {
+      font-size: 1rem;
+    }
+
+    .admin-visual-content h1 {
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .admin-visual-content p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .admin-visual-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 400px;
+    }
+
+    .admin-visual-stats div {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1rem;
+      border-radius: var(--admin-radius-lg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .admin-visual-stats strong {
+      display: block;
+      font-size: 1.25rem;
+      color: var(--admin-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .admin-visual-stats span {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .admin-floating-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 1rem;
+      border-radius: var(--admin-radius-lg);
+      display: flex;
+      gap: 0.75rem;
+      width: 80%;
+      max-width: 320px;
+      z-index: 3;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .admin-floating-card span {
+      color: var(--admin-secondary);
+      font-size: 1.8rem;
+    }
+
+    .admin-floating-card strong {
+      display: block;
+      color: white;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .admin-floating-card small {
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .admin-floating-top {
+      top: 2rem;
+      right: 2rem;
+    }
+
+    .admin-floating-bottom {
+      bottom: 2rem;
+      left: 2rem;
+    }
+
+    /* Form Side */
+    .admin-form-panel {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--admin-primary);
-      padding: var(--admin-space-lg);
+      padding: 3rem 2rem;
     }
-    .admin-login-card {
-      background-color: var(--admin-surface);
-      border-radius: var(--admin-radius-xl);
-      box-shadow: var(--admin-shadow-lg);
+
+    .admin-form-card {
       width: 100%;
-      max-width: 440px;
-      overflow: hidden;
+      max-width: 400px;
     }
-    .admin-login-header {
-      padding: var(--admin-space-xl);
+
+    .admin-form-header {
       text-align: center;
-      background-color: var(--admin-surface-alt);
-      border-bottom: 1px solid var(--admin-surface-border);
+      margin-bottom: 2rem;
     }
-    .admin-login-body {
-      padding: var(--admin-space-xl);
-    }
-    .demo-credentials {
-      margin-top: var(--admin-space-lg);
-      padding: var(--admin-space-md);
-      background-color: var(--admin-info-bg);
+
+    .admin-form-header .brand-icon {
+      margin: 0 auto 1rem auto;
+      width: 56px;
+      height: 56px;
+      background: var(--admin-primary);
+      color: white;
       border-radius: var(--admin-radius-md);
-      font-size: 0.875rem;
-      color: var(--admin-info);
-      border: 1px dashed var(--admin-info);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--admin-shadow-md);
+    }
+
+    .admin-form-header .brand-icon span {
+      font-size: 2rem;
+    }
+
+    .admin-form-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: var(--admin-text-main);
+    }
+
+    .admin-form-header p {
+      color: var(--admin-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .admin-form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .admin-form-label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--admin-text-main);
+    }
+
+    .admin-input-wrap {
+      position: relative;
+    }
+
+    .admin-input-wrap .material-symbols-outlined {
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--admin-text-light);
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    .admin-form-control {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.5rem 1rem 0.5rem 2.8rem;
+      border: 1px solid var(--admin-surface-border);
+      border-radius: var(--admin-radius-md);
+      background: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: inherit;
+      transition: var(--admin-transition);
+    }
+
+    .admin-form-control:focus {
+      outline: none;
+      border-color: var(--admin-primary);
+      box-shadow: 0 0 0 3px rgba(45, 90, 107, 0.15);
+    }
+
+    .demo-credentials {
+      background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(61, 106, 139, 0.05));
+      border: 1px solid var(--admin-secondary-light);
+      color: var(--admin-text-main);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .admin-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-visual-panel {
+        min-height: 400px;
+        padding: 3rem 2rem;
+      }
+
+      .admin-visual-content {
+        padding-bottom: 6rem;
+      }
+
+      .admin-floating-top {
+        right: 1.5rem;
+      }
+
+      .admin-floating-bottom {
+        left: 1.5rem;
+        bottom: 1.5rem;
+      }
+
+      .admin-form-panel {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .admin-visual-panel {
+        min-height: 340px;
+      }
+
+      .admin-visual-content {
+        padding-bottom: 5.5rem;
+      }
+
+      .admin-floating-card {
+        width: 86%;
+      }
+
+      .admin-floating-card small {
+        display: none;
+      }
+
+      .admin-visual-stats {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .admin-form-panel {
+        padding: 2rem 1rem;
+      }
     }
   </style>
 </head>
+
 <body class="admin-body">
 
-  <div class="admin-login-wrapper w-100">
-    <div class="admin-login-card">
-      <div class="admin-login-header" style="background: linear-gradient(135deg, var(--admin-primary), var(--admin-primary-hover)); color: white;">
-        <div class="brand-icon" style="margin: 0 auto 16px auto; width: 56px; height: 56px; background: var(--admin-secondary); color: white; border-radius: var(--admin-radius-md); display:flex; align-items:center; justify-content:center; box-shadow: 0 8px 24px rgba(212, 165, 116, 0.3);">
-          <span class="material-symbols-outlined" style="font-size:32px;">domain</span>
-        </div>
-        <h2 style="margin:0; font-size:1.75rem; color:white; font-weight: 700;">StayEase Pro</h2>
-        <p style="margin:8px 0 0 0; color:rgba(255,255,255,0.8); font-size:0.95rem;">Admin Console</p>
-      </div>
-      
-      <div class="admin-login-body">
-        <form id="adminLoginForm">
-          <!-- Validation Placeholder Error -->
-          <div class="error-message mb-md" style="display:none; padding:12px; background:var(--admin-danger-bg); border-radius:var(--admin-radius-md);">
-            Invalid email or password.
-          </div>
+  <main class="admin-login-page w-100">
+    <div class="admin-bg-orb admin-bg-orb-1"></div>
+    <div class="admin-bg-orb admin-bg-orb-2"></div>
 
-          <div class="admin-form-group">
-            <label class="admin-form-label">Email Address</label>
-            <input type="email" id="email" class="admin-form-control" placeholder="admin@example.com" required>
-          </div>
-          
-          <div class="admin-form-group">
-            <label class="admin-form-label">Password</label>
-            <input type="password" id="password" class="admin-form-control" placeholder="••••••••" required>
-          </div>
-          
-          <div class="admin-form-group">
-            <label class="admin-form-label">Staff Code (Optional)</label>
-            <input type="text" id="staffCode" class="admin-form-control" placeholder="e.g. STF-123">
-          </div>
+    <section class="admin-shell">
+      <!-- Visual Side -->
+      <aside class="admin-visual-panel">
+        <div class="admin-visual-overlay"></div>
 
-          <div class="d-flex justify-between align-center mb-lg mt-md flex-wrap gap-sm">
-            <label style="font-size:0.875rem; display:flex; align-items:center; gap:8px; cursor:pointer;">
-              <input type="checkbox" style="accent-color:var(--admin-primary);"> Remember me
-            </label>
+        <div class="admin-floating-card admin-floating-top">
+          <span class="material-symbols-outlined">analytics</span>
+          <div>
+            <strong>Live Metrics</strong>
+            <small>Track revenue, stays, and service requests in real-time.</small>
           </div>
-
-          <button type="submit" class="admin-btn admin-btn-primary w-100" style="padding: 12px; font-weight: 600;">Sign In to Dashboard</button>
-        </form>
-
-        <div class="demo-credentials" style="background: linear-gradient(135deg, rgba(212,165,116,0.1), rgba(61,106,139,0.05)); border: 1px solid var(--admin-secondary-light); color: var(--admin-text-main);">
-          <strong style="color: var(--admin-primary);">Demo Admin Credentials:</strong><br>
-          <span style="font-family: monospace; font-size: 0.85rem;">Email: admin@example.com</span><br>
-          <span style="font-family: monospace; font-size: 0.85rem;">Password: Admin@123</span>
         </div>
 
-        <div class="text-center mt-xl">
-          <a href="../index.html" style="font-size:0.875rem; color:var(--admin-text-muted); text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
-            <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span> Back to Customer Portal
-          </a>
+        <div class="admin-floating-card admin-floating-bottom">
+          <span class="material-symbols-outlined">forum</span>
+          <div>
+            <strong>Staff Comms</strong>
+            <small>Direct chat thread channels with guests.</small>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
+
+        <div class="admin-visual-content">
+          <span class="admin-kicker">
+            <span class="material-symbols-outlined">shield_person</span>
+            Management Console
+          </span>
+
+          <h1>Control modern hospitality.</h1>
+          <p>
+            Oversee room statuses, update live pricing demands, assign housekeeping duties, and resolve guest support
+            requests instantly.
+          </p>
+
+          <div class="admin-visual-stats">
+            <div>
+              <strong>Real-time</strong>
+              <span>Updates</span>
+            </div>
+            <div>
+              <strong>Secure</strong>
+              <span>Access</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Form Side -->
+      <section class="admin-form-panel">
+        <div class="admin-form-card">
+          <div class="admin-form-header">
+            <div class="brand-icon">
+              <span class="material-symbols-outlined">domain</span>
+            </div>
+            <h2>StayEase Pro</h2>
+            <p>Admin & Staff Control Console</p>
+          </div>
+
+          <form id="adminLoginForm" class="admin-form">
+            <!-- Validation Placeholder Error -->
+            <div class="error-message mb-md" id="adminLoginError"
+              style="display:none; padding:12px; background:var(--admin-danger-bg); border-radius:var(--admin-radius-md); color: var(--admin-danger);">
+              Invalid email or password.
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="email">Email Address</label>
+              <div class="admin-input-wrap">
+                <span class="material-symbols-outlined">mail</span>
+                <input type="email" id="email" class="admin-form-control" placeholder="admin@example.com" required>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="password">Password</label>
+              <div class="admin-input-wrap">
+                <span class="material-symbols-outlined">lock</span>
+                <input type="password" id="password" class="admin-form-control" placeholder="••••••••" required>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="staffCode">Staff Code (Optional)</label>
+              <div class="admin-input-wrap">
+                <span class="material-symbols-outlined">badge</span>
+                <input type="text" id="staffCode" class="admin-form-control" placeholder="e.g. STAFF2026">
+              </div>
+            </div>
+
+            <button type="submit" class="admin-btn admin-btn-primary w-100" style="padding: 12px; font-weight: 600;">
+              Sign In to Dashboard
+            </button>
+          </form>
+
+          <div class="demo-credentials"
+            style="margin-top: var(--admin-space-lg); padding: var(--admin-space-md); border-radius: var(--admin-radius-md);">
+            <strong style="color: var(--admin-primary);">Demo Admin Credentials:</strong>
+            <div style="font-family: monospace; font-size: 0.85rem; margin-top: 4px;">
+              <span>Email: admin@example.com</span><br>
+              <span>Password: Admin@123</span><br>
+              <span>Staff Code: STAFF2026 (Optional)</span>
+            </div>
+          </div>
+
+          <div class="text-center mt-xl">
+            <a href="../index.html"
+              style="font-size:0.875rem; color:var(--admin-text-muted); text-decoration:none; display:inline-flex; align-items:center; gap:4px; margin-top: 25px;">
+              <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span> Back to Customer Portal
+            </a>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
 
   <script src="../js/storage.js"></script>
   <script src="../js/data.js"></script>
@@ -121,4 +498,5 @@
   <script src="../js/admin/admin-settings.js"></script>
   <script src="../js/admin/admin-app.js"></script>
 </body>
+
 </html>
