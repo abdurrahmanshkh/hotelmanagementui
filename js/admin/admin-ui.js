@@ -89,8 +89,34 @@ function closeAllModals() {
 /** Sidebar Toggle */
 function toggleSidebar() {
   const sidebar = document.getElementById('adminSidebar');
-  if (sidebar) {
-    sidebar.classList.toggle('open');
+  if (!sidebar) return;
+
+  sidebar.classList.toggle('open');
+
+  let overlay = document.getElementById('adminSidebarOverlay');
+  if (sidebar.classList.contains('open')) {
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'adminSidebarOverlay';
+      overlay.className = 'admin-sidebar-overlay';
+      overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 35;
+      `;
+      overlay.addEventListener('click', toggleSidebar);
+      document.body.appendChild(overlay);
+    }
+  } else {
+    if (overlay) {
+      overlay.remove();
+    }
   }
 }
 

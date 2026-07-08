@@ -7,20 +7,121 @@
   <link rel="stylesheet" href="../css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    /* Premium Dashboard Aesthetic Updates */
+    .admin-card {
+      border: 1px solid rgba(45, 90, 107, 0.08);
+      box-shadow: 0 4px 20px rgba(45, 90, 107, 0.04);
+      background: white;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .admin-card:hover {
+      box-shadow: 0 12px 30px rgba(45, 90, 107, 0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Metric gradient badges & colored icon rings */
+    .metric-icon-ring {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--admin-radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--admin-space-sm);
+      transition: var(--admin-transition);
+    }
+
+    .admin-card:hover .metric-icon-ring {
+      transform: scale(1.08);
+    }
+
+    .ring-rooms { background: var(--admin-primary-light); color: var(--admin-primary); }
+    .ring-available { background: var(--admin-success-bg); color: var(--admin-success); }
+    .ring-occupancy { background: var(--admin-info-bg); color: var(--admin-info); }
+    .ring-revenue { background: var(--admin-secondary-light); color: var(--admin-secondary); }
+    .ring-requests { background: var(--admin-danger-bg); color: var(--admin-danger); }
+    .ring-chats { background: var(--admin-warning-bg); color: var(--admin-warning); }
+
+    /* Sparkline bars at bottom of revenue card */
+    .sparkline-container {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 32px;
+      margin-top: auto;
+    }
+
+    .sparkbar {
+      flex: 1;
+      background: var(--admin-secondary);
+      opacity: 0.3;
+      border-radius: 2px 2px 0 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .sparkbar:hover {
+      opacity: 1;
+    }
+
+    /* Operations panel styling */
+    .ops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--admin-space-md);
+      margin-top: var(--admin-space-sm);
+    }
+
+    .ops-button {
+      background: var(--admin-bg);
+      border: 1px solid var(--admin-surface-border);
+      border-radius: var(--admin-radius-lg);
+      padding: var(--admin-space-md);
+      text-decoration: none;
+      color: var(--admin-text-main);
+      display: flex;
+      flex-direction: column;
+      gap: var(--admin-space-xs);
+      transition: var(--admin-transition);
+    }
+
+    .ops-button:hover {
+      background: var(--admin-primary-light);
+      border-color: var(--admin-primary);
+      color: var(--admin-primary-hover);
+    }
+
+    .ops-button span.material-symbols-outlined {
+      font-size: 1.5rem;
+    }
+
+    /* Mobile Sidebar Close Trigger */
+    @media (max-width: 1024px) {
+      .admin-sidebar-close-btn {
+        display: block !important;
+      }
+    }
+  </style>
 </head>
 <body class="admin-body">
 
   <!-- Sidebar -->
   <aside class="admin-sidebar" id="adminSidebar">
-    <a href="dashboard.html" class="admin-brand">
-      <div class="brand-icon">
-        <span class="material-symbols-outlined">domain</span>
-      </div>
-      <div class="brand-text">
-        <h1>StayEase Pro</h1>
-        <p>Admin Console</p>
-      </div>
-    </a>
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; padding-right: var(--admin-space-md);">
+      <a href="dashboard.html" class="admin-brand" style="flex: 1;">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined" style="color: white;">domain</span>
+        </div>
+        <div class="brand-text">
+          <h1>StayEase Pro</h1>
+          <p>Admin Console</p>
+        </div>
+      </a>
+      <button class="admin-sidebar-close-btn" onclick="toggleSidebar()" style="display:none; background:none; border:none; color:white; cursor:pointer; padding: 4px;">
+        <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
+      </button>
+    </div>
     
     <nav class="admin-nav mt-md">
       <a href="dashboard.html" class="admin-nav-item active">
@@ -75,9 +176,8 @@
       </div>
       
       <div class="topbar-right">
-        
-        <div class="admin-profile">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+        <div class="admin-profile" style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar" style="border-radius: 50%;">
           <span class="admin-profile-name">Priya Mehta</span>
           <span class="material-symbols-outlined text-muted" style="font-size:18px;">expand_more</span>
         </div>
@@ -106,24 +206,29 @@
       <div class="admin-bento-grid">
         <!-- Metric: Total Rooms -->
         <div class="admin-card">
-          <span class="material-symbols-outlined card-bg-icon">domain</span>
+          <div class="metric-icon-ring ring-rooms">
+            <span class="material-symbols-outlined">domain</span>
+          </div>
           <span class="metric-label">Total Rooms</span>
           <span class="metric-value">50</span>
         </div>
 
         <!-- Metric: Available -->
         <div class="admin-card">
-          <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 12%</div>
+          <div class="metric-icon-ring ring-available">
+            <span class="material-symbols-outlined">check_circle</span>
+          </div>
           <span class="metric-label">Available</span>
           <span class="metric-value">12</span>
         </div>
 
         <!-- Metric: Occupancy -->
         <div class="admin-card">
-          <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 4%</div>
+          <div class="metric-icon-ring ring-occupancy">
+            <span class="material-symbols-outlined">analytics</span>
+          </div>
           <span class="metric-label">Occupancy Rate</span>
           <span class="metric-value">76%</span>
-          <!-- CSS Progress bar placeholder -->
           <div style="width:100%; height:6px; background:var(--admin-surface-border); border-radius:3px; margin-top:8px; overflow:hidden;">
             <div style="width:76%; height:100%; background:var(--admin-primary); border-radius:3px;"></div>
           </div>
@@ -131,50 +236,95 @@
 
         <!-- Metric: Revenue -->
         <div class="admin-card col-span-2">
-          <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 8.5%</div>
+          <div class="d-flex justify-between align-center mb-xs">
+            <div class="metric-icon-ring ring-revenue">
+              <span class="material-symbols-outlined">payments</span>
+            </div>
+            <div class="metric-trend up"><span class="material-symbols-outlined" style="font-size:14px;">arrow_upward</span> 8.5%</div>
+          </div>
           <span class="metric-label">Revenue Today</span>
-          <span class="metric-value text-success">₹ 1,24,500</span>
-          <!-- Chart Placeholder -->
-          <div class="chart-placeholder" style="height:40px; padding:0; background:transparent; margin-top:12px;">
-            <div class="chart-bar" style="height:30%; opacity:0.5;"></div>
-            <div class="chart-bar" style="height:50%; opacity:0.5;"></div>
-            <div class="chart-bar" style="height:40%; opacity:0.5;"></div>
-            <div class="chart-bar" style="height:80%; opacity:0.5;"></div>
-            <div class="chart-bar" style="height:60%; opacity:0.5;"></div>
-            <div class="chart-bar" style="height:100%;"></div>
+          <span class="metric-value text-success" style="font-size: 2.2rem;">₹ 1,24,500</span>
+          <div class="sparkline-container">
+            <div class="sparkbar" style="height:35%;"></div>
+            <div class="sparkbar" style="height:55%;"></div>
+            <div class="sparkbar" style="height:45%;"></div>
+            <div class="sparkbar" style="height:85%;"></div>
+            <div class="sparkbar" style="height:65%;"></div>
+            <div class="sparkbar" style="height:100%;"></div>
           </div>
         </div>
         
         <!-- Metric: Pending Services -->
         <div class="admin-card">
-          <div class="metric-trend down"><span class="material-symbols-outlined" style="font-size:14px;">warning</span> 2 High</div>
+          <div class="d-flex justify-between align-center mb-xs">
+            <div class="metric-icon-ring ring-requests">
+              <span class="material-symbols-outlined">room_service</span>
+            </div>
+            <div class="metric-trend down"><span class="material-symbols-outlined" style="font-size:14px;">warning</span> 2 High</div>
+          </div>
           <span class="metric-label">Service Requests</span>
           <span class="metric-value">5</span>
         </div>
 
         <!-- Metric: Unread Chats -->
         <div class="admin-card">
+          <div class="metric-icon-ring ring-chats">
+            <span class="material-symbols-outlined">chat</span>
+          </div>
           <span class="metric-label">Unread Chats</span>
           <span class="metric-value" style="color:var(--admin-secondary-hover);">3</span>
         </div>
       </div>
 
-      <!-- Charts Section (Placeholders) -->
-      <div class="admin-bento-grid">
+      <!-- Charts & Operations split section -->
+      <div class="admin-grid-half mb-xl">
+        <!-- Left: Occupancy Trend -->
         <div class="admin-card">
           <div class="d-flex justify-between align-center mb-md flex-wrap gap-sm">
             <h3 style="margin:0; font-size:1.125rem;">Occupancy Trend</h3>
             <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined">more_vert</span></button>
           </div>
-          <div class="chart-placeholder">
+          <div class="chart-placeholder" style="margin-top: auto; display: flex; align-items: flex-end; gap: 12px; height: 160px; padding: 10px 0; background: transparent;">
             <!-- Simulated chart bars -->
-            <div class="chart-bar" style="height: 40%"></div>
-            <div class="chart-bar" style="height: 60%"></div>
-            <div class="chart-bar" style="height: 55%"></div>
-            <div class="chart-bar" style="height: 80%"></div>
-            <div class="chart-bar" style="height: 95%"></div>
-            <div class="chart-bar" style="height: 70%"></div>
-            <div class="chart-bar" style="height: 85%"></div>
+            <div class="chart-bar" style="height: 40%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+            <div class="chart-bar" style="height: 60%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+            <div class="chart-bar" style="height: 55%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+            <div class="chart-bar" style="height: 80%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+            <div class="chart-bar" style="height: 95%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+            <div class="chart-bar" style="height: 70%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+            <div class="chart-bar" style="height: 85%; width: 100%; background: var(--admin-primary); border-radius: 4px 4px 0 0; opacity: 0.85;"></div>
+          </div>
+        </div>
+
+        <!-- Right: Quick Operations Control -->
+        <div class="admin-card">
+          <div class="d-flex justify-between align-center mb-md flex-wrap gap-sm">
+            <h3 style="margin:0; font-size:1.125rem;">Quick Operations Control</h3>
+            <span class="admin-badge badge-success" style="font-size: 0.78rem;">Console Online</span>
+          </div>
+          <p class="text-muted font-size-sm mb-md">Quick shortcut triggers to manage active rooms, assign tasks, and chat with guests.</p>
+          
+          <div class="ops-grid">
+            <a href="rooms.html" class="ops-button">
+              <span class="material-symbols-outlined text-primary">bed</span>
+              <strong>Room Statuses</strong>
+              <small class="text-muted" style="font-size: 0.78rem;">Manage room cleaning/status</small>
+            </a>
+            <a href="housekeeping.html" class="ops-button">
+              <span class="material-symbols-outlined text-success">cleaning_services</span>
+              <strong>Housekeeping</strong>
+              <small class="text-muted" style="font-size: 0.78rem;">Track tasks & assignments</small>
+            </a>
+            <a href="service-requests.html" class="ops-button">
+              <span class="material-symbols-outlined text-danger">room_service</span>
+              <strong>Requests</strong>
+              <small class="text-muted" style="font-size: 0.78rem;">Resolve guest requests</small>
+            </a>
+            <a href="chats.html" class="ops-button">
+              <span class="material-symbols-outlined text-warning">chat</span>
+              <strong>Guest Chats</strong>
+              <small class="text-muted" style="font-size: 0.78rem;">Open communication channels</small>
+            </a>
           </div>
         </div>
       </div>
@@ -182,7 +332,7 @@
       <!-- Tables Section -->
       <div class="page-header" style="margin-bottom: var(--admin-space-md); margin-top: var(--admin-space-xl);">
         <h3 style="margin:0;">Recent Bookings</h3>
-        <button class="admin-btn admin-btn-primary">View All</button>
+        <a href="bookings.html" class="admin-btn admin-btn-primary" style="text-decoration: none;">View All</a>
       </div>
       
       <div class="table-container">
@@ -201,34 +351,7 @@
           </thead>
           <tbody>
             <tr>
-              <td data-label="Booking ID">BK-2026-1042</td>
-              <td data-label="Guest Name">Aarav Sharma</td>
-              <td data-label="Room">305 (Deluxe)</td>
-              <td data-label="Check-in">Oct 12, 2026</td>
-              <td data-label="Check-out">Oct 15, 2026</td>
-              <td data-label="Status"><span class="admin-badge badge-info">Checked In</span></td>
-              <td data-label="Payment"><span class="admin-badge badge-success">Paid</span></td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Booking ID">BK-2026-1043</td>
-              <td data-label="Guest Name">Emily Chen</td>
-              <td data-label="Room">410 (Suite)</td>
-              <td data-label="Check-in">Oct 14, 2026</td>
-              <td data-label="Check-out">Oct 18, 2026</td>
-              <td data-label="Status"><span class="admin-badge badge-warning">Confirmed</span></td>
-              <td data-label="Payment"><span class="admin-badge badge-warning">Pending</span></td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
-                </div>
-              </td>
+              <td colspan="8" class="text-center text-muted">Loading bookings...</td>
             </tr>
           </tbody>
         </table>
