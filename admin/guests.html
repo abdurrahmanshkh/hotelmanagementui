@@ -7,17 +7,61 @@
   <link rel="stylesheet" href="../css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    /* Premium Guests Aesthetic Updates */
+    .filter-card {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--admin-space-md);
+      align-items: flex-end;
+    }
+
+    .filter-card .search-bar {
+      width: 100% !important;
+    }
+
+    .filter-card .search-bar input {
+      width: 100% !important;
+      border-radius: var(--admin-radius-md) !important;
+      background-color: var(--admin-surface) !important;
+      border: 1px solid var(--admin-surface-border) !important;
+      padding: 10px 14px 10px 40px !important;
+      height: 40px !important;
+      box-sizing: border-box !important;
+    }
+
+    .filter-card .search-bar .material-symbols-outlined {
+      left: 12px !important;
+    }
+
+    /* Mobile Sidebar Close Trigger */
+    @media (max-width: 1024px) {
+      .admin-sidebar-close-btn {
+        display: block !important;
+      }
+      
+      .filter-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body class="admin-body">
 
+  <!-- Sidebar -->
   <aside class="admin-sidebar" id="adminSidebar">
     <a href="dashboard.html" class="admin-brand">
-      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-icon">
+        <span class="material-symbols-outlined" style="color: white;">domain</span>
+      </div>
       <div class="brand-text">
         <h1>StayEase Pro</h1>
         <p>Admin Console</p>
       </div>
     </a>
+    <button class="admin-sidebar-close-btn" onclick="toggleSidebar()" style="position: absolute; top: 20px; right: 15px; display: none; background: none; border: none; color: white; cursor: pointer; padding: 4px; z-index: 50;">
+      <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
+    </button>
     <nav class="admin-nav mt-md">
       <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
       <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
@@ -33,15 +77,17 @@
     </nav>
   </aside>
 
+  <!-- Main Content -->
   <div class="admin-main">
     <header class="admin-topbar">
       <div class="topbar-left">
-        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+        <button class="menu-toggle" id="menuToggle"><span class="material-symbols-outlined">menu</span></button>
       </div>
       <div class="topbar-right">
-        <div class="admin-profile">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+        <div class="admin-profile" style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar" style="border-radius: 50%;">
           <span class="admin-profile-name">Priya Mehta</span>
+          <span class="material-symbols-outlined text-muted" style="font-size:18px;">expand_more</span>
         </div>
       </div>
     </header>
@@ -55,15 +101,15 @@
         </div>
       </div>
 
-      <div class="admin-card mb-lg" style="flex-direction:row; flex-wrap:wrap; gap:var(--admin-space-md); align-items:flex-end;">
-        <div class="admin-form-group" style="margin:0; flex:2; min-width:250px;">
+      <div class="admin-card mb-lg filter-card">
+        <div class="admin-form-group">
           <label class="admin-form-label">Search</label>
           <div class="search-bar" style="width:100%;">
             <span class="material-symbols-outlined">search</span>
             <input type="text" placeholder="Name, Phone, Email...">
           </div>
         </div>
-        <div class="admin-form-group" style="margin:0; flex:1; min-width:150px;">
+        <div class="admin-form-group">
           <label class="admin-form-label">Status</label>
           <select class="admin-form-control">
             <option>All Guests</option>
@@ -88,43 +134,7 @@
           </thead>
           <tbody>
             <tr>
-              <td data-label="Guest Name"><strong>Aarav Sharma</strong></td>
-              <td data-label="Contact">aarav@example.com<br><span class="text-muted">+91 9876543210</span></td>
-              <td data-label="Current Room">305</td>
-              <td data-label="Total Stays">3</td>
-              <td data-label="Status"><span class="admin-badge badge-success">Active Guest</span></td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Guest Name"><strong>Emily Chen</strong></td>
-              <td data-label="Contact">emily.c@example.com<br><span class="text-muted">+91 9988776655</span></td>
-              <td data-label="Current Room">-</td>
-              <td data-label="Total Stays">1</td>
-              <td data-label="Status"><span class="admin-badge badge-warning">Upcoming Guest</span></td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Guest Name"><strong>John Doe</strong></td>
-              <td data-label="Contact">john.doe@example.com<br><span class="text-muted">+91 8877665544</span></td>
-              <td data-label="Current Room">-</td>
-              <td data-label="Total Stays">5</td>
-              <td data-label="Status"><span class="admin-badge badge-neutral">Past Guest</span></td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View Profile"><span class="material-symbols-outlined" style="font-size:18px;">account_circle</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Chat"><span class="material-symbols-outlined" style="font-size:18px;">chat</span></button>
-                </div>
-              </td>
+              <td colspan="6" class="text-center text-muted">Loading guests...</td>
             </tr>
           </tbody>
         </table>
@@ -132,6 +142,7 @@
 
     </main>
   </div>
+
   <script src="../js/storage.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/admin/admin-data.js"></script>

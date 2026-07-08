@@ -7,17 +7,38 @@
   <link rel="stylesheet" href="../css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <style>
+    /* Premium Pricing Aesthetic Updates */
+    .pricing-explanation-card {
+      background: linear-gradient(135deg, var(--admin-primary), var(--admin-primary-hover));
+      color: white;
+      border: none;
+    }
+
+    /* Mobile Sidebar Close Trigger */
+    @media (max-width: 1024px) {
+      .admin-sidebar-close-btn {
+        display: block !important;
+      }
+    }
+  </style>
 </head>
 <body class="admin-body">
 
+  <!-- Sidebar -->
   <aside class="admin-sidebar" id="adminSidebar">
     <a href="dashboard.html" class="admin-brand">
-      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-icon">
+        <span class="material-symbols-outlined" style="color: white;">domain</span>
+      </div>
       <div class="brand-text">
         <h1>StayEase Pro</h1>
         <p>Admin Console</p>
       </div>
     </a>
+    <button class="admin-sidebar-close-btn" onclick="toggleSidebar()" style="position: absolute; top: 20px; right: 15px; display: none; background: none; border: none; color: white; cursor: pointer; padding: 4px; z-index: 50;">
+      <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
+    </button>
     <nav class="admin-nav mt-md">
       <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
       <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
@@ -33,15 +54,17 @@
     </nav>
   </aside>
 
+  <!-- Main Content -->
   <div class="admin-main">
     <header class="admin-topbar">
       <div class="topbar-left">
-        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+        <button class="menu-toggle" id="menuToggle"><span class="material-symbols-outlined">menu</span></button>
       </div>
       <div class="topbar-right">
-        <div class="admin-profile">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+        <div class="admin-profile" style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar" style="border-radius: 50%;">
           <span class="admin-profile-name">Priya Mehta</span>
+          <span class="material-symbols-outlined text-muted" style="font-size:18px;">expand_more</span>
         </div>
       </div>
     </header>
@@ -56,12 +79,12 @@
       </div>
 
       <!-- Explanation Card -->
-      <div class="admin-card mb-xl" style="background:var(--admin-primary); color:white;">
+      <div class="admin-card mb-xl pricing-explanation-card">
         <div class="d-flex align-center gap-md mb-sm">
           <span class="material-symbols-outlined" style="font-size:32px; color:var(--admin-secondary);">lightbulb</span>
-          <h3 style="margin:0;">How Dynamic Pricing Works</h3>
+          <h3 style="margin:0; color:white;">How Dynamic Pricing Works</h3>
         </div>
-        <p style="opacity:0.9; line-height:1.6; margin:0 0 16px 0; max-width:800px;">
+        <p style="opacity:0.9; line-height:1.6; margin:0 0 16px 0; max-width:800px; color:white;">
           Dynamic pricing automatically adjusts your room prices based on real-time occupancy. When occupancy is high (above 70%), prices increase to maximize revenue. When demand is low (below 30%), prices are slightly discounted to attract more bookings.
         </p>
         <div class="d-flex gap-lg flex-wrap">
@@ -79,23 +102,21 @@
 
       <!-- Metric Cards -->
       <div class="admin-bento-grid">
-        <div class="admin-grid-auto" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap:var(--admin-space-lg);">
-          <div class="admin-card">
-            <span class="metric-label">Overall Occupancy</span>
-            <span class="metric-value">76%</span>
-          </div>
-          <div class="admin-card">
-            <span class="metric-label">High Demand Types</span>
-            <span class="metric-value text-success">2</span>
-          </div>
-          <div class="admin-card">
-            <span class="metric-label">Average Price Increase</span>
-            <span class="metric-value text-success">+18%</span>
-          </div>
-          <div class="admin-card">
-            <span class="metric-label">Revenue Impact (Today)</span>
-            <span class="metric-value text-success">+ ₹ 14,200</span>
-          </div>
+        <div class="admin-card">
+          <span class="metric-label">Overall Occupancy</span>
+          <span class="metric-value">76%</span>
+        </div>
+        <div class="admin-card">
+          <span class="metric-label">High Demand Types</span>
+          <span class="metric-value text-success">2</span>
+        </div>
+        <div class="admin-card">
+          <span class="metric-label">Average Price Increase</span>
+          <span class="metric-value text-success">+18%</span>
+        </div>
+        <div class="admin-card">
+          <span class="metric-label">Revenue Impact (Today)</span>
+          <span class="metric-value text-success">+ ₹ 14,200</span>
         </div>
       </div>
 
@@ -109,59 +130,17 @@
           <thead>
             <tr>
               <th>Room Type</th>
-              <th>Occupancy</th>
-              <th>Demand</th>
               <th>Base Price</th>
-              <th>Current Price</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th>Low Demand Discount</th>
+              <th>High Demand Markup</th>
+              <th>Price Limits</th>
+              <th>Current Occupancy</th>
+              <th>Rule Status</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td data-label="Room Type"><strong>Standard</strong></td>
-              <td data-label="Occupancy">82% (23/28)</td>
-              <td data-label="Demand"><span class="admin-badge badge-danger">High Demand</span></td>
-              <td data-label="Base Price">₹ 3,500</td>
-              <td data-label="Current Price"><span class="text-success" style="font-weight:600;">₹ 4,200 (+20%)</span></td>
-              <td data-label="Status">
-                <label style="display:inline-flex; align-items:center; cursor:pointer;">
-                  <input type="checkbox" checked style="accent-color:var(--admin-primary); width:18px; height:18px;">
-                </label>
-              </td>
-              <td data-label="Actions">
-                <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined">edit</span></button>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Room Type"><strong>Deluxe</strong></td>
-              <td data-label="Occupancy">45% (9/20)</td>
-              <td data-label="Demand"><span class="admin-badge badge-info">Normal</span></td>
-              <td data-label="Base Price">₹ 5,000</td>
-              <td data-label="Current Price">₹ 5,000</td>
-              <td data-label="Status">
-                <label style="display:inline-flex; align-items:center; cursor:pointer;">
-                  <input type="checkbox" checked style="accent-color:var(--admin-primary); width:18px; height:18px;">
-                </label>
-              </td>
-              <td data-label="Actions">
-                <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined">edit</span></button>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Room Type"><strong>Suite</strong></td>
-              <td data-label="Occupancy">20% (1/5)</td>
-              <td data-label="Demand"><span class="admin-badge badge-warning">Low Demand</span></td>
-              <td data-label="Base Price">₹ 12,000</td>
-              <td data-label="Current Price"><span class="text-danger" style="font-weight:600;">₹ 10,800 (-10%)</span></td>
-              <td data-label="Status">
-                <label style="display:inline-flex; align-items:center; cursor:pointer;">
-                  <input type="checkbox" checked style="accent-color:var(--admin-primary); width:18px; height:18px;">
-                </label>
-              </td>
-              <td data-label="Actions">
-                <button class="admin-btn admin-btn-icon"><span class="material-symbols-outlined">edit</span></button>
-              </td>
+              <td colspan="7" class="text-center text-muted">Loading rules...</td>
             </tr>
           </tbody>
         </table>
@@ -169,6 +148,7 @@
 
     </main>
   </div>
+
   <script src="../js/storage.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/admin/admin-data.js"></script>
