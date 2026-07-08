@@ -1219,10 +1219,22 @@ textarea.form-control {
    ================================================== */
 @media (max-width: 1024px) {
 
-  .room-details-layout,
-  .chat-layout {
+  .room-details-layout {
     grid-template-columns: 1fr;
     height: auto;
+  }
+
+  .chat-layout {
+    grid-template-columns: 1fr;
+  }
+
+  body.chat-page .site-footer {
+    display: none !important;
+  }
+
+  body.chat-page .chat-layout {
+    height: calc(100vh - var(--nav-height) - 20px) !important;
+    margin-bottom: 0 !important;
   }
 
   .booking-widget {
