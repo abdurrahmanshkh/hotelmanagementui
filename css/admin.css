@@ -5,24 +5,26 @@
 /* ── 1. Admin CSS Variables ─────────────────────────────────────── */
 :root {
   /* Admin Palette - Luxury Deep Teal & Gold */
-  --admin-primary: #2d5a6b; /* Deep Teal */
+  --admin-primary: #2d5a6b;
+  /* Deep Teal */
   --admin-primary-hover: #1f3f4f;
   --admin-primary-light: #d4e5ed;
-  
-  --admin-secondary: #d4a574; /* Luxury Gold */
+
+  --admin-secondary: #d4a574;
+  /* Luxury Gold */
   --admin-secondary-hover: #c89456;
   --admin-secondary-light: #f5ede3;
-  
+
   --admin-bg: #f9f7f4;
   --admin-surface: #ffffff;
   --admin-surface-alt: #f5f3f0;
   --admin-surface-border: #e8e6e3;
-  
+
   --admin-text-main: #1a1a1a;
   --admin-text-muted: #5a5a5a;
   --admin-text-light: #888888;
   --admin-text-inverse: #ffffff;
-  
+
   --admin-success: #10B981;
   --admin-success-bg: #d1fae5;
   --admin-danger: #ba1a1a;
@@ -31,7 +33,7 @@
   --admin-warning-bg: #fef3c7;
   --admin-info: #3b82f6;
   --admin-info-bg: #dbeafe;
-  
+
   /* Sizing & Spacing */
   --admin-sidebar-width: 260px;
   --admin-topbar-height: 64px;
@@ -40,18 +42,18 @@
   --admin-radius-lg: 0.75rem;
   --admin-radius-xl: 1rem;
   --admin-radius-full: 9999px;
-  
+
   --admin-space-xs: 0.25rem;
   --admin-space-sm: 0.5rem;
   --admin-space-md: 1rem;
   --admin-space-lg: 1.5rem;
   --admin-space-xl: 2rem;
-  
+
   /* Shadows */
   --admin-shadow-sm: 0 2px 12px rgba(45, 90, 107, 0.06);
   --admin-shadow-md: 0 12px 40px rgba(45, 90, 107, 0.1);
   --admin-shadow-lg: 0 20px 60px rgba(45, 90, 107, 0.16);
-  
+
   /* Transitions */
   --admin-transition: all 0.2s ease-in-out;
 }
@@ -188,7 +190,8 @@ body.admin-body {
   box-shadow: 0 2px 12px rgba(45, 90, 107, 0.04);
 }
 
-.topbar-left, .topbar-right {
+.topbar-left,
+.topbar-right {
   display: flex;
   align-items: center;
   gap: var(--admin-space-md);
@@ -429,7 +432,8 @@ body.admin-body {
   text-align: left;
 }
 
-.admin-table th, .admin-table td {
+.admin-table th,
+.admin-table td {
   padding: var(--admin-space-md) var(--admin-space-lg);
   border-bottom: 1px solid var(--admin-surface-border);
   font-size: 0.875rem;
@@ -464,11 +468,30 @@ body.admin-body {
   white-space: nowrap;
 }
 
-.badge-success { background-color: var(--admin-success-bg); color: #005236; }
-.badge-warning { background-color: var(--admin-warning-bg); color: #5c4300; }
-.badge-danger { background-color: var(--admin-danger-bg); color: #93000a; }
-.badge-info { background-color: var(--admin-info-bg); color: #131b2e; }
-.badge-neutral { background-color: var(--admin-surface-border); color: var(--admin-text-muted); }
+.badge-success {
+  background-color: var(--admin-success-bg);
+  color: #005236;
+}
+
+.badge-warning {
+  background-color: var(--admin-warning-bg);
+  color: #5c4300;
+}
+
+.badge-danger {
+  background-color: var(--admin-danger-bg);
+  color: #93000a;
+}
+
+.badge-info {
+  background-color: var(--admin-info-bg);
+  color: #131b2e;
+}
+
+.badge-neutral {
+  background-color: var(--admin-surface-border);
+  color: var(--admin-text-muted);
+}
 
 /* ── 8. Buttons ─────────────────────────────────────────────────── */
 .admin-btn {
@@ -493,6 +516,7 @@ body.admin-body {
   box-shadow: 0 8px 24px rgba(45, 90, 107, 0.25);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .admin-btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 36px rgba(45, 90, 107, 0.35);
@@ -503,6 +527,7 @@ body.admin-body {
   border: 1px solid var(--admin-surface-border);
   color: var(--admin-text-main);
 }
+
 .admin-btn-outline:hover {
   background-color: var(--admin-surface-alt);
 }
@@ -513,6 +538,7 @@ body.admin-body {
   border: 1px solid transparent;
   color: var(--admin-text-muted);
 }
+
 .admin-btn-icon:hover {
   background-color: var(--admin-surface-alt);
   color: var(--admin-text-main);
@@ -554,9 +580,11 @@ body.admin-body {
 .admin-form-control.is-invalid {
   border-color: var(--admin-danger);
 }
+
 .admin-form-control.is-invalid:focus {
   box-shadow: 0 0 0 3px var(--admin-danger-bg);
 }
+
 .error-message {
   color: var(--admin-danger);
   font-size: 0.75rem;
@@ -582,10 +610,12 @@ body.admin-body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
+
 .admin-modal-overlay.active {
   opacity: 1;
   pointer-events: all;
 }
+
 .admin-modal {
   background-color: var(--admin-surface);
   border-radius: var(--admin-radius-xl);
@@ -599,9 +629,11 @@ body.admin-body {
   display: flex;
   flex-direction: column;
 }
+
 .admin-modal-overlay.active .admin-modal {
   transform: scale(1);
 }
+
 .admin-modal-header {
   padding: var(--admin-space-lg);
   border-bottom: 1px solid var(--admin-surface-border);
@@ -609,14 +641,17 @@ body.admin-body {
   justify-content: space-between;
   align-items: center;
 }
+
 .admin-modal-header h3 {
   margin: 0;
   font-size: 1.25rem;
 }
+
 .admin-modal-body {
   padding: var(--admin-space-lg);
   flex: 1;
 }
+
 .admin-modal-footer {
   padding: var(--admin-space-lg);
   border-top: 1px solid var(--admin-surface-border);
@@ -649,37 +684,72 @@ body.admin-body {
 }
 
 /* ── 12. Utilities & Responsive ─────────────────────────────────── */
-.d-flex { display: flex; }
-.justify-between { justify-content: space-between; }
-.align-center { align-items: center; }
-.gap-sm { gap: var(--admin-space-sm); }
-.gap-md { gap: var(--admin-space-md); }
-.gap-lg { gap: var(--admin-space-lg); }
-.mt-md { margin-top: var(--admin-space-md); }
-.mb-md { margin-bottom: var(--admin-space-md); }
-.w-100 { width: 100%; }
-.text-muted { color: var(--admin-text-muted); }
+.d-flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.gap-sm {
+  gap: var(--admin-space-sm);
+}
+
+.gap-md {
+  gap: var(--admin-space-md);
+}
+
+.gap-lg {
+  gap: var(--admin-space-lg);
+}
+
+.mt-md {
+  margin-top: var(--admin-space-md);
+}
+
+.mb-md {
+  margin-bottom: var(--admin-space-md);
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-muted {
+  color: var(--admin-text-muted);
+}
 
 /* Tablet and below */
 @media (max-width: 1024px) {
   --admin-sidebar-width: 280px;
+
   .admin-sidebar {
     transform: translateX(-100%);
     z-index: 40;
   }
+
   .admin-sidebar.open {
     transform: translateX(0);
     box-shadow: 8px 0 20px rgba(45, 90, 107, 0.2);
   }
+
   .admin-main {
     margin-left: 0;
   }
+
   .menu-toggle {
     display: block;
   }
+
   .search-bar {
     width: auto;
   }
+
   .admin-bento-grid {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   }
@@ -690,24 +760,25 @@ body.admin-body {
   :root {
     --admin-sidebar-width: 256px;
   }
-  
-  .admin-grid-half, .admin-settings-layout {
+
+  .admin-grid-half,
+  .admin-settings-layout {
     grid-template-columns: 1fr;
   }
-  
+
   .page-header {
     flex-direction: column;
     gap: var(--admin-space-lg);
   }
-  
+
   .page-header h2 {
     font-size: 1.5rem;
   }
-  
+
   .admin-table thead {
     display: none;
   }
-  
+
   .admin-table tr {
     display: block;
     margin-bottom: var(--admin-space-md);
@@ -717,11 +788,11 @@ body.admin-body {
     background: var(--admin-surface);
     box-shadow: var(--admin-shadow-sm);
   }
-  
+
   .admin-table tbody tr:hover {
     background-color: var(--admin-surface);
   }
-  
+
   .admin-table td {
     display: flex;
     justify-content: space-between;
@@ -729,7 +800,7 @@ body.admin-body {
     border-bottom: 1px solid var(--admin-surface-alt);
     padding: var(--admin-space-sm) 0;
   }
-  
+
   .admin-table td::before {
     content: attr(data-label);
     font-weight: 600;
@@ -737,16 +808,16 @@ body.admin-body {
     font-size: 0.75rem;
     text-transform: uppercase;
   }
-  
+
   .admin-table td:last-child {
     border-bottom: none;
   }
-  
+
   .admin-bento-grid {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
     gap: var(--admin-space-md);
   }
-  
+
   .admin-card {
     padding: var(--admin-space-md);
   }
@@ -757,28 +828,28 @@ body.admin-body {
   .admin-topbar {
     padding: 0 var(--admin-space-md);
   }
-  
+
   .admin-content {
     padding: var(--admin-space-md);
   }
-  
+
   .page-header h2 {
     font-size: 1.25rem;
   }
-  
+
   .search-bar {
     display: none;
   }
-  
+
   .admin-btn {
     font-size: 0.75rem;
     padding: 6px 12px;
   }
-  
+
   .admin-card {
     padding: var(--admin-space-md);
   }
-  
+
   .metric-value {
     font-size: 1.5rem;
   }
@@ -792,6 +863,7 @@ body.admin-body {
   padding-bottom: var(--admin-space-md);
   min-height: 500px;
 }
+
 .kanban-col {
   flex: 0 0 300px;
   background-color: var(--admin-surface-alt);
@@ -801,6 +873,7 @@ body.admin-body {
   flex-direction: column;
   gap: var(--admin-space-md);
 }
+
 .kanban-header {
   font-weight: 600;
   font-size: 0.875rem;
@@ -811,6 +884,7 @@ body.admin-body {
   padding-bottom: var(--admin-space-sm);
   border-bottom: 1px solid var(--admin-surface-border);
 }
+
 .kanban-card {
   background-color: var(--admin-surface);
   border: 1px solid var(--admin-surface-border);
@@ -819,6 +893,7 @@ body.admin-body {
   box-shadow: var(--admin-shadow-sm);
   cursor: grab;
 }
+
 .kanban-card.priority-emergency {
   border-left: 4px solid var(--admin-danger);
 }
@@ -830,14 +905,27 @@ body.admin-body {
   gap: var(--admin-space-md);
   height: calc(100vh - var(--admin-topbar-height) - 120px);
 }
+
 @media (max-width: 1200px) {
-  .chat-layout { grid-template-columns: 250px 1fr; }
-  .chat-info-panel { display: none; }
+  .chat-layout {
+    grid-template-columns: 250px 1fr;
+  }
+
+  .chat-info-panel {
+    display: none;
+  }
 }
+
 @media (max-width: 768px) {
-  .chat-layout { grid-template-columns: 1fr; }
-  .chat-sidebar { display: none; }
+  .chat-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-sidebar {
+    display: none;
+  }
 }
+
 .chat-panel {
   background: var(--admin-surface);
   border: 1px solid var(--admin-surface-border);
@@ -846,6 +934,7 @@ body.admin-body {
   flex-direction: column;
   overflow: hidden;
 }
+
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -854,6 +943,7 @@ body.admin-body {
   flex-direction: column;
   gap: var(--admin-space-md);
 }
+
 .chat-bubble {
   max-width: 80%;
   padding: 10px 14px;
@@ -861,11 +951,13 @@ body.admin-body {
   font-size: 0.875rem;
   position: relative;
 }
+
 .chat-bubble.guest {
   background-color: var(--admin-surface-alt);
   align-self: flex-start;
   border-bottom-left-radius: 4px;
 }
+
 .chat-bubble.admin {
   background-color: var(--admin-primary);
   color: white;
