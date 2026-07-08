@@ -172,6 +172,9 @@ body.admin-body {
   flex-direction: column;
   min-height: 100vh;
   transition: margin-left 0.3s ease;
+  width: 100%;
+  max-width: calc(100% - var(--admin-sidebar-width));
+  box-sizing: border-box;
 }
 
 .admin-topbar {
@@ -740,6 +743,7 @@ body.admin-body {
 
   .admin-main {
     margin-left: 0;
+    max-width: 100%;
   }
 
   .menu-toggle {
