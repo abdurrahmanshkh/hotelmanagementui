@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking Confirmation - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container navbar">
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
       <div class="nav-actions">
-        <a href="rooms.html" class="btn btn-ghost d-flex align-items-center gap-xs"><span class="material-symbols-outlined">close</span> Cancel</a>
+        <a href="login.html" class="btn btn-ghost" id="navLoginBtn">Login</a>
+        <a href="signup.html" class="btn btn-primary" id="navSignupBtn">Sign Up</a>
+        <a href="dashboard.html" class="btn btn-primary" id="navDashBtn" style="display:none;">Go to Dashboard</a>
+        <button class="btn btn-ghost btn-icon" id="navLogoutBtn" style="display:none;"><span
+            class="material-symbols-outlined">logout</span></button>
+        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
       </div>
     </div>
   </header>
@@ -28,7 +41,7 @@
 
     <div class="card mt-xl">
       <h2 class="mb-lg border-bottom pb-md" style="font-size: 1.75rem;">Review & Confirm Your Booking</h2>
-      
+
       <div class="d-flex justify-content-between align-items-start mb-xl flex-wrap gap-md">
         <div>
           <h4 class="mb-xs text-muted font-size-sm text-uppercase">Guest Details</h4>
@@ -43,10 +56,12 @@
 
       <div class="bg-background p-lg mb-xl" style="border-radius: var(--radius-md);">
         <div class="d-flex align-items-center gap-md mb-md border-bottom pb-md">
-          <div class="bg-primary-light text-primary p-sm" style="border-radius: var(--radius-sm);"><span class="material-symbols-outlined" style="font-size: 2rem;">king_bed</span></div>
+          <div class="bg-primary-light text-primary p-sm" style="border-radius: var(--radius-sm);"><span
+              class="material-symbols-outlined" style="font-size: 2rem;">king_bed</span></div>
           <div>
             <h3 class="mb-xs" id="cfRoomInfo">—</h3>
-            <p class="text-muted font-size-sm d-flex align-items-center gap-xs" id="cfGuests"><span class="material-symbols-outlined" style="font-size:16px;">group</span> —</p>
+            <p class="text-muted font-size-sm d-flex align-items-center gap-xs" id="cfGuests"><span
+                class="material-symbols-outlined" style="font-size:16px;">group</span> —</p>
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center">
@@ -66,14 +81,18 @@
 
       <h4 class="mb-sm">Special Requests</h4>
       <div class="form-group mb-xl">
-        <textarea class="form-control" id="cfSpecialRequest" placeholder="Any specific needs or preferences? (e.g. early check-in)"></textarea>
+        <textarea class="form-control" id="cfSpecialRequest"
+          placeholder="Any specific needs or preferences? (e.g. early check-in)"></textarea>
       </div>
 
       <h4 class="mb-md border-bottom pb-md" style="font-size: 1.1rem;">Price Breakdown</h4>
       <div class="p-lg mb-lg bg-background" style="border-radius: var(--radius-md);">
-        <div class="d-flex justify-content-between mb-md"><span class="text-muted">Room Charges</span><span class="font-weight-600" id="cfRoomAmt">—</span></div>
-        <div class="d-flex justify-content-between mb-md"><span class="text-muted">Taxes (12%)</span><span class="font-weight-600" id="cfTaxes">—</span></div>
-        <div class="d-flex justify-content-between mb-lg"><span class="text-muted">Service Fee (5%)</span><span class="font-weight-600" id="cfFee">—</span></div>
+        <div class="d-flex justify-content-between mb-md"><span class="text-muted">Room Charges</span><span
+            class="font-weight-600" id="cfRoomAmt">—</span></div>
+        <div class="d-flex justify-content-between mb-md"><span class="text-muted">Taxes (12%)</span><span
+            class="font-weight-600" id="cfTaxes">—</span></div>
+        <div class="d-flex justify-content-between mb-lg"><span class="text-muted">Service Fee (5%)</span><span
+            class="font-weight-600" id="cfFee">—</span></div>
         <div class="d-flex justify-content-between pt-lg border-top" style="border-color: var(--border-color);">
           <span class="font-weight-600 font-size-lg text-uppercase">Total Payable</span>
           <span class="price-amount" id="cfTotal">—</span>
@@ -82,12 +101,15 @@
 
       <div class="d-flex align-items-center gap-sm mb-xl bg-background p-md" style="border-radius: var(--radius-sm);">
         <input type="checkbox" id="cfPolicy" style="width: 20px; height: 20px; accent-color: var(--primary);">
-        <label for="cfPolicy" class="font-size-sm text-muted mb-0">I agree to the <span class="text-primary font-weight-600">Hotel Policies</span> and <span class="text-primary font-weight-600">Cancellation Rules</span>.</label>
+        <label for="cfPolicy" class="font-size-sm text-muted mb-0">I agree to the <span
+            class="text-primary font-weight-600">Hotel Policies</span> and <span
+            class="text-primary font-weight-600">Cancellation Rules</span>.</label>
       </div>
 
       <div class="d-flex gap-md justify-content-end flex-wrap">
         <button class="btn btn-ghost" id="cfCancelBtn">Cancel Booking</button>
-        <button class="btn btn-primary" id="cfProceedBtn" style="padding: 1rem 2.5rem; font-weight: 600;">Proceed to Payment <span class="material-symbols-outlined">arrow_forward</span></button>
+        <button class="btn btn-primary" id="cfProceedBtn" style="padding: 1rem 2.5rem; font-weight: 600;">Proceed to
+          Payment <span class="material-symbols-outlined">arrow_forward</span></button>
       </div>
     </div>
   </div>
@@ -95,7 +117,8 @@
   <!-- Cancel Confirmation Modal -->
   <div class="modal-overlay" id="cancelModal">
     <div class="modal text-center">
-      <div class="empty-state-icon text-error"><span class="material-symbols-outlined" style="font-size: 4rem;">warning</span></div>
+      <div class="empty-state-icon text-error"><span class="material-symbols-outlined"
+          style="font-size: 4rem;">warning</span></div>
       <h3 class="mb-sm">Cancel Booking?</h3>
       <p class="text-muted mb-lg">Are you sure you want to cancel this booking? This action cannot be undone.</p>
       <div class="d-flex gap-md justify-content-center">
@@ -119,4 +142,5 @@
   <script src="js/notifications.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>

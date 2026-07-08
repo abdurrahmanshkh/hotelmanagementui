@@ -11,14 +11,21 @@
 <body style="overflow: hidden; display: flex; flex-direction: column;">
 
   <!-- Header -->
-  <header class="site-header" style="flex-shrink: 0;">
+  <header class="site-header">
     <div class="container navbar">
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
+        <a href="rooms.html">Rooms</a>
+        <a href="my-bookings.html">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
       <div class="nav-actions">
+        <a href="login.html" class="btn btn-ghost" id="navLoginBtn">Login</a>
+        <a href="signup.html" class="btn btn-primary" id="navSignupBtn">Sign Up</a>
+        <a href="dashboard.html" class="btn btn-primary" id="navDashBtn" style="display:none;">Go to Dashboard</a>
+        <button class="btn btn-ghost btn-icon" id="navLogoutBtn" style="display:none;"><span
+            class="material-symbols-outlined">logout</span></button>
         <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
       </div>
     </div>
@@ -105,12 +112,19 @@
 
   <footer class="site-footer">
     <div class="container">
+      <div class="d-flex justify-content-between flex-wrap gap-lg mb-lg">
+        <div>
+          <a href="index.html" class="brand-logo mb-sm d-flex"><span>Stay</span>Ease Pro</a>
+          <p class="text-muted font-size-sm max-w-sm">Redefining modern hospitality with seamless technology and
+            unmatched luxury.</p>
+        </div>
+
+      </div>
       <div class="footer-bottom">
         <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
 
   <script src="js/data.js"></script>
   <script src="js/storage.js"></script>

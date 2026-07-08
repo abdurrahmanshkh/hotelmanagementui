@@ -1,113 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StayEase Pro - Modern Luxury</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
+
 <body>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container navbar">
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
+
       <nav class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="rooms.html">Rooms</a>
         <a href="my-bookings.html">My Bookings</a>
         <a href="dashboard.html">Dashboard</a>
       </nav>
+
       <div class="nav-actions">
         <a href="login.html" class="btn btn-ghost" id="navLoginBtn">Login</a>
         <a href="signup.html" class="btn btn-primary" id="navSignupBtn">Sign Up</a>
         <a href="dashboard.html" class="btn btn-primary" id="navDashBtn" style="display:none;">Go to Dashboard</a>
-        <button class="btn btn-ghost btn-icon" id="navLogoutBtn" style="display:none;"><span class="material-symbols-outlined">logout</span></button>
-        <button class="hamburger"><span class="material-symbols-outlined">menu</span></button>
+        <button class="btn btn-ghost btn-icon" id="navLogoutBtn" style="display:none;">
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+        <button class="hamburger">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
       </div>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <div class="container">
-    <div class="hero-section">
-      <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1542314831-c6a4d27ce66f?q=80&w=2000&auto=format&fit=crop');"></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <div style="max-width: 700px; margin: 0 auto; text-align: center;">
-          <span class="badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: var(--space-md); display: inline-block;">Welcome to Luxury</span>
-          <h1 class="hero-title">Experience Effortless Luxury</h1>
-          <p class="hero-subtitle" style="font-size: 1.2rem; line-height: 1.6;">Curated boutique stays with seamless digital access. Your room, your rules, always at your fingertips.</p>
-          
-          <div style="display: flex; justify-content: center; padding: var(--space-md); margin-top: var(--space-xl);">
-            <a href="rooms.html" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
-              <span class="material-symbols-outlined" style="margin-right: 8px;">travel_explore</span> 
-              Browse Our Rooms
+  <!-- Modern Hero Section -->
+  <main>
+    <section class="home-hero">
+      <div class="home-hero-bg"></div>
+      <div class="home-hero-orb home-hero-orb-1"></div>
+      <div class="home-hero-orb home-hero-orb-2"></div>
+
+      <div class="container home-hero-inner">
+        <div class="home-hero-copy">
+          <div class="hero-kicker">
+            <span class="material-symbols-outlined">hotel_class</span>
+            Premium Smart Hospitality
+          </div>
+
+          <h1>
+            Luxury stays made effortless with digital comfort.
+          </h1>
+
+          <p>
+            Discover elegant rooms, seamless booking, secure digital passcodes,
+            instant concierge support, and smart pricing — all in one modern hotel experience.
+          </p>
+
+          <div class="home-hero-actions">
+            <a href="rooms.html" class="btn btn-primary hero-main-btn">
+              <span class="material-symbols-outlined">travel_explore</span>
+              Browse Rooms
+            </a>
+
+            <a href="signup.html" class="btn btn-secondary hero-secondary-btn">
+              <span class="material-symbols-outlined">person_add</span>
+              Create Account
             </a>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Featured Rooms -->
-  <div class="container mt-xl mb-xl">
-    <div class="d-flex justify-content-between align-items-end mb-lg flex-wrap gap-sm">
-      <div>
-        <h2 class="mb-xs">Signature Suites</h2>
-        <p class="text-muted">Discover our most exclusive accommodations.</p>
-      </div>
-      <a href="rooms.html" class="btn btn-ghost">View All <span class="material-symbols-outlined">arrow_forward</span></a>
-    </div>
-    <div class="room-grid" id="featuredRoomGrid">
-      <!-- Injected via JS -->
-      <div class="card p-lg text-center text-muted col-span-full">Loading premium suites...</div>
-    </div>
-  </div>
+          <div class="home-hero-trust">
+            <div>
+              <strong>4.8</strong>
+              <span>Guest Rating</span>
+            </div>
+            <div>
+              <strong>24/7</strong>
+              <span>Concierge</span>
+            </div>
+            <div>
+              <strong>100%</strong>
+              <span>Digital Access</span>
+            </div>
+          </div>
+        </div>
 
-  <!-- Highlights Bento Grid -->
-  <section class="bg-surface border-top pt-xl pb-xl" style="padding-top:40px; padding-bottom: 30px;">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: var(--space-xl);">
-        <h2 class="mb-sm">Why Choose StayEase Pro?</h2>
-        <p class="text-muted">Premium features designed for the modern traveler</p>
-      </div>
-      <div class="room-grid">
-        <div class="card card-hover d-flex flex-column align-items-center text-center" style="padding: var(--space-xl);">
-          <div class="p-lg text-primary rounded-full mb-lg" style="background-color: rgba(212, 165, 116, 0.2); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-            <span class="material-symbols-outlined" style="font-size: 2.5rem;">key</span>
+        <div class="home-hero-visual">
+          <div class="hero-image-main">
+            <img src="https://images.unsplash.com/photo-1549294413-26f195200c16" alt="">
+            <div class="hero-image-badge">
+              <span class="material-symbols-outlined">verified</span>
+              Smart Check-in Ready
+            </div>
           </div>
-          <h4 class="mb-sm">Digital Passcode</h4>
-          <p class="text-muted font-size-sm" style="line-height: 1.6;">Skip the front desk. Secure your room with a digital entry code accessible directly from your phone. No keys needed.</p>
-        </div>
-        <div class="card card-hover d-flex flex-column align-items-center text-center" style="padding: var(--space-xl);">
-          <div class="p-lg text-primary rounded-full mb-lg" style="background-color: rgba(212, 165, 116, 0.2); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-            <span class="material-symbols-outlined" style="font-size: 2.5rem;">currency_exchange</span>
+
+          <div class="hero-floating-card hero-floating-card-top">
+            <span class="material-symbols-outlined">key</span>
+            <div>
+              <strong>Digital Key</strong>
+              <small>Secure passcode after payment</small>
+            </div>
           </div>
-          <h4 class="mb-sm">Smart Pricing</h4>
-          <p class="text-muted font-size-sm" style="line-height: 1.6;">Our dynamic algorithm ensures you get the fairest price based on real-time availability and demand. No hidden fees.</p>
-        </div>
-        <div class="card card-hover d-flex flex-column align-items-center text-center" style="padding: var(--space-xl);">
-          <div class="p-lg text-primary rounded-full mb-lg" style="background-color: rgba(212, 165, 116, 0.2); border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
-            <span class="material-symbols-outlined" style="font-size: 2.5rem;">room_service</span>
+
+          <div class="hero-floating-card hero-floating-card-bottom">
+            <span class="material-symbols-outlined">room_service</span>
+            <div>
+              <strong>Instant Service</strong>
+              <small>Request towels, cleaning & support</small>
+            </div>
           </div>
-          <h4 class="mb-sm">Instant Concierge</h4>
-          <p class="text-muted font-size-sm" style="line-height: 1.6;">Request fresh towels, order room service, or chat with our concierge team 24/7 via the app.</p>
         </div>
       </div>
-    </div>
-  </section>
+
+      <!-- Hero Booking Strip -->
+      <div class="container">
+        <div class="hero-search-panel">
+          <div class="hero-search-item">
+            <span class="material-symbols-outlined">calendar_today</span>
+            <div>
+              <small>Plan your stay</small>
+              <strong>Flexible check-in</strong>
+            </div>
+          </div>
+
+          <div class="hero-search-item">
+            <span class="material-symbols-outlined">king_bed</span>
+            <div>
+              <small>Room types</small>
+              <strong>Standard to Family Suites</strong>
+            </div>
+          </div>
+
+          <div class="hero-search-item">
+            <span class="material-symbols-outlined">currency_rupee</span>
+            <div>
+              <small>Smart pricing</small>
+              <strong>Demand-based rates</strong>
+            </div>
+          </div>
+
+          <a href="rooms.html" class="btn btn-primary hero-panel-btn">
+            Explore Availability
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Rooms -->
+    <section class="home-section">
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <span class="section-eyebrow">Featured Collection</span>
+            <h2>Signature Stays</h2>
+            <p class="text-muted">Handpicked rooms with premium comfort, smart access, and modern amenities.</p>
+          </div>
+
+          <a href="rooms.html" class="btn btn-ghost">
+            View All
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+
+        <div class="room-grid" id="featuredRoomGrid">
+          <div class="card p-lg text-center text-muted col-span-full">Loading premium suites...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section">
+      <div class="container experience-grid">
+        <div class="experience-image">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="">
+        </div>
+
+        <div class="experience-content">
+          <span class="section-eyebrow">Integrated Guest Journey</span>
+          <h2>From booking to checkout, everything feels simpler.</h2>
+          <p class="text-muted">
+            StayEase Pro brings booking, payments, room access, service requests,
+            and guest support into one streamlined customer portal.
+          </p>
+
+          <div class="experience-list">
+            <div>
+              <span class="material-symbols-outlined">payments</span>
+              <div>
+                <strong>Dummy Payment Flow</strong>
+                <p>Test card, UPI, wallet, and net banking experiences.</p>
+              </div>
+            </div>
+
+            <div>
+              <span class="material-symbols-outlined">lock</span>
+              <div>
+                <strong>Unique Room Passcodes</strong>
+                <p>Every booking receives a fresh secure room entry code.</p>
+              </div>
+            </div>
+
+            <div>
+              <span class="material-symbols-outlined">support_agent</span>
+              <div>
+                <strong>Live Guest Support</strong>
+                <p>Chat with hotel staff and track service requests easily.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="rooms.html" class="btn btn-primary mt-lg">
+            Start Booking
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Highlights Bento Grid -->
+    <section class="home-section home-highlights">
+      <div class="container">
+        <div class="section-heading-center">
+          <span class="section-eyebrow">Why Choose StayEase Pro?</span>
+          <h2>Premium features designed for modern travelers</h2>
+          <p class="text-muted">A beautiful assessment-ready interface with real demo functionality.</p>
+        </div>
+
+        <div class="feature-bento-grid">
+          <div class="feature-card feature-card-large">
+            <div class="feature-icon">
+              <span class="material-symbols-outlined">key</span>
+            </div>
+            <h3>Digital Passcode</h3>
+            <p style="color: white;">
+              Skip physical keys. Guests receive a secure room passcode after payment,
+              valid only during their stay.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <span class="material-symbols-outlined">currency_exchange</span>
+            </div>
+            <h3>Smart Pricing</h3>
+            <p>
+              Prices adjust based on demand and occupancy, making the system more realistic and interactive.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <span class="material-symbols-outlined">room_service</span>
+            </div>
+            <h3>Service Requests</h3>
+            <p>
+              Guests can request cleaning, fresh towels, toiletries, wake-up calls, and custom services.
+            </p>
+          </div>
+
+          <div class="feature-card feature-card-wide">
+            <div class="feature-icon">
+              <span class="material-symbols-outlined">chat</span>
+            </div>
+            <h3>Guest-Admin Chat</h3>
+            <p>
+              Guests can chat with hotel staff, while admins can manage conversations by room and booking.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="home-cta-section">
+      <div class="container">
+        <div class="home-cta-card">
+          <div>
+            <span class="section-eyebrow">Ready to Experience It?</span>
+            <h2>Book your next smart luxury stay today.</h2>
+            <p>
+              Explore available rooms, compare real-time pricing, and complete a full demo booking journey.
+            </p>
+          </div>
+
+          <a href="rooms.html" class="btn btn-primary">
+            Browse Rooms
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <div class="d-flex justify-content-between flex-wrap gap-lg mb-lg">
+      <div class="footer-enhanced">
         <div>
           <a href="index.html" class="brand-logo mb-sm d-flex"><span>Stay</span>Ease Pro</a>
-          <p class="text-muted font-size-sm max-w-sm">Redefining modern hospitality with seamless technology and unmatched luxury.</p>
+          <p class="text-muted font-size-sm">
+            Redefining modern hospitality with seamless technology, smart access,
+            and unmatched guest convenience.
+          </p>
         </div>
-        
+
+        <div class="footer-links">
+          <a href="rooms.html">Rooms</a>
+          <a href="my-bookings.html">My Bookings</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="login.html">Login</a>
+        </div>
       </div>
+
       <div class="footer-bottom">
         <p>&copy; 2026 StayEase Pro Customer Portal. All rights reserved.</p>
       </div>
@@ -127,4 +335,5 @@
   <script src="js/notifications.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>

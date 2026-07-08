@@ -1,91 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - StayEase Pro</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/auth.css">
 </head>
+
 <body>
 
   <!-- Header -->
-  <header class="site-header">
+  <header class="site-header auth-site-header">
     <div class="container navbar">
       <a href="index.html" class="brand-logo"><span>Stay</span>Ease Pro</a>
+
       <div class="nav-actions">
-        <a href="login.html" class="btn btn-ghost">Sign In</a>
+        <a href="index.html" class="btn btn-ghost auth-nav-link">
+          <span class="material-symbols-outlined">home</span>
+          Home
+        </a>
+        <a href="login.html" class="btn btn-primary auth-nav-link">
+          Sign In
+        </a>
       </div>
     </div>
   </header>
 
-  <div class="split-layout">
-    <!-- Image Side -->
-    <div class="split-image" style="background-image: url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=1000&auto=format&fit=crop');">
-      <div class="hero-overlay"></div>
-      <div class="hero-content text-left" style="position:absolute; bottom: 10%; padding: var(--space-xl);">
-        <h2 class="text-inverse mb-sm">Join the Exclusive</h2>
-        <p class="text-inverse" style="opacity: 0.8; max-width: 400px;">Experience a new standard of hospitality where everything you need is right on your device.</p>
-      </div>
-    </div>
-    
-    <!-- Form Side -->
-    <div class="split-content">
-      <div class="auth-form-container">
-        <div style="margin-bottom: var(--space-xl);">
-          <h2 class="mb-sm text-center">Join StayEase Pro</h2>
-          <p class="text-muted text-center" style="font-size: 0.95rem;">Create an account to unlock exclusive luxury stays</p>
-        </div>
-        
-        <form id="signupForm">
-          <div class="form-group">
-            <label class="form-label">Full Name</label>
-            <input type="text" id="fullname" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" id="email" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Phone Number</label>
-            <input type="tel" id="phone" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Password</label>
-            <input type="password" id="newPassword" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Confirm Password</label>
-            <input type="password" id="confirmPassword" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Government ID Type</label>
-            <select id="idType" class="form-control">
-              <option value="Aadhaar">Aadhaar</option>
-              <option value="PAN">PAN</option>
-              <option value="Passport">Passport</option>
-              <option value="Driving License">Driving License</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Government ID Number</label>
-            <input type="text" id="idNumber" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label style="display:flex; gap:10px; align-items:flex-start;">
-              <input type="checkbox" id="terms">
-              <span>I agree to the Terms & Conditions</span>
-            </label>
-          </div>
-          <button type="submit"
-              class="btn btn-primary btn-block"
-              style="padding:1rem;font-weight:600;">
-              Create Account
-          </button>
+  <main class="auth-page auth-signup-page">
+    <div class="auth-bg-orb auth-bg-orb-1"></div>
+    <div class="auth-bg-orb auth-bg-orb-2"></div>
 
-        </form>
-      </div>
-    </div>
-  </div>
+    <section class="auth-shell auth-shell-signup">
+
+      <!-- Visual Side -->
+      <aside class="auth-visual-panel auth-signup-visual">
+        <div class="auth-visual-overlay"></div>
+
+        <div class="auth-floating-card auth-floating-card-top">
+          <span class="material-symbols-outlined">hotel</span>
+          <div>
+            <strong>Premium Rooms</strong>
+            <small>Book Standard, Deluxe, Suite, and Family stays.</small>
+          </div>
+        </div>
+
+        <div class="auth-floating-card auth-floating-card-bottom">
+          <span class="material-symbols-outlined">payments</span>
+          <div>
+            <strong>Dummy Payments</strong>
+            <small>Complete a realistic payment journey.</small>
+          </div>
+        </div>
+
+        <div class="auth-visual-content">
+          <span class="auth-kicker">
+            <span class="material-symbols-outlined">hotel_class</span>
+            Join StayEase Pro
+          </span>
+
+          <h1>Create your smart guest profile.</h1>
+
+          <p>
+            Book rooms, receive digital entry passcodes, request hotel services, and chat with staff from one elegant
+            portal.
+          </p>
+
+          <div class="auth-visual-stats">
+            <div>
+              <strong>4</strong>
+              <span>Room Types</span>
+            </div>
+            <div>
+              <strong>₹</strong>
+              <span>Smart Pricing</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Form Side -->
+      <section class="auth-form-panel">
+        <div class="auth-form-card signup-form-card">
+
+          <div class="auth-form-header">
+            <span class="auth-form-icon">
+              <span class="material-symbols-outlined">person_add</span>
+            </span>
+
+            <h2>Create your account</h2>
+            <p>Unlock booking, digital keys, service requests, and guest chat.</p>
+          </div>
+
+          <form id="signupForm" class="auth-form">
+
+            <div class="auth-form-grid">
+              <div class="form-group auth-form-group">
+                <label class="form-label" for="fullname">Full Name</label>
+
+                <div class="auth-input-wrap">
+                  <span class="material-symbols-outlined">person</span>
+                  <input type="text" id="fullname" class="form-control" placeholder="Your full name" autocomplete="name"
+                    required>
+                </div>
+              </div>
+
+              <div class="form-group auth-form-group">
+                <label class="form-label" for="email">Email Address</label>
+
+                <div class="auth-input-wrap">
+                  <span class="material-symbols-outlined">mail</span>
+                  <input type="email" id="email" class="form-control" placeholder="name@example.com"
+                    autocomplete="email" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group auth-form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+
+              <div class="auth-input-wrap">
+                <span class="material-symbols-outlined">call</span>
+                <input type="tel" id="phone" class="form-control" placeholder="10-digit mobile number"
+                  autocomplete="tel" required>
+              </div>
+            </div>
+
+            <div class="auth-form-grid">
+              <div class="form-group auth-form-group">
+                <label class="form-label" for="newPassword">Password</label>
+
+                <div class="auth-input-wrap">
+                  <span class="material-symbols-outlined">lock</span>
+                  <input type="password" id="newPassword" class="form-control" placeholder="Min 8 characters"
+                    autocomplete="new-password" required>
+                </div>
+
+                <p class="auth-help-text">Use at least 8 characters, 1 uppercase letter, and 1 number.</p>
+              </div>
+
+              <div class="form-group auth-form-group">
+                <label class="form-label" for="confirmPassword">Confirm Password</label>
+
+                <div class="auth-input-wrap">
+                  <span class="material-symbols-outlined">lock_reset</span>
+                  <input type="password" id="confirmPassword" class="form-control" placeholder="Re-enter password"
+                    autocomplete="new-password" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="auth-form-grid">
+              <div class="form-group auth-form-group">
+                <label class="form-label" for="idType">Government ID Type</label>
+
+                <div class="auth-input-wrap">
+                  <span class="material-symbols-outlined">badge</span>
+                  <select id="idType" class="form-control" required>
+                    <option value="Aadhaar">Aadhaar</option>
+                    <option value="PAN">PAN</option>
+                    <option value="Passport">Passport</option>
+                    <option value="Driving License">Driving License</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group auth-form-group">
+                <label class="form-label" for="idNumber">Government ID Number</label>
+
+                <div class="auth-input-wrap">
+                  <span class="material-symbols-outlined">pin</span>
+                  <input type="text" id="idNumber" class="form-control" placeholder="Enter ID number" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group auth-terms-box">
+              <label for="terms">
+                <input type="checkbox" id="terms">
+                <span>
+                  I agree to the javascript:void(0)Terms & Conditions</a> and hotel booking policies.
+                </span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block auth-submit-btn">
+              <span class="material-symbols-outlined">person_add</span>
+              Create Account
+            </button>
+
+            <div class="auth-switch-text">
+              <p>
+                Already have an account?
+                <a href="login.html">Sign in here</a>
+              </p>
+            </div>
+
+          </form>
+
+        </div>
+      </section>
+
+    </section>
+  </main>
 
   <script src="js/notifications.js"></script>
   <script src="js/data.js"></script>
@@ -95,4 +214,5 @@
   <script src="js/auth.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>
