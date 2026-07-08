@@ -95,9 +95,9 @@ function getFilteredRooms() {
   // Sort
   const sort = document.getElementById('roomSort')?.value || 'recommended';
   switch (sort) {
-    case 'priceLow':  rooms.sort((a, b) => a.dynamicPrice - b.dynamicPrice); break;
+    case 'priceLow': rooms.sort((a, b) => a.dynamicPrice - b.dynamicPrice); break;
     case 'priceHigh': rooms.sort((a, b) => b.dynamicPrice - a.dynamicPrice); break;
-    case 'rating':    rooms.sort((a, b) => b.rating - a.rating); break;
+    case 'rating': rooms.sort((a, b) => b.rating - a.rating); break;
   }
 
   return rooms;
@@ -110,80 +110,154 @@ function renderRooms() {
   const rooms = getFilteredRooms();
 
   if (!rooms.length) {
-    showEmptyState(grid, '🔍', 'No Rooms Found', "We couldn't find any rooms matching your filters.", '<button class="btn btn-secondary" onclick="resetFilters()">Clear Filters</button>');
+    showEmptyState(
+      grid,
+      '🔍',
+      'No Rooms Found',
+      "We couldn't find any rooms matching your filters.",
+      '<button class="btn btn-secondary" onclick="resetFilters()">Clear Filters</button>'
+    );
     return;
   }
 
-  grid.innerHTML = rooms.map(r => {
-    const statusBadge = r.status === 'Available'
-      ? '<span class="badge badge-success room-card-badge">Available</span>'
-      : r.status === 'Occupied'
-        ? '<span class="badge badge-error room-card-badge">Occupied</span>'
-        : r.status === 'Reserved'
-          ? '<span class="badge badge-info room-card-badge">Reserved</span>'
-          : r.status === 'Under Cleaning'
-            ? '<span class="badge badge-warning room-card-badge">Cleaning</span>'
-            : '<span class="badge badge-neutral room-card-badge">Maintenance</span>';
+  const fallbackImages = {
+    Standard: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&h=600&fit=crop',
+    Deluxe: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=900&h=600&fit=crop',
+    Suite: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=900&auto=format&fit=crop',
+    Family: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=900&auto=format&fit=crop',
+  };
 
-    const demandBadge = r.demandLevel === 'High Demand'
-      ? '<span class="badge badge-warning"><span class="material-symbols-outlined" style="font-size:14px;">trending_up</span> High Demand</span>'
-      : r.demandLevel === 'Low Demand'
-        ? '<span class="badge badge-success"><span class="material-symbols-outlined" style="font-size:14px;">trending_down</span> Low Demand</span>'
+  grid.innerHTML = rooms.map(r => {
+    const roomPrice = Number(r.dynamicPrice || r.basePrice || 0);
+    const basePrice = Number(r.basePrice || roomPrice);
+
+    const displayImg =
+      r.image && String(r.image).trim().startsWith('http')
+        ? String(r.image).trim()
+        : fallbackImages[r.type] || fallbackImages.Standard;
+
+    const statusClassMap = {
+      Available: 'badge-success',
+      Occupied: 'badge-error',
+      Reserved: 'badge-info',
+      'Under Cleaning': 'badge-warning',
+      Maintenance: 'badge-neutral'
+    };
+
+    const statusLabelMap = {
+      Available: 'Available',
+      Occupied: 'Occupied',
+      Reserved: 'Reserved',
+      'Under Cleaning': 'Cleaning',
+      Maintenance: 'Maintenance'
+    };
+
+    const statusBadge = `
+      <span class="room-status-pill badge ${statusClassMap[r.status] || 'badge-neutral'}">
+        ${statusLabelMap[r.status] || r.status || 'Unavailable'}
+      </span>
+    `;
+
+    let demandBadge = '';
+
+    if (r.demandLevel === 'High Demand') {
+      demandBadge = `
+        <span class="room-demand-pill room-demand-high">
+          <span class="material-symbols-outlined">trending_up</span>
+          High Demand
+        </span>
+      `;
+    } else if (r.demandLevel === 'Low Demand') {
+      demandBadge = `
+        <span class="room-demand-pill room-demand-low">
+          <span class="material-symbols-outlined">trending_down</span>
+          Low Demand
+        </span>
+      `;
+    }
+
+    const priceStrike =
+      roomPrice !== basePrice
+        ? `<span class="room-price-old">${formatCurrency(basePrice)}</span>`
         : '';
 
-    const priceStrike = r.dynamicPrice !== r.basePrice
-      ? `<span class="text-muted" style="text-decoration:line-through; font-size:0.9rem;">${formatCurrency(r.basePrice)}</span>` : '';
+    const bookBtn =
+      r.status === 'Available'
+        ? `
+          <a href="room-details.html?id=${r.id}" class="btn btn-primary room-book-btn">
+            Book Now
+          </a>
+        `
+        : `
+          <button class="btn btn-secondary room-book-btn" disabled>
+            ${r.status}
+          </button>
+        `;
 
-    const bookBtn = r.status === 'Available'
-      ? `<a href="room-details.html?id=${r.id}" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: var(--radius-sm); white-space: nowrap;">Book Now</a>`
-      : `<button class="btn btn-secondary" disabled style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border-radius: var(--radius-sm); opacity: 0.5; cursor: not-allowed; pointer-events: none; white-space: nowrap;">${r.status}</button>`;
-
-    // Map room types to beautiful Unsplash images
-    let imgUrl = 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?q=80&w=800&auto=format&fit=crop';
-    if (r.type === 'Deluxe') imgUrl = 'https://images.unsplash.com/photo-1582719478250-c89404bb8a0e?q=80&w=800&auto=format&fit=crop';
-    else if (r.type === 'Suite') imgUrl = 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop';
-    else if (r.type === 'Penthouse') imgUrl = 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?q=80&w=800&auto=format&fit=crop';
-
-    // Use room image if available, otherwise use type-based image
-    const displayImg = r.image || imgUrl;
+    const amenities = Array.isArray(r.amenities) ? r.amenities.slice(0, 2) : [];
 
     return `
-      <div class="card room-card p-0 card-hover" data-room-id="${r.id}">
-        <div class="room-card-img-wrapper">
-          <img src="${displayImg}" alt="${r.type}" class="room-card-img" onerror="this.src='https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop'">
+      <article class="card room-card room-card-enhanced p-0" data-room-id="${r.id}">
+        <div class="room-card-img-wrapper room-card-img-enhanced">
+          <img src="${displayImg}"/>
           ${statusBadge}
         </div>
-        <div class="room-card-body">
-          <div class="d-flex justify-content-between align-items-start mb-sm">
-            <div>
-              <h3 class="mb-xs">${r.type} <span class="text-muted font-size-sm">#${r.roomNumber}</span></h3>
-              <p class="text-muted font-size-sm">Floor ${r.floor}</p>
+
+        <div class="room-card-body room-card-body-enhanced">
+          <div class="room-card-top">
+            <div class="room-title-wrap">
+              <h3 class="room-title">
+                ${r.type}
+                <span>#${r.roomNumber}</span>
+              </h3>
+              <p class="room-floor">Floor ${r.floor}</p>
             </div>
-            <div class="d-flex align-items-center gap-xs text-secondary font-weight-600">
-              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span> ${r.rating}
+
+            <div class="room-rating">
+              <span class="material-symbols-outlined">star</span>
+              <strong>${r.rating || '—'}</strong>
             </div>
           </div>
-          
-          <div class="room-features">
-            <span><span class="material-symbols-outlined">group</span> ${r.capacity}</span>
-            <span><span class="material-symbols-outlined">bed</span> ${r.bedType}</span>
-            ${r.amenities.slice(0, 2).map(a => `<span><span class="material-symbols-outlined">check_circle</span> ${a}</span>`).join('')}
+
+          <div class="room-feature-row">
+            <span class="room-feature-chip">
+              <span class="material-symbols-outlined">group</span>
+              ${r.capacity}
+            </span>
+
+            <span class="room-feature-chip">
+              <span class="material-symbols-outlined">bed</span>
+              ${r.bedType}
+            </span>
+
+            ${amenities.map(a => `
+              <span class="room-feature-chip">
+                <span class="material-symbols-outlined">check_circle</span>
+                ${a}
+              </span>
+            `).join('')}
           </div>
-          
-          <div class="room-price-row mt-md pt-md border-top">
-            <div>
-              <div class="d-flex align-items-center gap-sm mb-xs">
-                <span class="text-muted font-size-sm text-uppercase">Per Night</span> ${demandBadge}
+
+          <div class="room-card-footer">
+            <div class="room-price-block">
+              <div class="room-price-meta">
+                <span>Per night</span>
+                ${demandBadge}
               </div>
-              <div class="d-flex align-items-end gap-sm">
-                <span class="price-amount">${formatCurrency(r.dynamicPrice)}</span>
+
+              <div class="room-price-line">
+                <span class="room-price-main">${formatCurrency(roomPrice)}</span>
                 ${priceStrike}
               </div>
             </div>
-            ${bookBtn}
+
+            <div class="room-action-block">
+              ${bookBtn}
+            </div>
           </div>
         </div>
-      </div>`;
+      </article>
+    `;
   }).join('');
 }
 
@@ -199,14 +273,14 @@ function initRoomDetails() {
 
   // Populate page elements
   const el = (id) => document.getElementById(id);
-  if (el('rdTitle'))      el('rdTitle').textContent = room.type;
-  if (el('rdRoomNum'))    el('rdRoomNum').textContent = `Room ${room.roomNumber} • Floor ${room.floor}`;
-  if (el('rdRating'))     el('rdRating').textContent = room.rating;
-  if (el('rdDescription'))el('rdDescription').textContent = room.description;
-  if (el('rdCapacity'))   el('rdCapacity').textContent = `${room.capacity} Guests`;
-  if (el('rdBedType'))    el('rdBedType').textContent = room.bedType;
-  if (el('rdPrice'))      el('rdPrice').textContent = formatCurrency(room.dynamicPrice);
-  if (el('rdBasePrice'))  el('rdBasePrice').textContent = room.dynamicPrice !== room.basePrice ? formatCurrency(room.basePrice) : '';
+  if (el('rdTitle')) el('rdTitle').textContent = room.type;
+  if (el('rdRoomNum')) el('rdRoomNum').textContent = `Room ${room.roomNumber} • Floor ${room.floor}`;
+  if (el('rdRating')) el('rdRating').textContent = room.rating;
+  if (el('rdDescription')) el('rdDescription').textContent = room.description;
+  if (el('rdCapacity')) el('rdCapacity').textContent = `${room.capacity} Guests`;
+  if (el('rdBedType')) el('rdBedType').textContent = room.bedType;
+  if (el('rdPrice')) el('rdPrice').textContent = formatCurrency(room.dynamicPrice);
+  if (el('rdBasePrice')) el('rdBasePrice').textContent = room.dynamicPrice !== room.basePrice ? formatCurrency(room.basePrice) : '';
 
   // Demand badge
   const demandEl = el('rdDemand');
@@ -282,11 +356,11 @@ function initRoomDetails() {
     const taxes = Math.round(roomAmt * 0.12);
     const fee = Math.round(roomAmt * 0.05);
     const total = roomAmt + taxes + fee;
-    if (el('rdNights'))      el('rdNights').textContent = nights;
-    if (el('rdRoomTotal'))   el('rdRoomTotal').textContent = formatCurrency(roomAmt);
-    if (el('rdTax'))         el('rdTax').textContent = formatCurrency(taxes);
-    if (el('rdServiceFee'))  el('rdServiceFee').textContent = formatCurrency(fee);
-    if (el('rdGrandTotal'))  el('rdGrandTotal').textContent = formatCurrency(total);
+    if (el('rdNights')) el('rdNights').textContent = nights;
+    if (el('rdRoomTotal')) el('rdRoomTotal').textContent = formatCurrency(roomAmt);
+    if (el('rdTax')) el('rdTax').textContent = formatCurrency(taxes);
+    if (el('rdServiceFee')) el('rdServiceFee').textContent = formatCurrency(fee);
+    if (el('rdGrandTotal')) el('rdGrandTotal').textContent = formatCurrency(total);
   };
   document.getElementById('rdCheckInDate')?.addEventListener('change', updatePrice);
   document.getElementById('rdCheckOutDate')?.addEventListener('change', updatePrice);
@@ -361,14 +435,14 @@ function initHomeFeaturedRooms() {
   if (!grid) return;
   recalculateDynamicPricing();
   const rooms = getData('stayEasePro_rooms', []).filter(r => r.status === 'Available').slice(0, 3);
-  
+
   grid.innerHTML = rooms.map(r => {
     // Map room types to images
     let imgUrl = r.image || 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop';
-    if (r.type === 'Deluxe') imgUrl = r.image || 'https://images.unsplash.com/photo-1582719478250-c89404bb8a0e?q=80&w=800&auto=format&fit=crop';
+    if (r.type === 'Deluxe') imgUrl = r.image || 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&h=400&fit=crop';
     else if (r.type === 'Suite') imgUrl = r.image || 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop';
-    else if (r.type === 'Family') imgUrl = r.image || 'https://images.unsplash.com/photo-1629632072367-48b5b8e22ca2?w=500&h=400&fit=crop';
-    
+    else if (r.type === 'Family') imgUrl = r.image || 'https://images.unsplash.com/photo-1590490360182-c33d57733427?q=80&w=800&auto=format&fit=crop';
+
     return `
     <div class="card room-card p-0">
       <div class="room-card-img-wrapper" style="height: 200px; overflow: hidden;">
