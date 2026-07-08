@@ -1,36 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StayEase Pro Admin - Bookings</title>
   <link rel="stylesheet" href="../css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
+  <style>
+    /* Premium Bookings Aesthetic Updates */
+    .filter-card {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: var(--admin-space-md);
+      align-items: flex-end;
+    }
+
+    .filter-card .search-bar {
+      width: 100% !important;
+    }
+
+    .filter-card .search-bar input {
+      width: 100% !important;
+      border-radius: var(--admin-radius-md) !important;
+      background-color: var(--admin-surface) !important;
+      border: 1px solid var(--admin-surface-border) !important;
+      padding: 10px 14px 10px 40px !important;
+      height: 40px !important;
+      box-sizing: border-box !important;
+    }
+
+    .filter-card .search-bar .material-symbols-outlined {
+      left: 12px !important;
+    }
+
+    /* Mobile Sidebar Close Trigger */
+    @media (max-width: 1024px) {
+      .admin-sidebar-close-btn {
+        display: block !important;
+      }
+
+      .filter-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body class="admin-body">
 
   <!-- Sidebar -->
   <aside class="admin-sidebar" id="adminSidebar">
     <a href="dashboard.html" class="admin-brand">
-      <div class="brand-icon"><span class="material-symbols-outlined">domain</span></div>
+      <div class="brand-icon">
+        <span class="material-symbols-outlined" style="color: white;">domain</span>
+      </div>
       <div class="brand-text">
         <h1>StayEase Pro</h1>
         <p>Admin Console</p>
       </div>
     </a>
+    <button class="admin-sidebar-close-btn" onclick="toggleSidebar()"
+      style="position: absolute; top: 20px; right: 15px; display: none; background: none; border: none; color: white; cursor: pointer; padding: 4px; z-index: 50;">
+      <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
+    </button>
     <nav class="admin-nav mt-md">
-      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span>
+        Dashboard</a>
       <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
-      <a href="bookings.html" class="admin-nav-item active"><span class="material-symbols-outlined">calendar_month</span> Bookings</a>
+      <a href="bookings.html" class="admin-nav-item active"><span
+          class="material-symbols-outlined">calendar_month</span> Bookings</a>
       <a href="guests.html" class="admin-nav-item"><span class="material-symbols-outlined">group</span> Guests</a>
-      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span> Service Requests</a>
+      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span>
+        Service Requests</a>
       <a href="chats.html" class="admin-nav-item"><span class="material-symbols-outlined">chat</span> Chats</a>
-      <a href="dynamic-pricing.html" class="admin-nav-item"><span class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
-      <a href="housekeeping.html" class="admin-nav-item"><span class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
-      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span> Payments</a>
+      <a href="dynamic-pricing.html" class="admin-nav-item"><span class="material-symbols-outlined">payments</span>
+        Dynamic Pricing</a>
+      <a href="housekeeping.html" class="admin-nav-item"><span
+          class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
+      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span>
+        Payments</a>
       <a href="reports.html" class="admin-nav-item"><span class="material-symbols-outlined">bar_chart</span> Reports</a>
-      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span> Settings</a>
+      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span>
+        Settings</a>
     </nav>
   </aside>
 
@@ -38,18 +92,20 @@
   <div class="admin-main">
     <header class="admin-topbar">
       <div class="topbar-left">
-        <button class="menu-toggle"><span class="material-symbols-outlined">menu</span></button>
+        <button class="menu-toggle" id="menuToggle"><span class="material-symbols-outlined">menu</span></button>
       </div>
       <div class="topbar-right">
-        <div class="admin-profile">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar">
+        <div class="admin-profile" style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
+            alt="Admin Avatar" style="border-radius: 50%;">
           <span class="admin-profile-name">Priya Mehta</span>
+          <span class="material-symbols-outlined text-muted" style="font-size:18px;">expand_more</span>
         </div>
       </div>
     </header>
 
     <main class="admin-content">
-      
+
       <!-- Page Header -->
       <div class="page-header">
         <div>
@@ -57,24 +113,26 @@
           <p>View, manage, and track all guest reservations and check-ins.</p>
         </div>
         <div class="d-flex gap-sm">
-          <button class="admin-btn admin-btn-outline" style="font-weight: 500;"><span class="material-symbols-outlined">download</span> Export</button>
+          <button class="admin-btn admin-btn-outline d-flex align-center gap-xs"
+            style="padding: 10px 16px; font-weight: 500;"><span class="material-symbols-outlined"
+              style="font-size: 18px;">download</span> Export</button>
         </div>
       </div>
 
       <!-- Filters -->
-      <div class="admin-card mb-lg" style="flex-direction:row; flex-wrap:wrap; gap:var(--admin-space-md); align-items:flex-end;">
-        <div class="admin-form-group" style="margin:0; flex:2; min-width:250px;">
+      <div class="admin-card mb-lg filter-card">
+        <div class="admin-form-group">
           <label class="admin-form-label">Search</label>
           <div class="search-bar" style="width:100%;">
             <span class="material-symbols-outlined">search</span>
             <input type="text" placeholder="Booking ID, Guest Name, Room...">
           </div>
         </div>
-        <div class="admin-form-group" style="margin:0; flex:1; min-width:150px;">
+        <div class="admin-form-group">
           <label class="admin-form-label">Date Range</label>
           <input type="date" class="admin-form-control">
         </div>
-        <div class="admin-form-group" style="margin:0; flex:1; min-width:150px;">
+        <div class="admin-form-group">
           <label class="admin-form-label">Status</label>
           <select class="admin-form-control">
             <option>All Statuses</option>
@@ -105,55 +163,7 @@
           </thead>
           <tbody>
             <tr>
-              <td data-label="Booking ID"><strong>BK-2026-1042</strong></td>
-              <td data-label="Guest Name">Aarav Sharma</td>
-              <td data-label="Room">305</td>
-              <td data-label="Check-in">Oct 12, 2026</td>
-              <td data-label="Check-out">Oct 15, 2026</td>
-              <td data-label="Status"><span class="admin-badge badge-info">Checked In</span></td>
-              <td data-label="Payment"><span class="admin-badge badge-success">Paid</span></td>
-              <td data-label="Passcode"><span class="admin-badge badge-success">Active</span></td>
-              <td data-label="Total">₹ 15,000</td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View Details"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Mark Check-out"><span class="material-symbols-outlined" style="font-size:18px;">logout</span></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Booking ID"><strong>BK-2026-1043</strong></td>
-              <td data-label="Guest Name">Emily Chen</td>
-              <td data-label="Room">410</td>
-              <td data-label="Check-in">Oct 14, 2026</td>
-              <td data-label="Check-out">Oct 18, 2026</td>
-              <td data-label="Status"><span class="admin-badge badge-warning">Confirmed</span></td>
-              <td data-label="Payment"><span class="admin-badge badge-warning">Pending</span></td>
-              <td data-label="Passcode"><span class="admin-badge badge-neutral">Locked</span></td>
-              <td data-label="Total">₹ 24,000</td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View Details"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Mark Check-in"><span class="material-symbols-outlined" style="font-size:18px;">login</span></button>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td data-label="Booking ID"><strong>BK-2026-1030</strong></td>
-              <td data-label="Guest Name">John Doe</td>
-              <td data-label="Room">201</td>
-              <td data-label="Check-in">Oct 05, 2026</td>
-              <td data-label="Check-out">Oct 08, 2026</td>
-              <td data-label="Status"><span class="admin-badge badge-success">Completed</span></td>
-              <td data-label="Payment"><span class="admin-badge badge-success">Paid</span></td>
-              <td data-label="Passcode"><span class="admin-badge badge-danger">Expired</span></td>
-              <td data-label="Total">₹ 10,500</td>
-              <td data-label="Actions">
-                <div class="d-flex gap-sm">
-                  <button class="admin-btn admin-btn-icon" title="View Details"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button>
-                  <button class="admin-btn admin-btn-icon" title="Invoice"><span class="material-symbols-outlined" style="font-size:18px;">receipt_long</span></button>
-                </div>
-              </td>
+              <td colspan="10" class="text-center text-muted">Loading bookings...</td>
             </tr>
           </tbody>
         </table>
@@ -162,7 +172,7 @@
     </main>
   </div>
 
-  <!-- Booking Details Modal Placeholder -->
+  <!-- Booking Details Modal -->
   <div class="admin-modal-overlay" id="bookingDetailModal">
     <div class="admin-modal" style="max-width: 800px;">
       <div class="admin-modal-header">
@@ -199,7 +209,8 @@
         </div>
       </div>
       <div class="admin-modal-footer">
-        <button class="admin-btn admin-btn-outline text-danger" style="margin-right:auto; border-color:transparent;">Cancel Booking</button>
+        <button class="admin-btn admin-btn-outline text-danger"
+          style="margin-right:auto; border-color:transparent;">Cancel Booking</button>
         <button class="admin-btn admin-btn-outline">Close</button>
         <button class="admin-btn admin-btn-primary">Mark Check-out</button>
       </div>
@@ -225,4 +236,5 @@
   <script src="../js/admin/admin-settings.js"></script>
   <script src="../js/admin/admin-app.js"></script>
 </body>
+
 </html>
