@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
   else if (currentPath.includes('reports.html')) {
     if (typeof initReportsPage === 'function') initReportsPage();
   }
+  else if (currentPath.includes('payments.html')) {
+    if (typeof initPaymentsPage === 'function') initPaymentsPage();
+  }
+  else if (currentPath.includes('settings.html')) {
+    if (typeof initSettingsPage === 'function') initSettingsPage();
+  }
   else if (currentPath.includes('admin-login.html')) {
     // Login form handler
     const loginForm = document.getElementById('adminLoginForm');
