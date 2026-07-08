@@ -6,6 +6,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat with Concierge - StayEase Pro</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .chat-mode-tabs {
+      display: flex;
+      gap: 0;
+      background: var(--background);
+      border-radius: 12px;
+      padding: 4px;
+      border: 1px solid var(--border-color);
+    }
+
+    .chat-mode-tab {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .chat-mode-tab:hover {
+      color: var(--text-primary);
+    }
+
+    .chat-mode-tab.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 2px 8px rgba(45, 90, 107, 0.3);
+    }
+
+    .chat-mode-tab .material-symbols-outlined {
+      font-size: 18px;
+    }
+
+    .chat-mode-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .chat-mode-indicator.ai {
+      background: rgba(147, 51, 234, 0.1);
+      color: #7c3aed;
+    }
+
+    .chat-mode-indicator.admin {
+      background: rgba(45, 90, 107, 0.1);
+      color: var(--primary);
+    }
+  </style>
 </head>
 
 <body class="chat-page" style="overflow: hidden; display: flex; flex-direction: column;">
@@ -35,28 +97,47 @@
     <div class="chat-layout" style="flex-grow: 1;">
       <!-- Chat Interface -->
       <main class="card chat-card">
+        <!-- Mode Tabs -->
+        <div style="padding: 12px 16px; border-bottom: 1px solid var(--border-color);">
+          <div class="chat-mode-tabs">
+            <button class="chat-mode-tab active" data-mode="ai">
+              <span class="material-symbols-outlined">smart_toy</span>
+              AI Assistant
+            </button>
+            <button class="chat-mode-tab" data-mode="admin">
+              <span class="material-symbols-outlined">support_agent</span>
+              Front Desk
+            </button>
+          </div>
+        </div>
+
         <div class="chat-header d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center gap-md">
-            <div class="bg-primary text-inverse d-flex align-items-center justify-content-center"
+            <div id="chatHeaderIcon" class="bg-primary text-inverse d-flex align-items-center justify-content-center"
               style="width: 48px; height: 48px; font-size: 1.5rem; border-radius: 50%;">
-              <span class="material-symbols-outlined">support_agent</span>
+              <span class="material-symbols-outlined">smart_toy</span>
             </div>
             <div>
-              <h4 class="mb-xs font-size-md font-weight-600">Front Desk Concierge</h4>
-              <span class="text-success font-size-sm d-flex align-items-center gap-xs"><span
+              <h4 id="chatHeaderTitle" class="mb-xs font-size-md font-weight-600">AI Concierge</h4>
+              <span id="chatHeaderStatus" class="text-success font-size-sm d-flex align-items-center gap-xs"><span
                   style="display:inline-block; width:10px; height:10px; background:var(--success); border-radius:50%;"></span>
-                Online & Responding</span>
+                Online &amp; Instant Replies</span>
             </div>
           </div>
-          <a href="dashboard.html" class="btn btn-ghost btn-icon"><span
-              class="material-symbols-outlined">close</span></a>
+          <div class="d-flex align-items-center gap-sm">
+            <span id="chatModeIndicator" class="chat-mode-indicator ai">
+              <span class="material-symbols-outlined" style="font-size:14px;">smart_toy</span> AI Mode
+            </span>
+            <a href="dashboard.html" class="btn btn-ghost btn-icon"><span
+                class="material-symbols-outlined">close</span></a>
+          </div>
         </div>
 
         <div class="chat-messages" id="chatMessages">
           <!-- Populated by JS -->
         </div>
 
-        <div class="chat-input-area d-flex flex-column gap-md">
+        <div class="chat-input-area d-flex flex-column gap-md" id="chatInputArea">
           <div id="chatSuggestions" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
             <span class="chat-suggestion-chip"
               style="background: var(--primary-light); color: var(--primary); cursor: pointer; border: 1px solid rgba(45,90,107,0.2);">WiFi
@@ -89,7 +170,16 @@
           <p class="text-muted font-size-sm mb-lg" style="line-height: 1.6;">Our concierge team is available 24/7 to
             answer any questions and assist with your stay.</p>
 
-          <h5 class="mb-xs">Common Requests</h5>
+          <h5 class="mb-xs">Chat Modes</h5>
+          <ul class="text-muted font-size-sm"
+            style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem;">
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"
+                style="font-size:16px;">smart_toy</span> <strong>AI Assistant</strong> — Instant automated answers</li>
+            <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"
+                style="font-size:16px;">support_agent</span> <strong>Front Desk</strong> — Chat with hotel staff</li>
+          </ul>
+
+          <h5 class="mb-xs" style="margin-top: 1.5rem;">Common Requests</h5>
           <ul class="text-muted font-size-sm"
             style="list-style:none; padding:0; display:flex; flex-direction:column; gap:0.5rem;">
             <li class="d-flex align-items-center gap-xs"><span class="material-symbols-outlined text-primary"

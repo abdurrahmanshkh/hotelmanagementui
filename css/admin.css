@@ -968,3 +968,65 @@ body.admin-body {
   align-self: flex-end;
   border-bottom-right-radius: 4px;
 }
+
+/* ── 15. Chat List Items ───────────────────────────────────────── */
+.chat-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--admin-space-md);
+  padding: var(--admin-space-md);
+  border-bottom: 1px solid var(--admin-surface-border);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.chat-list-item:hover {
+  background-color: var(--admin-surface-alt);
+}
+
+.chat-list-item.active {
+  background-color: var(--admin-primary-light);
+  border-left: 3px solid var(--admin-primary);
+}
+
+.chat-avatar {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: var(--admin-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--admin-text-muted);
+}
+
+.chat-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--admin-danger);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--admin-surface);
+}
+
+.chat-preview {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.chat-input-area {
+  padding: var(--admin-space-md);
+  border-top: 1px solid var(--admin-surface-border);
+  background: var(--admin-bg);
+}

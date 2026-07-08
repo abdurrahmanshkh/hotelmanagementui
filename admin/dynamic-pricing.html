@@ -1,18 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StayEase Pro Admin - Dynamic Pricing</title>
   <link rel="stylesheet" href="../css/admin.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet">
   <style>
     /* Premium Pricing Aesthetic Updates */
     .pricing-explanation-card {
       background: linear-gradient(135deg, var(--admin-primary), var(--admin-primary-hover));
       color: white;
       border: none;
+      margin-bottom: 30px;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .pricing-table {
+      width: 100%;
+      table-layout: fixed;
+      border-collapse: collapse;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      vertical-align: middle;
+      white-space: normal;
+      word-break: break-word;
+      text-align: center;
+    }
+
+    .pricing-table th:last-child,
+    .pricing-table td:last-child {
+      text-align: center;
+    }
+
+    .pricing-table th {
+      font-weight: 600;
+    }
+
+    .pricing-table td {
+      padding: 18px 20px;
     }
 
     /* Mobile Sidebar Close Trigger */
@@ -23,6 +58,7 @@
     }
   </style>
 </head>
+
 <body class="admin-body">
 
   <!-- Sidebar -->
@@ -36,21 +72,29 @@
         <p>Admin Console</p>
       </div>
     </a>
-    <button class="admin-sidebar-close-btn" onclick="toggleSidebar()" style="position: absolute; top: 20px; right: 15px; display: none; background: none; border: none; color: white; cursor: pointer; padding: 4px; z-index: 50;">
+    <button class="admin-sidebar-close-btn" onclick="toggleSidebar()"
+      style="position: absolute; top: 20px; right: 15px; display: none; background: none; border: none; color: white; cursor: pointer; padding: 4px; z-index: 50;">
       <span class="material-symbols-outlined" style="font-size: 24px;">close</span>
     </button>
     <nav class="admin-nav mt-md">
-      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span> Dashboard</a>
+      <a href="dashboard.html" class="admin-nav-item"><span class="material-symbols-outlined">dashboard</span>
+        Dashboard</a>
       <a href="rooms.html" class="admin-nav-item"><span class="material-symbols-outlined">bed</span> Rooms</a>
-      <a href="bookings.html" class="admin-nav-item"><span class="material-symbols-outlined">calendar_month</span> Bookings</a>
+      <a href="bookings.html" class="admin-nav-item"><span class="material-symbols-outlined">calendar_month</span>
+        Bookings</a>
       <a href="guests.html" class="admin-nav-item"><span class="material-symbols-outlined">group</span> Guests</a>
-      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span> Service Requests</a>
+      <a href="service-requests.html" class="admin-nav-item"><span class="material-symbols-outlined">room_service</span>
+        Service Requests</a>
       <a href="chats.html" class="admin-nav-item"><span class="material-symbols-outlined">chat</span> Chats</a>
-      <a href="dynamic-pricing.html" class="admin-nav-item active"><span class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
-      <a href="housekeeping.html" class="admin-nav-item"><span class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
-      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span> Payments</a>
+      <a href="dynamic-pricing.html" class="admin-nav-item active"><span
+          class="material-symbols-outlined">payments</span> Dynamic Pricing</a>
+      <a href="housekeeping.html" class="admin-nav-item"><span
+          class="material-symbols-outlined">cleaning_services</span> Housekeeping</a>
+      <a href="payments.html" class="admin-nav-item"><span class="material-symbols-outlined">credit_card</span>
+        Payments</a>
       <a href="reports.html" class="admin-nav-item"><span class="material-symbols-outlined">bar_chart</span> Reports</a>
-      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span> Settings</a>
+      <a href="settings.html" class="admin-nav-item"><span class="material-symbols-outlined">settings</span>
+        Settings</a>
     </nav>
   </aside>
 
@@ -62,7 +106,8 @@
       </div>
       <div class="topbar-right">
         <div class="admin-profile" style="cursor: pointer; display: flex; align-items: center; gap: 8px;">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop" alt="Admin Avatar" style="border-radius: 50%;">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=100&auto=format&fit=crop"
+            alt="Admin Avatar" style="border-radius: 50%;">
           <span class="admin-profile-name">Priya Mehta</span>
           <span class="material-symbols-outlined text-muted" style="font-size:18px;">expand_more</span>
         </div>
@@ -70,7 +115,7 @@
     </header>
 
     <main class="admin-content">
-      
+
       <div class="page-header">
         <div>
           <h2>Dynamic Pricing</h2>
@@ -85,7 +130,9 @@
           <h3 style="margin:0; color:white;">How Dynamic Pricing Works</h3>
         </div>
         <p style="opacity:0.9; line-height:1.6; margin:0 0 16px 0; max-width:800px; color:white;">
-          Dynamic pricing automatically adjusts your room prices based on real-time occupancy. When occupancy is high (above 70%), prices increase to maximize revenue. When demand is low (below 30%), prices are slightly discounted to attract more bookings.
+          Dynamic pricing automatically adjusts your room prices based on real-time occupancy. When occupancy is high
+          (above 70%), prices increase to maximize revenue. When demand is low (below 30%), prices are slightly
+          discounted to attract more bookings.
         </p>
         <div class="d-flex gap-lg flex-wrap">
           <div style="background:rgba(255,255,255,0.1); padding:12px 16px; border-radius:8px;">
@@ -126,7 +173,17 @@
 
       <!-- Pricing Table -->
       <div class="table-container">
-        <table class="admin-table">
+        <table class="admin-table pricing-table">
+          <colgroup>
+            <col style="width:15%">
+            <col style="width:12%">
+            <col style="width:15%">
+            <col style="width:15%">
+            <col style="width:17%">
+            <col style="width:14%">
+            <col style="width:12%">
+          </colgroup>
+
           <thead>
             <tr>
               <th>Room Type</th>
@@ -138,14 +195,16 @@
               <th>Rule Status</th>
             </tr>
           </thead>
+
           <tbody>
             <tr>
-              <td colspan="7" class="text-center text-muted">Loading rules...</td>
+              <td colspan="7" class="text-center text-muted">
+                Loading rules...
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-
     </main>
   </div>
 
@@ -168,4 +227,5 @@
   <script src="../js/admin/admin-settings.js"></script>
   <script src="../js/admin/admin-app.js"></script>
 </body>
+
 </html>

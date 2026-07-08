@@ -1,6 +1,11 @@
 /* ===================================================================
-   chat.js — Customer-Admin Chat Simulation
+   chat.js — Customer Chat with Dual Mode (AI + Admin)
    =================================================================== */
+
+let currentChatMode = 'ai'; // 'ai' or 'admin'
+let aiChatId = null;
+let adminChatId = null;
+let adminChatPollInterval = null;
 
 const ADMIN_REPLIES = {
   clean:    "We have received your cleaning request. Housekeeping will be there shortly.",
@@ -53,56 +58,126 @@ function initChat() {
   const booking = findById('stayEasePro_bookings', bookingId);
   if (!booking) return;
 
-  // Set context panel
-  const el = id => document.getElementById(id);
-  if (el('chatRoomInfo'))    el('chatRoomInfo').textContent = `${booking.roomType} Room ${booking.roomNumber}`;
-  if (el('chatGuestName'))   el('chatGuestName').textContent = booking.guestName;
-  if (el('chatBookingId'))   el('chatBookingId').textContent = booking.id;
-  if (el('chatBookingDates'))el('chatBookingDates').textContent = `${formatDateOnly(booking.checkIn)} – ${formatDateOnly(booking.checkOut)}`;
-
-  // Load or create chat thread
-  let chats = getData('stayEasePro_chats', []);
-  let chat = chats.find(c => c.bookingId === bookingId && c.userId === user.id);
-  if (!chat) {
-    chat = {
-      id: generateId('CHAT'), userId: user.id, bookingId: bookingId,
-      roomNumber: booking.roomNumber, guestName: booking.guestName,
-      archived: false,
-      messages: [
-        { id: 'MSG-AUTO', sender: 'admin', text: `Hello ${user.fullName.split(' ')[0]}! Welcome to StayEase Pro. How can we help you today?`, timestamp: new Date().toISOString(), read: true }
-      ]
-    };
-    addItem('stayEasePro_chats', chat);
-  }
-
   // Check if read-only (completed booking)
   const isReadOnly = booking.status === 'Completed' || booking.status === 'Cancelled';
-  const inputArea = document.getElementById('chatInputArea');
-  if (isReadOnly && inputArea) {
-    inputArea.innerHTML = '<p class="text-muted text-center p-md" style="font-size:0.85rem;">This stay is completed. Chat is read-only.</p>';
+
+  // Load or create AI chat thread
+  let chats = getData('stayEasePro_chats', []);
+  let aiChat = chats.find(c => c.bookingId === bookingId && c.userId === user.id && c.chatType === 'ai');
+  if (!aiChat) {
+    aiChat = {
+      id: generateId('CHAT'), userId: user.id, bookingId: bookingId,
+      roomNumber: booking.roomNumber, guestName: booking.guestName,
+      chatType: 'ai', archived: false,
+      messages: [
+        { id: 'MSG-AI-AUTO', sender: 'admin', text: `Hello ${user.fullName.split(' ')[0]}! I'm the AI Concierge. Ask me anything about your stay — WiFi, checkout, gym, pool, dining, and more!`, timestamp: new Date().toISOString(), read: true }
+      ]
+    };
+    chats.push(aiChat);
+    setData('stayEasePro_chats', chats);
+  }
+  aiChatId = aiChat.id;
+
+  // Load or create Admin chat thread
+  let adminChat = chats.find(c => c.bookingId === bookingId && c.userId === user.id && c.chatType === 'admin');
+  if (!adminChat) {
+    adminChat = {
+      id: generateId('CHAT'), userId: user.id, bookingId: bookingId,
+      roomNumber: booking.roomNumber, guestName: booking.guestName,
+      chatType: 'admin', archived: false,
+      messages: [
+        { id: 'MSG-ADM-AUTO', sender: 'admin', text: `Hello ${user.fullName.split(' ')[0]}! You're now connected to the Front Desk. A staff member will respond to your messages shortly.`, timestamp: new Date().toISOString(), read: true }
+      ]
+    };
+    chats.push(adminChat);
+    setData('stayEasePro_chats', chats);
+  }
+  adminChatId = adminChat.id;
+
+  // Handle read-only state
+  if (isReadOnly) {
+    const inputArea = document.getElementById('chatInputArea');
+    if (inputArea) {
+      inputArea.innerHTML = '<p class="text-muted text-center p-md" style="font-size:0.85rem;">This stay is completed. Chat is read-only.</p>';
+    }
   }
 
-  renderChatMessages(chat.id);
+  // Set initial mode to AI
+  switchChatMode('ai');
+
+  // Bind mode tabs
+  document.querySelectorAll('.chat-mode-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      switchChatMode(tab.dataset.mode);
+    });
+  });
 
   // Send message
-  document.getElementById('chatSendBtn')?.addEventListener('click', () => sendChatMessage(chat.id));
-  document.getElementById('chatInput')?.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChatMessage(chat.id); }
-  });
+  const chatForm = document.getElementById('chatForm');
+  if (chatForm) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      sendChatMessage();
+    });
+  }
 
   // Quick suggestion chips
   document.querySelectorAll('.chat-suggestion-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const input = document.getElementById('chatInput');
-      if (input) { input.value = chip.textContent; sendChatMessage(chat.id); }
+      if (input) { input.value = chip.textContent.trim(); sendChatMessage(); }
     });
   });
+
+  // Start polling for admin replies when in admin mode
+  startAdminPoll();
+}
+
+function switchChatMode(mode) {
+  currentChatMode = mode;
+
+  // Update tab UI
+  document.querySelectorAll('.chat-mode-tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.mode === mode);
+  });
+
+  // Update header
+  const headerIcon = document.getElementById('chatHeaderIcon');
+  const headerTitle = document.getElementById('chatHeaderTitle');
+  const headerStatus = document.getElementById('chatHeaderStatus');
+  const modeIndicator = document.getElementById('chatModeIndicator');
+  const suggestions = document.getElementById('chatSuggestions');
+
+  if (mode === 'ai') {
+    if (headerIcon) headerIcon.innerHTML = '<span class="material-symbols-outlined">smart_toy</span>';
+    if (headerTitle) headerTitle.textContent = 'AI Concierge';
+    if (headerStatus) headerStatus.innerHTML = '<span style="display:inline-block; width:10px; height:10px; background:var(--success); border-radius:50%;"></span> Online & Instant Replies';
+    if (modeIndicator) {
+      modeIndicator.className = 'chat-mode-indicator ai';
+      modeIndicator.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;">smart_toy</span> AI Mode';
+    }
+    if (suggestions) suggestions.style.display = 'flex';
+  } else {
+    if (headerIcon) headerIcon.innerHTML = '<span class="material-symbols-outlined">support_agent</span>';
+    if (headerTitle) headerTitle.textContent = 'Front Desk Staff';
+    if (headerStatus) headerStatus.innerHTML = '<span style="display:inline-block; width:10px; height:10px; background:var(--success); border-radius:50%;"></span> Staff will respond shortly';
+    if (modeIndicator) {
+      modeIndicator.className = 'chat-mode-indicator admin';
+      modeIndicator.innerHTML = '<span class="material-symbols-outlined" style="font-size:14px;">support_agent</span> Live Chat';
+    }
+    if (suggestions) suggestions.style.display = 'none';
+  }
+
+  // Render the correct chat thread
+  const chatId = mode === 'ai' ? aiChatId : adminChatId;
+  renderChatMessages(chatId);
 }
 
 function renderChatMessages(chatId) {
   const container = document.getElementById('chatMessages');
   if (!container) return;
-  const chat = findById('stayEasePro_chats', chatId);
+  const chats = getData('stayEasePro_chats', []);
+  const chat = chats.find(c => c.id === chatId);
   if (!chat) return;
 
   container.innerHTML = chat.messages.map(m => `
@@ -114,15 +189,17 @@ function renderChatMessages(chatId) {
   container.scrollTop = container.scrollHeight;
 }
 
-function sendChatMessage(chatId) {
+function sendChatMessage() {
   const input = document.getElementById('chatInput');
   const text = input?.value?.trim();
   if (!text) { showToast('Cannot send empty message.', 'warning'); return; }
   if (text.length > 500) { showToast('Message too long (max 500 chars).', 'warning'); return; }
 
+  const chatId = currentChatMode === 'ai' ? aiChatId : adminChatId;
+
   const msg = {
     id: generateId('MSG'), sender: 'customer', text,
-    timestamp: new Date().toISOString(), read: true
+    timestamp: new Date().toISOString(), read: false
   };
 
   // Add message
@@ -135,33 +212,52 @@ function sendChatMessage(chatId) {
   input.value = '';
   renderChatMessages(chatId);
 
-  // Simulate admin typing & reply
-  const container = document.getElementById('chatMessages');
-  const typingEl = document.createElement('div');
-  typingEl.className = 'chat-bubble admin text-muted';
-  typingEl.style.cssText = 'width:60px;text-align:center;font-size:0.85rem;';
-  typingEl.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px; animation: pulse 1.5s infinite;">more_horiz</span>';
-  container.appendChild(typingEl);
-  container.scrollTop = container.scrollHeight;
+  if (currentChatMode === 'ai') {
+    // Simulate AI typing & reply
+    const container = document.getElementById('chatMessages');
+    const typingEl = document.createElement('div');
+    typingEl.className = 'chat-bubble admin text-muted';
+    typingEl.style.cssText = 'width:60px;text-align:center;font-size:0.85rem;';
+    typingEl.innerHTML = '<span class="material-symbols-outlined" style="font-size: 16px; animation: pulse 1.5s infinite;">more_horiz</span>';
+    container.appendChild(typingEl);
+    container.scrollTop = container.scrollHeight;
 
-  setTimeout(() => {
-    typingEl.remove();
-    const adminMsg = {
-      id: generateId('MSG'), sender: 'admin', text: getAdminReply(text),
-      timestamp: new Date().toISOString(), read: true
-    };
-    chat.messages.push(adminMsg);
-    setData('stayEasePro_chats', chats);
-    renderChatMessages(chatId);
+    setTimeout(() => {
+      typingEl.remove();
+      const adminMsg = {
+        id: generateId('MSG'), sender: 'admin', text: getAdminReply(text),
+        timestamp: new Date().toISOString(), read: true
+      };
+      // Re-read fresh to avoid race conditions
+      const freshChats = getData('stayEasePro_chats', []);
+      const freshChat = freshChats.find(c => c.id === chatId);
+      if (freshChat) {
+        freshChat.messages.push(adminMsg);
+        setData('stayEasePro_chats', freshChats);
+      }
+      renderChatMessages(chatId);
+    }, 1500);
+  }
+  // For admin mode: no auto-reply. Admin will reply from the admin panel.
+  // The poll interval will pick up new messages automatically.
+}
 
-    // Notification for admin reply
-    const user = getCurrentUser();
-    if (user) {
-      addItem('stayEasePro_notifications', {
-        id: generateId('NTF'), userId: user.id, type: 'chat',
-        message: 'New reply from Front Desk.', read: false,
-        createdAt: new Date().toISOString(), relatedId: chatId
-      });
+function startAdminPoll() {
+  if (adminChatPollInterval) clearInterval(adminChatPollInterval);
+  
+  let lastMsgCount = 0;
+  
+  adminChatPollInterval = setInterval(() => {
+    if (currentChatMode !== 'admin') return;
+    if (!adminChatId) return;
+
+    const chats = getData('stayEasePro_chats', []);
+    const chat = chats.find(c => c.id === adminChatId);
+    if (!chat) return;
+
+    if (chat.messages.length !== lastMsgCount) {
+      lastMsgCount = chat.messages.length;
+      renderChatMessages(adminChatId);
     }
-  }, 1500);
+  }, 3000);
 }
