@@ -19,7 +19,7 @@ function showToast(message, type = 'info', duration = 3500) {
   const container = _getToastContainer();
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
-  
+
   let icon = 'info';
   if (type === 'success') icon = 'check_circle';
   if (type === 'error') icon = 'error';
@@ -31,7 +31,7 @@ function showToast(message, type = 'info', duration = 3500) {
     <button style="background:none;border:none;cursor:pointer;color:var(--text-light);padding:0;" onclick="this.parentElement.remove()">
       <span class="material-symbols-outlined" style="font-size:20px;">close</span>
     </button>`;
-  
+
   container.appendChild(toast);
   setTimeout(() => { if (toast.parentNode) toast.remove(); }, duration);
 }
@@ -130,6 +130,30 @@ function updateNavbar() {
     }
   });
 
+  // Dynamically inject mobile links/actions
+  document.querySelectorAll('.nav-links').forEach(navLinks => {
+    let navMobileActions = navLinks.querySelector('.nav-mobile-actions');
+    if (!navMobileActions) {
+      navMobileActions = document.createElement('div');
+      navMobileActions.className = 'nav-mobile-actions';
+      navLinks.appendChild(navMobileActions);
+    }
+
+    if (user) {
+      navMobileActions.innerHTML = `
+        <a style="color: white;" href="dashboard.html" class="btn btn-primary w-100 justify-content-center mb-xs">Dashboard</a>
+        <button style="background-color: grey; color: white;" class="btn btn-ghost w-100 justify-content-center" id="mobileLogoutBtn">Logout</button>
+      `;
+      const mobileLogoutBtn = navMobileActions.querySelector('#mobileLogoutBtn');
+      if (mobileLogoutBtn) mobileLogoutBtn.addEventListener('click', logout);
+    } else {
+      navMobileActions.innerHTML = `
+        <a style="background-color: grey; color: white;" href="login.html" class="btn btn-ghost w-100 justify-content-center mb-xs">Sign In</a>
+        <a style="color: white;" href="rooms.html" class="btn btn-primary w-100 justify-content-center">Book Now</a>
+      `;
+    }
+  });
+
   // Highlight active link
   const path = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(a => {
@@ -137,3 +161,26 @@ function updateNavbar() {
     if (a.getAttribute('href') === path) a.classList.add('active');
   });
 }
+
+// Mobile menu click event delegation
+document.addEventListener('click', (e) => {
+  const hamburger = e.target.closest('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (hamburger) {
+    if (navLinks) {
+      navLinks.classList.toggle('active');
+      const icon = hamburger.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.textContent = navLinks.classList.contains('active') ? 'close' : 'menu';
+      }
+    }
+  } else if (navLinks && navLinks.classList.contains('active') && !e.target.closest('.nav-links')) {
+    navLinks.classList.remove('active');
+    const hamburgerBtn = document.querySelector('.hamburger');
+    if (hamburgerBtn) {
+      const icon = hamburgerBtn.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = 'menu';
+    }
+  }
+});
